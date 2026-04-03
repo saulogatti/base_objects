@@ -21,3 +21,10 @@ doc/api/
 *.js.map
 
 .idea/
+
+# Environment files
+.env
+.env.development
+.env.staging
+.env.production
+!.env.example
