@@ -1,6 +1,27 @@
 import 'package:base_objects/base_objects.dart';
 
 void main() {
-  final awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
+  final SystemModel system = SystemModel(
+    id: '1',
+    createdAt: DateTime.now(),
+    updatedAt: DateTime.now(),
+    systemUser: SystemUserModel(
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      id: '1',
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    ),
+    activationKey: SystemActivationKeyModel(
+      activationKey: '1234567890',
+      id: '1',
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    ),
+    serverUrl: 'https://example.com',
+  );
+  print(system.toJson());
+  print(SystemModel.schema);
+  print(SystemUserModel.schema);
+  print(SystemActivationKeyModel.schema);
 }
