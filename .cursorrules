@@ -1,7 +1,0 @@
-# Regras Gerais do Projeto Flutter (Leia antes de gerar qualquer código)
-
-1. **Arquitetura:** Utilizamos Clean Architecture estrita. `domain` não pode conhecer NADA de `data`, `infra` ou `presentation`. Nenhuma biblioteca externa do Flutter entra no `domain`.
-2. **Gerência de Estado:** Uso exclusivo de BLoC (`flutter_bloc`) com `freezed`. Não crie Cubits a menos que explicitamente solicitado. Todo estado e evento deve ser mapeado com Freezed.
-3. **Proibição Expressa:** É TERMINANTEMENTE PROIBIDO criar Singletons (nada de `Class._internal()`). A injeção de dependência deve ser feita via construtor. Se você gerar um Singleton, considere como uma falha crítica.
-4. **Anti-God Class:** Mantenha o princípio da Responsabilidade Única (SRP). Se um BLoC ou Widget passar de 200 linhas, divida-o imediatamente.
-5. **Estilo:** Código declarativo, tipagem forte, e lide sempre com o tratamento de erros (use `Result` do lib/infra/result/simple_result.dart se aplicável) no retorno dos repositórios e usecases.
