@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // coverage:ignore-file
-// ignore_for_file: cast_nullable_to_non_nullable
+// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks
 
 part of 'system_activation_key.dart';
 

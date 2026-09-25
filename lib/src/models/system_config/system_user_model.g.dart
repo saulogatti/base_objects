@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // coverage:ignore-file
-// ignore_for_file: cast_nullable_to_non_nullable
+// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks
 
 part of 'system_user_model.dart';
 
@@ -13,8 +13,22 @@ SystemUserModel _$SystemUserModelFromJson(Map<String, dynamic> json) =>
     $checkedCreate('SystemUserModel', json, ($checkedConvert) {
       final val = SystemUserModel(
         name: $checkedConvert('name', (v) => v as String),
+        document: $checkedConvert(
+          'document',
+          (v) => Cpf.fromJson(v as Map<String, dynamic>),
+        ),
         email: $checkedConvert('email', (v) => v as String?),
         description: $checkedConvert('description', (v) => v as String?),
+        userType: $checkedConvert(
+          'userType',
+          (v) =>
+              $enumDecodeNullable(
+                _$SystemUserTypeEnumMap,
+                v,
+                unknownValue: SystemUserType.user,
+              ) ??
+              SystemUserType.user,
+        ),
         phone: $checkedConvert('phone', (v) => v as String?),
         id: $checkedConvert('id', (v) => v as String?),
         createdAt: $checkedConvert(
@@ -23,6 +37,10 @@ SystemUserModel _$SystemUserModelFromJson(Map<String, dynamic> json) =>
         ),
         updatedAt: $checkedConvert(
           'updatedAt',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        lastLoginAt: $checkedConvert(
+          'lastLoginAt',
           (v) => v == null ? null : DateTime.parse(v as String),
         ),
       );
@@ -34,10 +52,13 @@ Map<String, dynamic> _$SystemUserModelToJson(SystemUserModel instance) =>
       'id': instance.id,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
+      'email': instance.email,
       'name': instance.name,
       'phone': instance.phone,
+      'document': instance.document.toJson(),
       'description': instance.description,
-      'email': instance.email,
+      'userType': _$SystemUserTypeEnumMap[instance.userType]!,
+      'lastLoginAt': instance.lastLoginAt?.toIso8601String(),
     };
 
 const _$SystemUserModelJsonSchema = {
@@ -58,6 +79,10 @@ const _$SystemUserModelJsonSchema = {
       'format': 'date-time',
       'description': 'Momento da última atualização do registro.',
     },
+    'email': {
+      'type': 'string',
+      'description': 'Endereço de e-mail (opcional).',
+    },
     'name': {
       'type': 'string',
       'description': 'Nome completo da pessoa ou razão social da empresa.',
@@ -66,8 +91,25 @@ const _$SystemUserModelJsonSchema = {
       'type': 'string',
       'description': 'Número de telefone (opcional).',
     },
-    'description': {'type': 'string'},
-    'email': {'type': 'string'},
+    'document': {r'$ref': r'#/$defs/Cpf'},
+    'description': {'type': 'string', 'description': 'Descrição do usuário.'},
+    'userType': {'type': 'object', 'description': 'Tipo de usuário.'},
+    'lastLoginAt': {'type': 'string', 'format': 'date-time'},
   },
-  'required': ['name', 'email'],
+  'required': ['email', 'name', 'document'],
+  r'$defs': {
+    'Cpf': {
+      'type': 'object',
+      'properties': {
+        'value': {'type': 'string'},
+      },
+      'required': ['value'],
+    },
+  },
+};
+
+const _$SystemUserTypeEnumMap = {
+  SystemUserType.superadmin: 'superadmin',
+  SystemUserType.admin: 'admin',
+  SystemUserType.user: 'user',
 };

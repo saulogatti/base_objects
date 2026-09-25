@@ -1,4 +1,5 @@
 import 'package:base_objects/base_objects.dart';
+import 'package:base_objects/src/models/document/cpf.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -9,6 +10,7 @@ void main() {
       updatedAt: DateTime.now(),
       systemUser: SystemUserModel(
         name: 'John Doe',
+        document: Cpf('123.456.789-09'),
         email: 'john.doe@example.com',
         id: '1',
         createdAt: DateTime.now(),

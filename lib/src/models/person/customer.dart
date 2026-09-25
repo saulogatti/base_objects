@@ -1,4 +1,3 @@
-import 'package:base_objects/src/models/default/people_data.dart';
 import 'package:base_objects/src/models/document/cpf.dart';
 import 'package:base_objects/src/models/person/address.dart';
 import 'package:base_objects/src/models/person/person.dart';
@@ -12,7 +11,7 @@ import 'package:base_objects/src/models/person/person.dart';
 /// unidade pode ser atendido na outra, e o histórico de compras e consertos
 /// precisa acompanhar a pessoa — não o balcão onde ela foi cadastrada.
 ///
-/// Herda [PersonDefault] (nome, e-mail, telefone).
+/// Herda [Person] (nome, e-mail, telefone).
 class Customer extends Person<Cpf> {
   /// Cria um cliente.
   new({

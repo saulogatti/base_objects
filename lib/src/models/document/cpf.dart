@@ -1,15 +1,22 @@
 import 'package:base_objects/src/constants/app_constants.dart';
 import 'package:base_objects/src/models/document/document.dart';
 import 'package:base_objects/src/utils/string_extensions.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'cpf.g.dart';
 
 /// CPF com validação de formato e dígitos verificadores.
 ///
 /// {@category modelos}
 /// {@subCategory Cadastros}
+///
+@JsonSerializable()
 class Cpf extends Document {
   /// Cria uma instância de [Cpf] com o valor informado.
   ///
   new(super.value);
+  factory fromJson(Map<String, dynamic> json) => _$CpfFromJson(json);
+  static Map<String, Object> get schema => _$CpfJsonSchema;
 
   /// Expressões regulares para validar o formato do CPF
   /// - _cpfRegExp: Valida o formato XXX.XXX.XXX-XX
@@ -21,6 +28,8 @@ class Cpf extends Document {
     if (d.length != 11) return value;
     return '${d.substring(0, 3)}.${d.substring(3, 6)}.${d.substring(6, 9)}-${d.substring(9)}';
   }
+
+  Map<String, dynamic> toJson() => _$CpfToJson(this);
 
   @override
   String? validateDocument() {

@@ -2,6 +2,9 @@ import 'dart:math';
 
 import 'package:base_objects/src/constants/app_constants.dart';
 import 'package:base_objects/src/models/document/document.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'cnpj.g.dart';
 
 // Validação do primeiro dígito verificador
 final firstWeights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
@@ -13,11 +16,15 @@ final secondWeights = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
 ///
 /// {@category modelos}
 /// {@subCategory Cadastros}
+///
+@JsonSerializable()
 class Cnpj extends Document {
   /// Cria uma instância de [Cnpj] com o valor informado.
   ///
   /// Lança [ValidationException] se o formato ou os dígitos forem inválidos.
   new(super.value);
+  factory fromJson(Map<String, dynamic> json) => _$CnpjFromJson(json);
+  static Map<String, Object> get schema => _$CnpjJsonSchema;
 
   /// Expressões regulares para validar o formato do CNPJ
   /// - _cnpjRegExp: Valida o formato XX.XXX.XXX/XXXX-XX com base alfanumérica
@@ -65,6 +72,8 @@ class Cnpj extends Document {
   }
 
   bool isValidCnpj() => _isValidCnpj;
+
+  Map<String, dynamic> toJson() => _$CnpjToJson(this);
 
   @override
   String? validateDocument() {

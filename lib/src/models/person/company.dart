@@ -1,4 +1,3 @@
-import 'package:base_objects/src/models/default/people_data.dart';
 import 'package:base_objects/src/models/document/cnpj.dart';
 import 'package:base_objects/src/models/person/address.dart';
 import 'package:base_objects/src/models/person/person.dart';
@@ -12,7 +11,7 @@ import 'package:base_objects/src/models/person/person.dart';
 /// loja compra. Aparecem nas notas de entrada e nunca nas de saída.
 ///
 /// Compartilhada entre as lojas, como os demais cadastros de pessoa.
-/// Herda [PersonDefault] (nome, e-mail, telefone).
+/// Herda [Person] (nome, e-mail, telefone).
 class Company extends Person<Cnpj> {
   /// Cria um fornecedor.
   new({

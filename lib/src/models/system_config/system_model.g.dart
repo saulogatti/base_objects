@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // coverage:ignore-file
-// ignore_for_file: cast_nullable_to_non_nullable
+// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks
 
 part of 'system_model.dart';
 
@@ -78,6 +78,13 @@ const _$SystemModelJsonSchema = {
   },
   'required': ['systemUser', 'activationKey', 'serverUrl'],
   r'$defs': {
+    'Cpf': {
+      'type': 'object',
+      'properties': {
+        'value': {'type': 'string'},
+      },
+      'required': ['value'],
+    },
     'SystemUserModel': {
       'type': 'object',
       'properties': {
@@ -95,6 +102,10 @@ const _$SystemModelJsonSchema = {
           'format': 'date-time',
           'description': 'Momento da última atualização do registro.',
         },
+        'email': {
+          'type': 'string',
+          'description': 'Endereço de e-mail (opcional).',
+        },
         'name': {
           'type': 'string',
           'description': 'Nome completo da pessoa ou razão social da empresa.',
@@ -103,10 +114,15 @@ const _$SystemModelJsonSchema = {
           'type': 'string',
           'description': 'Número de telefone (opcional).',
         },
-        'description': {'type': 'string'},
-        'email': {'type': 'string'},
+        'document': {r'$ref': r'#/$defs/Cpf'},
+        'description': {
+          'type': 'string',
+          'description': 'Descrição do usuário.',
+        },
+        'userType': {'type': 'object', 'description': 'Tipo de usuário.'},
+        'lastLoginAt': {'type': 'string', 'format': 'date-time'},
       },
-      'required': ['name', 'email'],
+      'required': ['email', 'name', 'document'],
     },
     'SystemActivationKeyModel': {
       'type': 'object',
