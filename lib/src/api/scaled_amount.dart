@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 /// literal decimal. Nunca passa por [double].
 String _canonicalizeScaled(String raw, {required int scale}) {
   final trimmed = raw.trim();
-  final pattern = RegExp('^-?\\d+(\\.\\d{1,$scale})?\$');
+  final pattern = RegExp('^-?\\d+(\\.\\d{1,$scale})?\\$');
   if (!pattern.hasMatch(trimmed)) {
     throw FormatException('Valor decimal inválido (máximo de $scale casas).', raw);
   }
