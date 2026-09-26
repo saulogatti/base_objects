@@ -9,7 +9,7 @@ part 'cash.g.dart';
 @JsonSerializable()
 final class PaymentMethod {
   /// Cria a forma.
-  const PaymentMethod({
+  const new({
     required this.id,
     required this.code,
     required this.name,
@@ -22,7 +22,7 @@ final class PaymentMethod {
   });
 
   /// Lê a forma.
-  factory PaymentMethod.fromJson(Map<String, dynamic> json) => _$PaymentMethodFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$PaymentMethodFromJson(json);
 
   /// UUID.
   final String id;
@@ -59,7 +59,7 @@ final class PaymentMethod {
 @JsonSerializable()
 final class CashRegister {
   /// Cria o terminal.
-  const CashRegister({
+  const new({
     required this.id,
     required this.storeId,
     required this.name,
@@ -68,7 +68,7 @@ final class CashRegister {
   });
 
   /// Lê o terminal.
-  factory CashRegister.fromJson(Map<String, dynamic> json) => _$CashRegisterFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$CashRegisterFromJson(json);
 
   /// UUID.
   final String id;
@@ -93,10 +93,10 @@ final class CashRegister {
 @JsonSerializable()
 final class CreateCashRegisterRequest {
   /// Cria o corpo.
-  const CreateCashRegisterRequest({required this.name, this.id, this.isActive = true});
+  const new({required this.name, this.id, this.isActive = true});
 
   /// Lê o corpo.
-  factory CreateCashRegisterRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$CreateCashRegisterRequestFromJson(json);
 
   /// UUID. O servidor gera se vier `null`.
@@ -116,7 +116,7 @@ final class CreateCashRegisterRequest {
 @JsonSerializable()
 final class CashMovement {
   /// Cria o movimento.
-  const CashMovement({
+  const new({
     required this.id,
     required this.sessionId,
     required this.type,
@@ -137,7 +137,7 @@ final class CashMovement {
   });
 
   /// Lê o movimento.
-  factory CashMovement.fromJson(Map<String, dynamic> json) => _$CashMovementFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$CashMovementFromJson(json);
 
   /// UUID.
   final String id;
@@ -198,7 +198,7 @@ final class CashMovement {
 @JsonSerializable()
 final class CashSession {
   /// Cria o turno.
-  const CashSession({
+  const new({
     required this.id,
     required this.storeId,
     required this.registerId,
@@ -216,7 +216,7 @@ final class CashSession {
   });
 
   /// Lê o turno.
-  factory CashSession.fromJson(Map<String, dynamic> json) => _$CashSessionFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$CashSessionFromJson(json);
 
   /// UUID.
   final String id;
@@ -268,10 +268,10 @@ final class CashSession {
 @JsonSerializable()
 final class CashMethodTotal {
   /// Cria o total.
-  const CashMethodTotal({required this.paymentMethodId, required this.name, required this.amount});
+  const new({required this.paymentMethodId, required this.name, required this.amount});
 
   /// Lê o total.
-  factory CashMethodTotal.fromJson(Map<String, dynamic> json) => _$CashMethodTotalFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$CashMethodTotalFromJson(json);
 
   /// Forma.
   final String paymentMethodId;
@@ -290,7 +290,7 @@ final class CashMethodTotal {
 @JsonSerializable()
 final class CashSummary {
   /// Cria o resumo.
-  const CashSummary({
+  const new({
     required this.session,
     required this.registerName,
     required this.operatorName,
@@ -303,7 +303,7 @@ final class CashSummary {
   });
 
   /// Lê o resumo.
-  factory CashSummary.fromJson(Map<String, dynamic> json) => _$CashSummaryFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$CashSummaryFromJson(json);
 
   /// Turno.
   final CashSession session;
@@ -340,14 +340,14 @@ final class CashSummary {
 @JsonSerializable()
 final class OpenCashSessionRequest {
   /// Cria o corpo.
-  const OpenCashSessionRequest({
+  const new({
     required this.id,
     required this.registerId,
     required this.openingAmount,
   });
 
   /// Lê o corpo.
-  factory OpenCashSessionRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$OpenCashSessionRequestFromJson(json);
 
   /// UUID do turno. Também é a chave de idempotência.
@@ -367,7 +367,7 @@ final class OpenCashSessionRequest {
 @JsonSerializable()
 final class RecordCashMovementRequest {
   /// Cria o corpo.
-  const RecordCashMovementRequest({
+  const new({
     required this.id,
     required this.type,
     required this.amount,
@@ -376,7 +376,7 @@ final class RecordCashMovementRequest {
   });
 
   /// Lê o corpo.
-  factory RecordCashMovementRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$RecordCashMovementRequestFromJson(json);
 
   /// UUID do movimento. Também é a chave de idempotência.
@@ -402,10 +402,10 @@ final class RecordCashMovementRequest {
 @JsonSerializable()
 final class CloseCashSessionRequest {
   /// Cria o corpo.
-  const CloseCashSessionRequest({required this.countedAmount, this.notes});
+  const new({required this.countedAmount, this.notes});
 
   /// Lê o corpo.
-  factory CloseCashSessionRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$CloseCashSessionRequestFromJson(json);
 
   /// Valor contado na gaveta.

@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // coverage:ignore-file
-// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, inference_failure_on_collection_literal
+// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, unnecessary_lambdas, inference_failure_on_collection_literal
 
 part of 'auth.dart';
 
@@ -19,18 +19,22 @@ LoginRequest _$LoginRequestFromJson(Map<String, dynamic> json) =>
       return val;
     });
 
-Map<String, dynamic> _$LoginRequestToJson(LoginRequest instance) => <String, dynamic>{
-  'email': instance.email,
-  'password': instance.password,
-  'storeId': instance.storeId,
-};
+Map<String, dynamic> _$LoginRequestToJson(LoginRequest instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+      'storeId': instance.storeId,
+    };
 
 const _$LoginRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
     'email': {'type': 'string', 'description': 'E-mail do usuário.'},
-    'password': {'type': 'string', 'description': 'Senha em texto. Não volta nas respostas.'},
+    'password': {
+      'type': 'string',
+      'description': 'Senha em texto. Não volta nas respostas.',
+    },
     'storeId': {
       'type': 'string',
       'description': 'Loja preferida. `null` ativa a primeira com vínculo.',
@@ -47,9 +51,9 @@ RefreshTokenRequest _$RefreshTokenRequestFromJson(Map<String, dynamic> json) =>
       return val;
     });
 
-Map<String, dynamic> _$RefreshTokenRequestToJson(RefreshTokenRequest instance) => <String, dynamic>{
-  'refreshToken': instance.refreshToken,
-};
+Map<String, dynamic> _$RefreshTokenRequestToJson(
+  RefreshTokenRequest instance,
+) => <String, dynamic>{'refreshToken': instance.refreshToken};
 
 const _$RefreshTokenRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -62,37 +66,52 @@ const _$RefreshTokenRequestJsonSchema = {
 
 SwitchStoreRequest _$SwitchStoreRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('SwitchStoreRequest', json, ($checkedConvert) {
-      final val = SwitchStoreRequest(storeId: $checkedConvert('storeId', (v) => v as String));
+      final val = SwitchStoreRequest(
+        storeId: $checkedConvert('storeId', (v) => v as String),
+      );
       return val;
     });
 
-Map<String, dynamic> _$SwitchStoreRequestToJson(SwitchStoreRequest instance) => <String, dynamic>{
-  'storeId': instance.storeId,
-};
+Map<String, dynamic> _$SwitchStoreRequestToJson(SwitchStoreRequest instance) =>
+    <String, dynamic>{'storeId': instance.storeId};
 
 const _$SwitchStoreRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'storeId': {'type': 'string', 'description': 'Loja que passa a ser a ativa.'},
+    'storeId': {
+      'type': 'string',
+      'description': 'Loja que passa a ser a ativa.',
+    },
   },
   'required': ['storeId'],
 };
 
-User _$UserFromJson(Map<String, dynamic> json) => $checkedCreate('User', json, ($checkedConvert) {
-  final val = User(
-    id: $checkedConvert('id', (v) => v as String),
-    name: $checkedConvert('name', (v) => v as String),
-    email: $checkedConvert('email', (v) => v as String),
-    isActive: $checkedConvert('isActive', (v) => v as bool),
-    isSuperadmin: $checkedConvert('isSuperadmin', (v) => v as bool),
-    createdAt: $checkedConvert('createdAt', (v) => ApiInstant.fromJson(v)),
-    updatedAt: $checkedConvert('updatedAt', (v) => ApiInstant.fromJson(v)),
-    phone: $checkedConvert('phone', (v) => v as String?),
-    lastLoginAt: $checkedConvert('lastLoginAt', (v) => v == null ? null : ApiInstant.fromJson(v)),
-  );
-  return val;
-});
+User _$UserFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('User', json, ($checkedConvert) {
+      final val = User(
+        id: $checkedConvert('id', (v) => v as String),
+        name: $checkedConvert('name', (v) => v as String),
+        email: $checkedConvert('email', (v) => v as String),
+        isActive: $checkedConvert('isActive', (v) => v as bool),
+        isSuperadmin: $checkedConvert('isSuperadmin', (v) => v as bool),
+        createdAt: $checkedConvert(
+          'createdAt',
+          (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+        ),
+        updatedAt: $checkedConvert(
+          'updatedAt',
+          (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+        ),
+        phone: $checkedConvert('phone', (v) => v as String?),
+        lastLoginAt: $checkedConvert(
+          'lastLoginAt',
+          (v) =>
+              v == null ? null : ApiInstant.fromJson(v as Map<String, dynamic>),
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
   'id': instance.id,
@@ -115,14 +134,41 @@ const _$UserJsonSchema = {
     'email': {'type': 'string', 'description': 'E-mail único.'},
     'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
     'isActive': {'type': 'boolean', 'description': 'Se a conta pode entrar.'},
-    'isSuperadmin': {'type': 'boolean', 'description': 'Se a conta é a de manutenção.'},
-    'lastLoginAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Último login, ou `null`.'},
+    'isSuperadmin': {
+      'type': 'boolean',
+      'description': 'Se a conta é a de manutenção.',
+    },
+    'lastLoginAt': {
+      r'$ref': r'#/$defs/ApiInstant',
+      'description': 'Último login, ou `null`.',
+    },
     'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Criação.'},
-    'updatedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Última alteração.'},
+    'updatedAt': {
+      r'$ref': r'#/$defs/ApiInstant',
+      'description': 'Última alteração.',
+    },
   },
-  'required': ['id', 'name', 'email', 'isActive', 'isSuperadmin', 'createdAt', 'updatedAt'],
+  'required': [
+    'id',
+    'name',
+    'email',
+    'isActive',
+    'isSuperadmin',
+    'createdAt',
+    'updatedAt',
+  ],
   r'$defs': {
-    'ApiInstant': {'type': 'object', 'properties': {}},
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
   },
 };
 
@@ -142,21 +188,25 @@ SessionRole _$SessionRoleFromJson(Map<String, dynamic> json) =>
       return val;
     });
 
-Map<String, dynamic> _$SessionRoleToJson(SessionRole instance) => <String, dynamic>{
-  'id': instance.id,
-  'code': instance.code,
-  'name': instance.name,
-  'description': instance.description,
-  'isSystem': instance.isSystem,
-  'permissions': instance.permissions,
-};
+Map<String, dynamic> _$SessionRoleToJson(SessionRole instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'code': instance.code,
+      'name': instance.name,
+      'description': instance.description,
+      'isSystem': instance.isSystem,
+      'permissions': instance.permissions,
+    };
 
 const _$SessionRoleJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
     'id': {'type': 'string', 'description': 'UUID.'},
-    'code': {'type': 'string', 'description': 'Código estável, por exemplo `manager`.'},
+    'code': {
+      'type': 'string',
+      'description': 'Código estável, por exemplo `manager`.',
+    },
     'name': {'type': 'string', 'description': 'Nome de exibição.'},
     'description': {'type': 'string', 'description': 'Texto livre, ou `null`.'},
     'isSystem': {'type': 'boolean', 'description': 'Se o papel veio do seed.'},
@@ -174,7 +224,10 @@ StoreMembership _$StoreMembershipFromJson(Map<String, dynamic> json) =>
       final val = StoreMembership(
         userId: $checkedConvert('userId', (v) => v as String),
         storeId: $checkedConvert('storeId', (v) => v as String),
-        role: $checkedConvert('role', (v) => SessionRole.fromJson(v as Map<String, dynamic>)),
+        role: $checkedConvert(
+          'role',
+          (v) => SessionRole.fromJson(v as Map<String, dynamic>),
+        ),
         permissions: $checkedConvert(
           'permissions',
           (v) => (v as List<dynamic>).map((e) => e as String).toList(),
@@ -183,12 +236,13 @@ StoreMembership _$StoreMembershipFromJson(Map<String, dynamic> json) =>
       return val;
     });
 
-Map<String, dynamic> _$StoreMembershipToJson(StoreMembership instance) => <String, dynamic>{
-  'userId': instance.userId,
-  'storeId': instance.storeId,
-  'role': instance.role.toJson(),
-  'permissions': instance.permissions,
-};
+Map<String, dynamic> _$StoreMembershipToJson(StoreMembership instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'storeId': instance.storeId,
+      'role': instance.role.toJson(),
+      'permissions': instance.permissions,
+    };
 
 const _$StoreMembershipJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -209,10 +263,19 @@ const _$StoreMembershipJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID.'},
-        'code': {'type': 'string', 'description': 'Código estável, por exemplo `manager`.'},
+        'code': {
+          'type': 'string',
+          'description': 'Código estável, por exemplo `manager`.',
+        },
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
-        'description': {'type': 'string', 'description': 'Texto livre, ou `null`.'},
-        'isSystem': {'type': 'boolean', 'description': 'Se o papel veio do seed.'},
+        'description': {
+          'type': 'string',
+          'description': 'Texto livre, ou `null`.',
+        },
+        'isSystem': {
+          'type': 'boolean',
+          'description': 'Se o papel veio do seed.',
+        },
         'permissions': {
           'type': 'array',
           'items': {'type': 'string'},
@@ -227,11 +290,15 @@ const _$StoreMembershipJsonSchema = {
 UserSession _$UserSessionFromJson(Map<String, dynamic> json) =>
     $checkedCreate('UserSession', json, ($checkedConvert) {
       final val = UserSession(
-        user: $checkedConvert('user', (v) => User.fromJson(v as Map<String, dynamic>)),
+        user: $checkedConvert(
+          'user',
+          (v) => User.fromJson(v as Map<String, dynamic>),
+        ),
         availableStores: $checkedConvert(
           'availableStores',
-          (v) =>
-              (v as List<dynamic>).map((e) => Store.fromJson(e as Map<String, dynamic>)).toList(),
+          (v) => (v as List<dynamic>)
+              .map((e) => Store.fromJson(e as Map<String, dynamic>))
+              .toList(),
         ),
         activeStore: $checkedConvert(
           'activeStore',
@@ -239,13 +306,17 @@ UserSession _$UserSessionFromJson(Map<String, dynamic> json) =>
         ),
         membership: $checkedConvert(
           'membership',
-          (v) => v == null ? null : StoreMembership.fromJson(v as Map<String, dynamic>),
+          (v) => v == null
+              ? null
+              : StoreMembership.fromJson(v as Map<String, dynamic>),
         ),
       );
       return val;
     });
 
-Map<String, dynamic> _$UserSessionToJson(UserSession instance) => <String, dynamic>{
+Map<String, dynamic> _$UserSessionToJson(
+  UserSession instance,
+) => <String, dynamic>{
   'user': instance.user.toJson(),
   'activeStore': instance.activeStore?.toJson(),
   'availableStores': instance.availableStores.map((e) => e.toJson()).toList(),
@@ -259,7 +330,8 @@ const _$UserSessionJsonSchema = {
     'user': {r'$ref': r'#/$defs/User', 'description': 'Usuário autenticado.'},
     'activeStore': {
       r'$ref': r'#/$defs/Store',
-      'description': 'Loja ativa. `null` quando o superadmin ainda não cadastrou loja.',
+      'description':
+          'Loja ativa. `null` quando o superadmin ainda não cadastrou loja.',
     },
     'availableStores': {
       'type': 'array',
@@ -273,7 +345,17 @@ const _$UserSessionJsonSchema = {
   },
   'required': ['user', 'availableStores'],
   r'$defs': {
-    'ApiInstant': {'type': 'object', 'properties': {}},
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
     'User': {
       'type': 'object',
       'properties': {
@@ -281,19 +363,45 @@ const _$UserSessionJsonSchema = {
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
         'email': {'type': 'string', 'description': 'E-mail único.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
-        'isActive': {'type': 'boolean', 'description': 'Se a conta pode entrar.'},
-        'isSuperadmin': {'type': 'boolean', 'description': 'Se a conta é a de manutenção.'},
-        'lastLoginAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Último login, ou `null`.'},
-        'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Criação.'},
-        'updatedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Última alteração.'},
+        'isActive': {
+          'type': 'boolean',
+          'description': 'Se a conta pode entrar.',
+        },
+        'isSuperadmin': {
+          'type': 'boolean',
+          'description': 'Se a conta é a de manutenção.',
+        },
+        'lastLoginAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Último login, ou `null`.',
+        },
+        'createdAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Criação.',
+        },
+        'updatedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Última alteração.',
+        },
       },
-      'required': ['id', 'name', 'email', 'isActive', 'isSuperadmin', 'createdAt', 'updatedAt'],
+      'required': [
+        'id',
+        'name',
+        'email',
+        'isActive',
+        'isSuperadmin',
+        'createdAt',
+        'updatedAt',
+      ],
     },
     'Address': {
       'type': 'object',
       'properties': {
         'street': {'type': 'string', 'description': 'Logradouro.'},
-        'zipCode': {'type': 'string', 'description': 'CEP, com ou sem máscara.'},
+        'zipCode': {
+          'type': 'string',
+          'description': 'CEP, com ou sem máscara.',
+        },
         'neighborhood': {'type': 'string', 'description': 'Bairro.'},
         'city': {'type': 'string', 'description': 'Cidade.'},
         'state': {'type': 'string', 'description': 'UF de duas letras.'},
@@ -304,12 +412,24 @@ const _$UserSessionJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID. Opcional na criação.'},
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
-        'legalName': {'type': 'string', 'description': 'Razão social, ou `null`.'},
-        'cnpj': {'type': 'string', 'description': 'CNPJ só com dígitos, ou `null`.'},
+        'legalName': {
+          'type': 'string',
+          'description': 'Razão social, ou `null`.',
+        },
+        'cnpj': {
+          'type': 'string',
+          'description': 'CNPJ só com dígitos, ou `null`.',
+        },
         'email': {'type': 'string', 'description': 'E-mail, ou `null`.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
-        'address': {r'$ref': r'#/$defs/Address', 'description': 'Endereço, ou `null`.'},
-        'isActive': {'type': 'boolean', 'description': 'Se a unidade está em operação.'},
+        'address': {
+          r'$ref': r'#/$defs/Address',
+          'description': 'Endereço, ou `null`.',
+        },
+        'isActive': {
+          'type': 'boolean',
+          'description': 'Se a unidade está em operação.',
+        },
         'createdAt': {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Criação, ou `null` no corpo de escrita.',
@@ -325,10 +445,19 @@ const _$UserSessionJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID.'},
-        'code': {'type': 'string', 'description': 'Código estável, por exemplo `manager`.'},
+        'code': {
+          'type': 'string',
+          'description': 'Código estável, por exemplo `manager`.',
+        },
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
-        'description': {'type': 'string', 'description': 'Texto livre, ou `null`.'},
-        'isSystem': {'type': 'boolean', 'description': 'Se o papel veio do seed.'},
+        'description': {
+          'type': 'string',
+          'description': 'Texto livre, ou `null`.',
+        },
+        'isSystem': {
+          'type': 'boolean',
+          'description': 'Se o papel veio do seed.',
+        },
         'permissions': {
           'type': 'array',
           'items': {'type': 'string'},
@@ -342,7 +471,10 @@ const _$UserSessionJsonSchema = {
       'properties': {
         'userId': {'type': 'string', 'description': 'Usuário.'},
         'storeId': {'type': 'string', 'description': 'Loja.'},
-        'role': {r'$ref': r'#/$defs/SessionRole', 'description': 'Papel na loja.'},
+        'role': {
+          r'$ref': r'#/$defs/SessionRole',
+          'description': 'Papel na loja.',
+        },
         'permissions': {
           'type': 'array',
           'items': {'type': 'string'},
@@ -354,26 +486,35 @@ const _$UserSessionJsonSchema = {
   },
 };
 
-AuthSession _$AuthSessionFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('AuthSession', json, ($checkedConvert) {
-  final val = AuthSession(
-    accessToken: $checkedConvert('accessToken', (v) => v as String),
-    accessTokenExpiresAt: $checkedConvert('accessTokenExpiresAt', (v) => ApiInstant.fromJson(v)),
-    refreshToken: $checkedConvert('refreshToken', (v) => v as String),
-    refreshTokenExpiresAt: $checkedConvert('refreshTokenExpiresAt', (v) => ApiInstant.fromJson(v)),
-    session: $checkedConvert('session', (v) => UserSession.fromJson(v as Map<String, dynamic>)),
-  );
-  return val;
-});
+AuthSession _$AuthSessionFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('AuthSession', json, ($checkedConvert) {
+      final val = AuthSession(
+        accessToken: $checkedConvert('accessToken', (v) => v as String),
+        accessTokenExpiresAt: $checkedConvert(
+          'accessTokenExpiresAt',
+          (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+        ),
+        refreshToken: $checkedConvert('refreshToken', (v) => v as String),
+        refreshTokenExpiresAt: $checkedConvert(
+          'refreshTokenExpiresAt',
+          (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+        ),
+        session: $checkedConvert(
+          'session',
+          (v) => UserSession.fromJson(v as Map<String, dynamic>),
+        ),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$AuthSessionToJson(AuthSession instance) => <String, dynamic>{
-  'accessToken': instance.accessToken,
-  'accessTokenExpiresAt': instance.accessTokenExpiresAt.toJson(),
-  'refreshToken': instance.refreshToken,
-  'refreshTokenExpiresAt': instance.refreshTokenExpiresAt.toJson(),
-  'session': instance.session.toJson(),
-};
+Map<String, dynamic> _$AuthSessionToJson(AuthSession instance) =>
+    <String, dynamic>{
+      'accessToken': instance.accessToken,
+      'accessTokenExpiresAt': instance.accessTokenExpiresAt.toJson(),
+      'refreshToken': instance.refreshToken,
+      'refreshTokenExpiresAt': instance.refreshTokenExpiresAt.toJson(),
+      'session': instance.session.toJson(),
+    };
 
 const _$AuthSessionJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -389,7 +530,10 @@ const _$AuthSessionJsonSchema = {
       r'$ref': r'#/$defs/ApiInstant',
       'description': 'Expiração do refresh token.',
     },
-    'session': {r'$ref': r'#/$defs/UserSession', 'description': 'Sessão recarregada.'},
+    'session': {
+      r'$ref': r'#/$defs/UserSession',
+      'description': 'Sessão recarregada.',
+    },
   },
   'required': [
     'accessToken',
@@ -399,7 +543,17 @@ const _$AuthSessionJsonSchema = {
     'session',
   ],
   r'$defs': {
-    'ApiInstant': {'type': 'object', 'properties': {}},
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
     'User': {
       'type': 'object',
       'properties': {
@@ -407,19 +561,45 @@ const _$AuthSessionJsonSchema = {
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
         'email': {'type': 'string', 'description': 'E-mail único.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
-        'isActive': {'type': 'boolean', 'description': 'Se a conta pode entrar.'},
-        'isSuperadmin': {'type': 'boolean', 'description': 'Se a conta é a de manutenção.'},
-        'lastLoginAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Último login, ou `null`.'},
-        'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Criação.'},
-        'updatedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Última alteração.'},
+        'isActive': {
+          'type': 'boolean',
+          'description': 'Se a conta pode entrar.',
+        },
+        'isSuperadmin': {
+          'type': 'boolean',
+          'description': 'Se a conta é a de manutenção.',
+        },
+        'lastLoginAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Último login, ou `null`.',
+        },
+        'createdAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Criação.',
+        },
+        'updatedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Última alteração.',
+        },
       },
-      'required': ['id', 'name', 'email', 'isActive', 'isSuperadmin', 'createdAt', 'updatedAt'],
+      'required': [
+        'id',
+        'name',
+        'email',
+        'isActive',
+        'isSuperadmin',
+        'createdAt',
+        'updatedAt',
+      ],
     },
     'Address': {
       'type': 'object',
       'properties': {
         'street': {'type': 'string', 'description': 'Logradouro.'},
-        'zipCode': {'type': 'string', 'description': 'CEP, com ou sem máscara.'},
+        'zipCode': {
+          'type': 'string',
+          'description': 'CEP, com ou sem máscara.',
+        },
         'neighborhood': {'type': 'string', 'description': 'Bairro.'},
         'city': {'type': 'string', 'description': 'Cidade.'},
         'state': {'type': 'string', 'description': 'UF de duas letras.'},
@@ -430,12 +610,24 @@ const _$AuthSessionJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID. Opcional na criação.'},
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
-        'legalName': {'type': 'string', 'description': 'Razão social, ou `null`.'},
-        'cnpj': {'type': 'string', 'description': 'CNPJ só com dígitos, ou `null`.'},
+        'legalName': {
+          'type': 'string',
+          'description': 'Razão social, ou `null`.',
+        },
+        'cnpj': {
+          'type': 'string',
+          'description': 'CNPJ só com dígitos, ou `null`.',
+        },
         'email': {'type': 'string', 'description': 'E-mail, ou `null`.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
-        'address': {r'$ref': r'#/$defs/Address', 'description': 'Endereço, ou `null`.'},
-        'isActive': {'type': 'boolean', 'description': 'Se a unidade está em operação.'},
+        'address': {
+          r'$ref': r'#/$defs/Address',
+          'description': 'Endereço, ou `null`.',
+        },
+        'isActive': {
+          'type': 'boolean',
+          'description': 'Se a unidade está em operação.',
+        },
         'createdAt': {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Criação, ou `null` no corpo de escrita.',
@@ -451,10 +643,19 @@ const _$AuthSessionJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID.'},
-        'code': {'type': 'string', 'description': 'Código estável, por exemplo `manager`.'},
+        'code': {
+          'type': 'string',
+          'description': 'Código estável, por exemplo `manager`.',
+        },
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
-        'description': {'type': 'string', 'description': 'Texto livre, ou `null`.'},
-        'isSystem': {'type': 'boolean', 'description': 'Se o papel veio do seed.'},
+        'description': {
+          'type': 'string',
+          'description': 'Texto livre, ou `null`.',
+        },
+        'isSystem': {
+          'type': 'boolean',
+          'description': 'Se o papel veio do seed.',
+        },
         'permissions': {
           'type': 'array',
           'items': {'type': 'string'},
@@ -468,7 +669,10 @@ const _$AuthSessionJsonSchema = {
       'properties': {
         'userId': {'type': 'string', 'description': 'Usuário.'},
         'storeId': {'type': 'string', 'description': 'Loja.'},
-        'role': {r'$ref': r'#/$defs/SessionRole', 'description': 'Papel na loja.'},
+        'role': {
+          r'$ref': r'#/$defs/SessionRole',
+          'description': 'Papel na loja.',
+        },
         'permissions': {
           'type': 'array',
           'items': {'type': 'string'},
@@ -480,7 +684,10 @@ const _$AuthSessionJsonSchema = {
     'UserSession': {
       'type': 'object',
       'properties': {
-        'user': {r'$ref': r'#/$defs/User', 'description': 'Usuário autenticado.'},
+        'user': {
+          r'$ref': r'#/$defs/User',
+          'description': 'Usuário autenticado.',
+        },
         'activeStore': {
           r'$ref': r'#/$defs/Store',
           'description': 'Loja ativa. `null` quando o superadmin ainda não cadastrou loja.',
@@ -492,7 +699,8 @@ const _$AuthSessionJsonSchema = {
         },
         'membership': {
           r'$ref': r'#/$defs/StoreMembership',
-          'description': 'Vínculo na loja ativa. `null` junto com [activeStore].',
+          'description':
+              'Vínculo na loja ativa. `null` junto com [activeStore].',
         },
       },
       'required': ['user', 'availableStores'],
@@ -503,24 +711,39 @@ const _$AuthSessionJsonSchema = {
 SessionResponse _$SessionResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('SessionResponse', json, ($checkedConvert) {
       final val = SessionResponse(
-        session: $checkedConvert('session', (v) => UserSession.fromJson(v as Map<String, dynamic>)),
+        session: $checkedConvert(
+          'session',
+          (v) => UserSession.fromJson(v as Map<String, dynamic>),
+        ),
       );
       return val;
     });
 
-Map<String, dynamic> _$SessionResponseToJson(SessionResponse instance) => <String, dynamic>{
-  'session': instance.session.toJson(),
-};
+Map<String, dynamic> _$SessionResponseToJson(SessionResponse instance) =>
+    <String, dynamic>{'session': instance.session.toJson()};
 
 const _$SessionResponseJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'session': {r'$ref': r'#/$defs/UserSession', 'description': 'Sessão corrente.'},
+    'session': {
+      r'$ref': r'#/$defs/UserSession',
+      'description': 'Sessão corrente.',
+    },
   },
   'required': ['session'],
   r'$defs': {
-    'ApiInstant': {'type': 'object', 'properties': {}},
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
     'User': {
       'type': 'object',
       'properties': {
@@ -528,19 +751,45 @@ const _$SessionResponseJsonSchema = {
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
         'email': {'type': 'string', 'description': 'E-mail único.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
-        'isActive': {'type': 'boolean', 'description': 'Se a conta pode entrar.'},
-        'isSuperadmin': {'type': 'boolean', 'description': 'Se a conta é a de manutenção.'},
-        'lastLoginAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Último login, ou `null`.'},
-        'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Criação.'},
-        'updatedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Última alteração.'},
+        'isActive': {
+          'type': 'boolean',
+          'description': 'Se a conta pode entrar.',
+        },
+        'isSuperadmin': {
+          'type': 'boolean',
+          'description': 'Se a conta é a de manutenção.',
+        },
+        'lastLoginAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Último login, ou `null`.',
+        },
+        'createdAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Criação.',
+        },
+        'updatedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Última alteração.',
+        },
       },
-      'required': ['id', 'name', 'email', 'isActive', 'isSuperadmin', 'createdAt', 'updatedAt'],
+      'required': [
+        'id',
+        'name',
+        'email',
+        'isActive',
+        'isSuperadmin',
+        'createdAt',
+        'updatedAt',
+      ],
     },
     'Address': {
       'type': 'object',
       'properties': {
         'street': {'type': 'string', 'description': 'Logradouro.'},
-        'zipCode': {'type': 'string', 'description': 'CEP, com ou sem máscara.'},
+        'zipCode': {
+          'type': 'string',
+          'description': 'CEP, com ou sem máscara.',
+        },
         'neighborhood': {'type': 'string', 'description': 'Bairro.'},
         'city': {'type': 'string', 'description': 'Cidade.'},
         'state': {'type': 'string', 'description': 'UF de duas letras.'},
@@ -551,12 +800,24 @@ const _$SessionResponseJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID. Opcional na criação.'},
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
-        'legalName': {'type': 'string', 'description': 'Razão social, ou `null`.'},
-        'cnpj': {'type': 'string', 'description': 'CNPJ só com dígitos, ou `null`.'},
+        'legalName': {
+          'type': 'string',
+          'description': 'Razão social, ou `null`.',
+        },
+        'cnpj': {
+          'type': 'string',
+          'description': 'CNPJ só com dígitos, ou `null`.',
+        },
         'email': {'type': 'string', 'description': 'E-mail, ou `null`.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
-        'address': {r'$ref': r'#/$defs/Address', 'description': 'Endereço, ou `null`.'},
-        'isActive': {'type': 'boolean', 'description': 'Se a unidade está em operação.'},
+        'address': {
+          r'$ref': r'#/$defs/Address',
+          'description': 'Endereço, ou `null`.',
+        },
+        'isActive': {
+          'type': 'boolean',
+          'description': 'Se a unidade está em operação.',
+        },
         'createdAt': {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Criação, ou `null` no corpo de escrita.',
@@ -572,10 +833,19 @@ const _$SessionResponseJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID.'},
-        'code': {'type': 'string', 'description': 'Código estável, por exemplo `manager`.'},
+        'code': {
+          'type': 'string',
+          'description': 'Código estável, por exemplo `manager`.',
+        },
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
-        'description': {'type': 'string', 'description': 'Texto livre, ou `null`.'},
-        'isSystem': {'type': 'boolean', 'description': 'Se o papel veio do seed.'},
+        'description': {
+          'type': 'string',
+          'description': 'Texto livre, ou `null`.',
+        },
+        'isSystem': {
+          'type': 'boolean',
+          'description': 'Se o papel veio do seed.',
+        },
         'permissions': {
           'type': 'array',
           'items': {'type': 'string'},
@@ -589,7 +859,10 @@ const _$SessionResponseJsonSchema = {
       'properties': {
         'userId': {'type': 'string', 'description': 'Usuário.'},
         'storeId': {'type': 'string', 'description': 'Loja.'},
-        'role': {r'$ref': r'#/$defs/SessionRole', 'description': 'Papel na loja.'},
+        'role': {
+          r'$ref': r'#/$defs/SessionRole',
+          'description': 'Papel na loja.',
+        },
         'permissions': {
           'type': 'array',
           'items': {'type': 'string'},
@@ -601,7 +874,10 @@ const _$SessionResponseJsonSchema = {
     'UserSession': {
       'type': 'object',
       'properties': {
-        'user': {r'$ref': r'#/$defs/User', 'description': 'Usuário autenticado.'},
+        'user': {
+          r'$ref': r'#/$defs/User',
+          'description': 'Usuário autenticado.',
+        },
         'activeStore': {
           r'$ref': r'#/$defs/Store',
           'description': 'Loja ativa. `null` quando o superadmin ainda não cadastrou loja.',
@@ -613,7 +889,8 @@ const _$SessionResponseJsonSchema = {
         },
         'membership': {
           r'$ref': r'#/$defs/StoreMembership',
-          'description': 'Vínculo na loja ativa. `null` junto com [activeStore].',
+          'description':
+              'Vínculo na loja ativa. `null` junto com [activeStore].',
         },
       },
       'required': ['user', 'availableStores'],
@@ -621,14 +898,18 @@ const _$SessionResponseJsonSchema = {
   },
 };
 
-PasswordRecoveryRequest _$PasswordRecoveryRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('PasswordRecoveryRequest', json, ($checkedConvert) {
-      final val = PasswordRecoveryRequest(email: $checkedConvert('email', (v) => v as String));
-      return val;
-    });
+PasswordRecoveryRequest _$PasswordRecoveryRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('PasswordRecoveryRequest', json, ($checkedConvert) {
+  final val = PasswordRecoveryRequest(
+    email: $checkedConvert('email', (v) => v as String),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$PasswordRecoveryRequestToJson(PasswordRecoveryRequest instance) =>
-    <String, dynamic>{'email': instance.email};
+Map<String, dynamic> _$PasswordRecoveryRequestToJson(
+  PasswordRecoveryRequest instance,
+) => <String, dynamic>{'email': instance.email};
 
 const _$PasswordRecoveryRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -639,35 +920,44 @@ const _$PasswordRecoveryRequestJsonSchema = {
   'required': ['email'],
 };
 
-PasswordRecoveryAccepted _$PasswordRecoveryAcceptedFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('PasswordRecoveryAccepted', json, ($checkedConvert) {
-      final val = PasswordRecoveryAccepted(message: $checkedConvert('message', (v) => v as String));
-      return val;
-    });
+PasswordRecoveryAccepted _$PasswordRecoveryAcceptedFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('PasswordRecoveryAccepted', json, ($checkedConvert) {
+  final val = PasswordRecoveryAccepted(
+    message: $checkedConvert('message', (v) => v as String),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$PasswordRecoveryAcceptedToJson(PasswordRecoveryAccepted instance) =>
-    <String, dynamic>{'message': instance.message};
+Map<String, dynamic> _$PasswordRecoveryAcceptedToJson(
+  PasswordRecoveryAccepted instance,
+) => <String, dynamic>{'message': instance.message};
 
 const _$PasswordRecoveryAcceptedJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'message': {'type': 'string', 'description': 'Texto genérico, exista ou não o e-mail.'},
+    'message': {
+      'type': 'string',
+      'description': 'Texto genérico, exista ou não o e-mail.',
+    },
   },
   'required': ['message'],
 };
 
-ValidateRecoveryCodeRequest _$ValidateRecoveryCodeRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ValidateRecoveryCodeRequest', json, ($checkedConvert) {
-      final val = ValidateRecoveryCodeRequest(
-        email: $checkedConvert('email', (v) => v as String),
-        code: $checkedConvert('code', (v) => v as String),
-      );
-      return val;
-    });
+ValidateRecoveryCodeRequest _$ValidateRecoveryCodeRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ValidateRecoveryCodeRequest', json, ($checkedConvert) {
+  final val = ValidateRecoveryCodeRequest(
+    email: $checkedConvert('email', (v) => v as String),
+    code: $checkedConvert('code', (v) => v as String),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$ValidateRecoveryCodeRequestToJson(ValidateRecoveryCodeRequest instance) =>
-    <String, dynamic>{'email': instance.email, 'code': instance.code};
+Map<String, dynamic> _$ValidateRecoveryCodeRequestToJson(
+  ValidateRecoveryCodeRequest instance,
+) => <String, dynamic>{'email': instance.email, 'code': instance.code};
 
 const _$ValidateRecoveryCodeRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -679,22 +969,24 @@ const _$ValidateRecoveryCodeRequestJsonSchema = {
   'required': ['email', 'code'],
 };
 
-ResetPasswordRequest _$ResetPasswordRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ResetPasswordRequest', json, ($checkedConvert) {
-      final val = ResetPasswordRequest(
-        email: $checkedConvert('email', (v) => v as String),
-        code: $checkedConvert('code', (v) => v as String),
-        newPassword: $checkedConvert('newPassword', (v) => v as String),
-      );
-      return val;
-    });
+ResetPasswordRequest _$ResetPasswordRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ResetPasswordRequest', json, ($checkedConvert) {
+  final val = ResetPasswordRequest(
+    email: $checkedConvert('email', (v) => v as String),
+    code: $checkedConvert('code', (v) => v as String),
+    newPassword: $checkedConvert('newPassword', (v) => v as String),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$ResetPasswordRequestToJson(ResetPasswordRequest instance) =>
-    <String, dynamic>{
-      'email': instance.email,
-      'code': instance.code,
-      'newPassword': instance.newPassword,
-    };
+Map<String, dynamic> _$ResetPasswordRequestToJson(
+  ResetPasswordRequest instance,
+) => <String, dynamic>{
+  'email': instance.email,
+  'code': instance.code,
+  'newPassword': instance.newPassword,
+};
 
 const _$ResetPasswordRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',

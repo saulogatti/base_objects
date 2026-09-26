@@ -8,10 +8,10 @@ part 'auth.g.dart';
 @JsonSerializable()
 final class LoginRequest {
   /// Cria o login.
-  const LoginRequest({required this.email, required this.password, this.storeId});
+  const new({required this.email, required this.password, this.storeId});
 
   /// Lê o corpo.
-  factory LoginRequest.fromJson(Map<String, dynamic> json) => _$LoginRequestFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$LoginRequestFromJson(json);
 
   /// E-mail do usuário.
   final String email;
@@ -30,10 +30,10 @@ final class LoginRequest {
 @JsonSerializable()
 final class RefreshTokenRequest {
   /// Cria o corpo.
-  const RefreshTokenRequest({required this.refreshToken});
+  const new({required this.refreshToken});
 
   /// Lê o corpo.
-  factory RefreshTokenRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$RefreshTokenRequestFromJson(json);
 
   /// Refresh token opaco.
@@ -47,10 +47,10 @@ final class RefreshTokenRequest {
 @JsonSerializable()
 final class SwitchStoreRequest {
   /// Cria o corpo.
-  const SwitchStoreRequest({required this.storeId});
+  const new({required this.storeId});
 
   /// Lê o corpo.
-  factory SwitchStoreRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$SwitchStoreRequestFromJson(json);
 
   /// Loja que passa a ser a ativa.
@@ -64,7 +64,7 @@ final class SwitchStoreRequest {
 @JsonSerializable()
 final class User {
   /// Cria o usuário.
-  const User({
+  const new({
     required this.id,
     required this.name,
     required this.email,
@@ -77,7 +77,7 @@ final class User {
   });
 
   /// Lê o objeto `User`.
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   /// UUID.
   final String id;
@@ -114,7 +114,7 @@ final class User {
 @JsonSerializable()
 final class SessionRole {
   /// Cria o papel da sessão.
-  const SessionRole({
+  const new({
     required this.id,
     required this.code,
     required this.name,
@@ -124,7 +124,7 @@ final class SessionRole {
   });
 
   /// Lê o papel.
-  factory SessionRole.fromJson(Map<String, dynamic> json) => _$SessionRoleFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$SessionRoleFromJson(json);
 
   /// UUID.
   final String id;
@@ -152,7 +152,7 @@ final class SessionRole {
 @JsonSerializable()
 final class StoreMembership {
   /// Cria o vínculo.
-  const StoreMembership({
+  const new({
     required this.userId,
     required this.storeId,
     required this.role,
@@ -160,7 +160,7 @@ final class StoreMembership {
   });
 
   /// Lê o vínculo.
-  factory StoreMembership.fromJson(Map<String, dynamic> json) => _$StoreMembershipFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$StoreMembershipFromJson(json);
 
   /// Usuário.
   final String userId;
@@ -182,7 +182,7 @@ final class StoreMembership {
 @JsonSerializable()
 final class UserSession {
   /// Cria a sessão.
-  const UserSession({
+  const new({
     required this.user,
     required this.availableStores,
     this.activeStore,
@@ -190,7 +190,7 @@ final class UserSession {
   });
 
   /// Lê a sessão.
-  factory UserSession.fromJson(Map<String, dynamic> json) => _$UserSessionFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$UserSessionFromJson(json);
 
   /// Usuário autenticado.
   final User user;
@@ -212,7 +212,7 @@ final class UserSession {
 @JsonSerializable()
 final class AuthSession {
   /// Cria a resposta.
-  const AuthSession({
+  const new({
     required this.accessToken,
     required this.accessTokenExpiresAt,
     required this.refreshToken,
@@ -221,7 +221,7 @@ final class AuthSession {
   });
 
   /// Lê a resposta.
-  factory AuthSession.fromJson(Map<String, dynamic> json) => _$AuthSessionFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$AuthSessionFromJson(json);
 
   /// JWT de acesso.
   final String accessToken;
@@ -246,10 +246,10 @@ final class AuthSession {
 @JsonSerializable()
 final class SessionResponse {
   /// Cria a resposta.
-  const SessionResponse({required this.session});
+  const new({required this.session});
 
   /// Lê a resposta.
-  factory SessionResponse.fromJson(Map<String, dynamic> json) => _$SessionResponseFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$SessionResponseFromJson(json);
 
   /// Sessão corrente.
   final UserSession session;
@@ -262,10 +262,10 @@ final class SessionResponse {
 @JsonSerializable()
 final class PasswordRecoveryRequest {
   /// Cria o pedido.
-  const PasswordRecoveryRequest({required this.email});
+  const new({required this.email});
 
   /// Lê o corpo.
-  factory PasswordRecoveryRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$PasswordRecoveryRequestFromJson(json);
 
   /// E-mail informado.
@@ -279,10 +279,10 @@ final class PasswordRecoveryRequest {
 @JsonSerializable()
 final class PasswordRecoveryAccepted {
   /// Cria a resposta.
-  const PasswordRecoveryAccepted({required this.message});
+  const new({required this.message});
 
   /// Lê a resposta.
-  factory PasswordRecoveryAccepted.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$PasswordRecoveryAcceptedFromJson(json);
 
   /// Texto genérico, exista ou não o e-mail.
@@ -296,10 +296,10 @@ final class PasswordRecoveryAccepted {
 @JsonSerializable()
 final class ValidateRecoveryCodeRequest {
   /// Cria a validação.
-  const ValidateRecoveryCodeRequest({required this.email, required this.code});
+  const new({required this.email, required this.code});
 
   /// Lê o corpo.
-  factory ValidateRecoveryCodeRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ValidateRecoveryCodeRequestFromJson(json);
 
   /// E-mail do pedido.
@@ -316,10 +316,10 @@ final class ValidateRecoveryCodeRequest {
 @JsonSerializable()
 final class ResetPasswordRequest {
   /// Cria a troca.
-  const ResetPasswordRequest({required this.email, required this.code, required this.newPassword});
+  const new({required this.email, required this.code, required this.newPassword});
 
   /// Lê o corpo.
-  factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ResetPasswordRequestFromJson(json);
 
   /// E-mail do pedido.

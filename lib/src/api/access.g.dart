@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // coverage:ignore-file
-// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, inference_failure_on_collection_literal
+// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, unnecessary_lambdas, inference_failure_on_collection_literal
 
 part of 'access.dart';
 
@@ -20,12 +20,13 @@ UserUpsertRequest _$UserUpsertRequestFromJson(Map<String, dynamic> json) =>
       return val;
     });
 
-Map<String, dynamic> _$UserUpsertRequestToJson(UserUpsertRequest instance) => <String, dynamic>{
-  'name': instance.name,
-  'email': instance.email,
-  'phone': instance.phone,
-  'password': instance.password,
-};
+Map<String, dynamic> _$UserUpsertRequestToJson(UserUpsertRequest instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'email': instance.email,
+      'phone': instance.phone,
+      'password': instance.password,
+    };
 
 const _$UserUpsertRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -36,7 +37,8 @@ const _$UserUpsertRequestJsonSchema = {
     'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
     'password': {
       'type': 'string',
-      'description': 'Senha em texto na criação. Na edição o servidor recusa o campo.',
+      'description':
+          'Senha em texto na criação. Na edição o servidor recusa o campo.',
     },
   },
   'required': ['name', 'email'],
@@ -44,13 +46,14 @@ const _$UserUpsertRequestJsonSchema = {
 
 ActiveFlagRequest _$ActiveFlagRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('ActiveFlagRequest', json, ($checkedConvert) {
-      final val = ActiveFlagRequest(isActive: $checkedConvert('isActive', (v) => v as bool));
+      final val = ActiveFlagRequest(
+        isActive: $checkedConvert('isActive', (v) => v as bool),
+      );
       return val;
     });
 
-Map<String, dynamic> _$ActiveFlagRequestToJson(ActiveFlagRequest instance) => <String, dynamic>{
-  'isActive': instance.isActive,
-};
+Map<String, dynamic> _$ActiveFlagRequestToJson(ActiveFlagRequest instance) =>
+    <String, dynamic>{'isActive': instance.isActive};
 
 const _$ActiveFlagRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -61,20 +64,22 @@ const _$ActiveFlagRequestJsonSchema = {
   'required': ['isActive'],
 };
 
-ChangePasswordRequest _$ChangePasswordRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ChangePasswordRequest', json, ($checkedConvert) {
-      final val = ChangePasswordRequest(
-        newPassword: $checkedConvert('newPassword', (v) => v as String),
-        currentPassword: $checkedConvert('currentPassword', (v) => v as String?),
-      );
-      return val;
-    });
+ChangePasswordRequest _$ChangePasswordRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ChangePasswordRequest', json, ($checkedConvert) {
+  final val = ChangePasswordRequest(
+    newPassword: $checkedConvert('newPassword', (v) => v as String),
+    currentPassword: $checkedConvert('currentPassword', (v) => v as String?),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$ChangePasswordRequestToJson(ChangePasswordRequest instance) =>
-    <String, dynamic>{
-      'currentPassword': instance.currentPassword,
-      'newPassword': instance.newPassword,
-    };
+Map<String, dynamic> _$ChangePasswordRequestToJson(
+  ChangePasswordRequest instance,
+) => <String, dynamic>{
+  'currentPassword': instance.currentPassword,
+  'newPassword': instance.newPassword,
+};
 
 const _$ChangePasswordRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -89,21 +94,25 @@ const _$ChangePasswordRequestJsonSchema = {
   'required': ['newPassword'],
 };
 
-Role _$RoleFromJson(Map<String, dynamic> json) => $checkedCreate('Role', json, ($checkedConvert) {
-  final val = Role(
-    id: $checkedConvert('id', (v) => v as String),
-    code: $checkedConvert('code', (v) => v as String),
-    name: $checkedConvert('name', (v) => v as String),
-    isSystem: $checkedConvert('isSystem', (v) => v as bool),
-    permissions: $checkedConvert(
-      'permissions',
-      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-    ),
-    createdAt: $checkedConvert('createdAt', (v) => ApiInstant.fromJson(v)),
-    description: $checkedConvert('description', (v) => v as String?),
-  );
-  return val;
-});
+Role _$RoleFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('Role', json, ($checkedConvert) {
+      final val = Role(
+        id: $checkedConvert('id', (v) => v as String),
+        code: $checkedConvert('code', (v) => v as String),
+        name: $checkedConvert('name', (v) => v as String),
+        isSystem: $checkedConvert('isSystem', (v) => v as bool),
+        permissions: $checkedConvert(
+          'permissions',
+          (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+        ),
+        createdAt: $checkedConvert(
+          'createdAt',
+          (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+        ),
+        description: $checkedConvert('description', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$RoleToJson(Role instance) => <String, dynamic>{
   'id': instance.id,
@@ -133,7 +142,17 @@ const _$RoleJsonSchema = {
   },
   'required': ['id', 'code', 'name', 'isSystem', 'permissions', 'createdAt'],
   r'$defs': {
-    'ApiInstant': {'type': 'object', 'properties': {}},
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
   },
 };
 
@@ -148,12 +167,13 @@ Permission _$PermissionFromJson(Map<String, dynamic> json) =>
       return val;
     });
 
-Map<String, dynamic> _$PermissionToJson(Permission instance) => <String, dynamic>{
-  'code': instance.code,
-  'resource': instance.resource,
-  'action': instance.action,
-  'description': instance.description,
-};
+Map<String, dynamic> _$PermissionToJson(Permission instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'resource': instance.resource,
+      'action': instance.action,
+      'description': instance.description,
+    };
 
 const _$PermissionJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -169,31 +189,39 @@ const _$PermissionJsonSchema = {
 
 AssignRoleRequest _$AssignRoleRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('AssignRoleRequest', json, ($checkedConvert) {
-      final val = AssignRoleRequest(roleCode: $checkedConvert('roleCode', (v) => v as String));
+      final val = AssignRoleRequest(
+        roleCode: $checkedConvert('roleCode', (v) => v as String),
+      );
       return val;
     });
 
-Map<String, dynamic> _$AssignRoleRequestToJson(AssignRoleRequest instance) => <String, dynamic>{
-  'roleCode': instance.roleCode,
-};
+Map<String, dynamic> _$AssignRoleRequestToJson(AssignRoleRequest instance) =>
+    <String, dynamic>{'roleCode': instance.roleCode};
 
 const _$AssignRoleRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'roleCode': {'type': 'string', 'description': 'Código do papel, por exemplo `technician`.'},
+    'roleCode': {
+      'type': 'string',
+      'description': 'Código do papel, por exemplo `technician`.',
+    },
   },
   'required': ['roleCode'],
 };
 
-PermissionOverrideRequest _$PermissionOverrideRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('PermissionOverrideRequest', json, ($checkedConvert) {
-      final val = PermissionOverrideRequest(granted: $checkedConvert('granted', (v) => v as bool));
-      return val;
-    });
+PermissionOverrideRequest _$PermissionOverrideRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('PermissionOverrideRequest', json, ($checkedConvert) {
+  final val = PermissionOverrideRequest(
+    granted: $checkedConvert('granted', (v) => v as bool),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$PermissionOverrideRequestToJson(PermissionOverrideRequest instance) =>
-    <String, dynamic>{'granted': instance.granted};
+Map<String, dynamic> _$PermissionOverrideRequestToJson(
+  PermissionOverrideRequest instance,
+) => <String, dynamic>{'granted': instance.granted};
 
 const _$PermissionOverrideRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -201,7 +229,8 @@ const _$PermissionOverrideRequestJsonSchema = {
   'properties': {
     'granted': {
       'type': 'boolean',
-      'description': 'Se a exceção concede (`true`) ou revoga (`false`) a permissão.',
+      'description':
+          'Se a exceção concede (`true`) ou revoga (`false`) a permissão.',
     },
   },
   'required': ['granted'],

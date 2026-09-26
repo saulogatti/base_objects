@@ -11,7 +11,7 @@ part 'invoice.g.dart';
 @JsonSerializable()
 final class InvoiceItemDraft {
   /// Cria o item.
-  const InvoiceItemDraft({
+  const new({
     required this.id,
     required this.description,
     required this.quantity,
@@ -22,7 +22,7 @@ final class InvoiceItemDraft {
   });
 
   /// Lê o item.
-  factory InvoiceItemDraft.fromJson(Map<String, dynamic> json) => _$InvoiceItemDraftFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$InvoiceItemDraftFromJson(json);
 
   /// UUID do item.
   final String id;
@@ -53,7 +53,7 @@ final class InvoiceItemDraft {
 @JsonSerializable()
 final class InvoiceDraft {
   /// Cria o rascunho.
-  const InvoiceDraft({
+  const new({
     required this.type,
     required this.items,
     this.customerId,
@@ -64,7 +64,7 @@ final class InvoiceDraft {
   });
 
   /// Lê o rascunho.
-  factory InvoiceDraft.fromJson(Map<String, dynamic> json) => _$InvoiceDraftFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$InvoiceDraftFromJson(json);
 
   /// Entrada ou saída.
   final InvoiceType type;
@@ -95,7 +95,7 @@ final class InvoiceDraft {
 @JsonSerializable()
 final class InvoiceItem {
   /// Cria o item.
-  const InvoiceItem({
+  const new({
     required this.id,
     required this.description,
     required this.quantity,
@@ -108,7 +108,7 @@ final class InvoiceItem {
   });
 
   /// Lê o item.
-  factory InvoiceItem.fromJson(Map<String, dynamic> json) => _$InvoiceItemFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$InvoiceItemFromJson(json);
 
   /// UUID do item.
   final String id;
@@ -145,7 +145,7 @@ final class InvoiceItem {
 @JsonSerializable()
 final class InvoicePayment {
   /// Cria o pagamento.
-  const InvoicePayment({
+  const new({
     required this.id,
     required this.invoiceId,
     required this.paymentMethodId,
@@ -163,7 +163,7 @@ final class InvoicePayment {
   });
 
   /// Lê o pagamento.
-  factory InvoicePayment.fromJson(Map<String, dynamic> json) => _$InvoicePaymentFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$InvoicePaymentFromJson(json);
 
   /// UUID.
   final String id;
@@ -215,7 +215,7 @@ final class InvoicePayment {
 @JsonSerializable()
 final class Invoice {
   /// Cria a nota.
-  const Invoice({
+  const new({
     required this.id,
     required this.storeId,
     required this.number,
@@ -241,7 +241,7 @@ final class Invoice {
   });
 
   /// Lê a nota.
-  factory Invoice.fromJson(Map<String, dynamic> json) => _$InvoiceFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$InvoiceFromJson(json);
 
   /// UUID.
   final String id;
@@ -317,10 +317,10 @@ final class Invoice {
 @JsonSerializable()
 final class CheckoutInstallmentRequest {
   /// Cria a parcela.
-  const CheckoutInstallmentRequest({required this.id, required this.amount, required this.dueDate});
+  const new({required this.id, required this.amount, required this.dueDate});
 
   /// Lê a parcela.
-  factory CheckoutInstallmentRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$CheckoutInstallmentRequestFromJson(json);
 
   /// UUID. Vira `receivables.id`.
@@ -340,7 +340,7 @@ final class CheckoutInstallmentRequest {
 @JsonSerializable()
 final class CheckoutPaymentRequest {
   /// Cria o pagamento.
-  const CheckoutPaymentRequest({
+  const new({
     required this.id,
     required this.paymentMethodId,
     required this.amount,
@@ -349,7 +349,7 @@ final class CheckoutPaymentRequest {
   });
 
   /// Lê o pagamento.
-  factory CheckoutPaymentRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$CheckoutPaymentRequestFromJson(json);
 
   /// UUID. Vira `invoice_payments.id`.
@@ -375,10 +375,10 @@ final class CheckoutPaymentRequest {
 @JsonSerializable()
 final class CheckoutRequest {
   /// Cria o recebimento.
-  const CheckoutRequest({required this.id, required this.sessionId, required this.payments});
+  const new({required this.id, required this.sessionId, required this.payments});
 
   /// Lê o recebimento.
-  factory CheckoutRequest.fromJson(Map<String, dynamic> json) => _$CheckoutRequestFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$CheckoutRequestFromJson(json);
 
   /// Chave de idempotência do recebimento.
   final String id;
@@ -397,10 +397,10 @@ final class CheckoutRequest {
 @JsonSerializable()
 final class ConfirmInvoiceRequest {
   /// Cria o corpo.
-  const ConfirmInvoiceRequest({required this.allowNegativeStock, this.invoice, this.checkout});
+  const new({required this.allowNegativeStock, this.invoice, this.checkout});
 
   /// Lê o corpo.
-  factory ConfirmInvoiceRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ConfirmInvoiceRequestFromJson(json);
 
   /// Rascunho, quando a nota ainda não foi gravada.
@@ -420,14 +420,14 @@ final class ConfirmInvoiceRequest {
 @JsonSerializable()
 final class ConfirmInvoiceResult {
   /// Cria a resposta.
-  const ConfirmInvoiceResult({
+  const new({
     required this.invoice,
     required this.receivables,
     required this.cashSummary,
   });
 
   /// Lê a resposta.
-  factory ConfirmInvoiceResult.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ConfirmInvoiceResultFromJson(json);
 
   /// Nota confirmada.
@@ -447,14 +447,14 @@ final class ConfirmInvoiceResult {
 @JsonSerializable()
 final class RefundMethodAmount {
   /// Cria o valor.
-  const RefundMethodAmount({
+  const new({
     required this.paymentMethodId,
     required this.name,
     required this.amount,
   });
 
   /// Lê o valor.
-  factory RefundMethodAmount.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$RefundMethodAmountFromJson(json);
 
   /// Forma.
@@ -474,14 +474,14 @@ final class RefundMethodAmount {
 @JsonSerializable()
 final class RefundPreview {
   /// Cria a prévia.
-  const RefundPreview({
+  const new({
     required this.amountsByMethod,
     required this.openInstallments,
     required this.openAmount,
   });
 
   /// Lê a prévia.
-  factory RefundPreview.fromJson(Map<String, dynamic> json) => _$RefundPreviewFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$RefundPreviewFromJson(json);
 
   /// Valores por forma, em lista.
   final List<RefundMethodAmount> amountsByMethod;
@@ -500,10 +500,10 @@ final class RefundPreview {
 @JsonSerializable()
 final class CancelInvoiceRequest {
   /// Cria o corpo.
-  const CancelInvoiceRequest({required this.reason, this.sessionId});
+  const new({required this.reason, this.sessionId});
 
   /// Lê o corpo.
-  factory CancelInvoiceRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$CancelInvoiceRequestFromJson(json);
 
   /// Motivo obrigatório.

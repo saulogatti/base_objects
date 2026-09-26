@@ -12,7 +12,7 @@ part 'service_order.g.dart';
 @JsonSerializable()
 final class DeviceEntryCondition {
   /// Cria o checklist.
-  const DeviceEntryCondition({
+  const new({
     required this.screenCracked,
     required this.touchWorking,
     required this.housingDamaged,
@@ -25,7 +25,7 @@ final class DeviceEntryCondition {
   });
 
   /// Lê o checklist.
-  factory DeviceEntryCondition.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$DeviceEntryConditionFromJson(json);
 
   /// Se a tela está trincada.
@@ -63,7 +63,7 @@ final class DeviceEntryCondition {
 @JsonSerializable()
 final class ServiceOrderItem {
   /// Cria o item.
-  const ServiceOrderItem({
+  const new({
     required this.id,
     required this.serviceOrderId,
     required this.description,
@@ -77,7 +77,7 @@ final class ServiceOrderItem {
   });
 
   /// Lê o item.
-  factory ServiceOrderItem.fromJson(Map<String, dynamic> json) => _$ServiceOrderItemFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ServiceOrderItemFromJson(json);
 
   /// UUID.
   final String id;
@@ -120,7 +120,7 @@ final class ServiceOrderItem {
 @JsonSerializable()
 final class ServiceOrder {
   /// Cria a ordem.
-  const ServiceOrder({
+  const new({
     required this.id,
     required this.storeId,
     required this.number,
@@ -158,7 +158,7 @@ final class ServiceOrder {
   });
 
   /// Lê a ordem.
-  factory ServiceOrder.fromJson(Map<String, dynamic> json) => _$ServiceOrderFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ServiceOrderFromJson(json);
 
   /// UUID.
   final String id;
@@ -270,10 +270,10 @@ final class ServiceOrder {
 @JsonSerializable()
 final class ServiceOrderCustomer {
   /// Cria o resumo.
-  const ServiceOrderCustomer({required this.id, required this.name, this.phone});
+  const new({required this.id, required this.name, this.phone});
 
   /// Lê o resumo.
-  factory ServiceOrderCustomer.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ServiceOrderCustomerFromJson(json);
 
   /// UUID.
@@ -293,10 +293,10 @@ final class ServiceOrderCustomer {
 @JsonSerializable()
 final class ServiceOrderListing {
   /// Cria a linha.
-  const ServiceOrderListing({required this.order, required this.customer, required this.device});
+  const new({required this.order, required this.customer, required this.device});
 
   /// Lê a linha.
-  factory ServiceOrderListing.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ServiceOrderListingFromJson(json);
 
   /// Ordem sem itens e sem senha.
@@ -316,7 +316,7 @@ final class ServiceOrderListing {
 @JsonSerializable()
 final class ServiceOrderStatusChange {
   /// Cria a linha.
-  const ServiceOrderStatusChange({
+  const new({
     required this.id,
     required this.serviceOrderId,
     required this.toStatus,
@@ -328,7 +328,7 @@ final class ServiceOrderStatusChange {
   });
 
   /// Lê a linha.
-  factory ServiceOrderStatusChange.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ServiceOrderStatusChangeFromJson(json);
 
   /// UUID.
@@ -363,7 +363,7 @@ final class ServiceOrderStatusChange {
 @JsonSerializable()
 final class OpenServiceOrderRequest {
   /// Cria o corpo.
-  const OpenServiceOrderRequest({
+  const new({
     required this.id,
     required this.customerId,
     required this.device,
@@ -376,7 +376,7 @@ final class OpenServiceOrderRequest {
   });
 
   /// Lê o corpo.
-  factory OpenServiceOrderRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$OpenServiceOrderRequestFromJson(json);
 
   /// UUID da ordem.
@@ -414,7 +414,7 @@ final class OpenServiceOrderRequest {
 @JsonSerializable()
 final class DiagnosisItemRequest {
   /// Cria o item.
-  const DiagnosisItemRequest({
+  const new({
     required this.id,
     required this.description,
     required this.quantity,
@@ -424,7 +424,7 @@ final class DiagnosisItemRequest {
   });
 
   /// Lê o item.
-  factory DiagnosisItemRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$DiagnosisItemRequestFromJson(json);
 
   /// UUID do item.
@@ -453,7 +453,7 @@ final class DiagnosisItemRequest {
 @JsonSerializable()
 final class SaveDiagnosisRequest {
   /// Cria o corpo.
-  const SaveDiagnosisRequest({
+  const new({
     required this.diagnosis,
     required this.sendQuote,
     required this.items,
@@ -462,7 +462,7 @@ final class SaveDiagnosisRequest {
   });
 
   /// Lê o corpo.
-  factory SaveDiagnosisRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$SaveDiagnosisRequestFromJson(json);
 
   /// Diagnóstico.
@@ -488,10 +488,10 @@ final class SaveDiagnosisRequest {
 @JsonSerializable()
 final class ApproveServiceOrderRequest {
   /// Cria o corpo.
-  const ApproveServiceOrderRequest({required this.approvedByName});
+  const new({required this.approvedByName});
 
   /// Lê o corpo.
-  factory ApproveServiceOrderRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ApproveServiceOrderRequestFromJson(json);
 
   /// Nome de quem autorizou.
@@ -505,10 +505,10 @@ final class ApproveServiceOrderRequest {
 @JsonSerializable()
 final class RejectServiceOrderRequest {
   /// Cria o corpo.
-  const RejectServiceOrderRequest({required this.rejectionReason});
+  const new({required this.rejectionReason});
 
   /// Lê o corpo.
-  factory RejectServiceOrderRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$RejectServiceOrderRequestFromJson(json);
 
   /// Motivo.
@@ -522,10 +522,10 @@ final class RejectServiceOrderRequest {
 @JsonSerializable()
 final class ChangeServiceOrderStatusRequest {
   /// Cria o corpo.
-  const ChangeServiceOrderStatusRequest({required this.status, this.notes});
+  const new({required this.status, this.notes});
 
   /// Lê o corpo.
-  factory ChangeServiceOrderStatusRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ChangeServiceOrderStatusRequestFromJson(json);
 
   /// Novo status. `delivered` e `cancelled` têm rota própria.
@@ -542,10 +542,10 @@ final class ChangeServiceOrderStatusRequest {
 @JsonSerializable()
 final class AssignTechnicianRequest {
   /// Cria o corpo.
-  const AssignTechnicianRequest({required this.technicianId});
+  const new({required this.technicianId});
 
   /// Lê o corpo.
-  factory AssignTechnicianRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$AssignTechnicianRequestFromJson(json);
 
   /// Técnico com vínculo na loja.
@@ -559,7 +559,7 @@ final class AssignTechnicianRequest {
 @JsonSerializable()
 final class DeliverServiceOrderRequest {
   /// Cria o corpo.
-  const DeliverServiceOrderRequest({
+  const new({
     required this.deliveredToName,
     required this.invoiceId,
     required this.checkout,
@@ -567,7 +567,7 @@ final class DeliverServiceOrderRequest {
   });
 
   /// Lê o corpo.
-  factory DeliverServiceOrderRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$DeliverServiceOrderRequestFromJson(json);
 
   /// Quem retirou.
@@ -590,14 +590,14 @@ final class DeliverServiceOrderRequest {
 @JsonSerializable()
 final class DeliverServiceOrderResult {
   /// Cria a resposta.
-  const DeliverServiceOrderResult({
+  const new({
     required this.serviceOrder,
     required this.invoice,
     required this.receivables,
   });
 
   /// Lê a resposta.
-  factory DeliverServiceOrderResult.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$DeliverServiceOrderResultFromJson(json);
 
   /// Ordem entregue.
@@ -617,10 +617,10 @@ final class DeliverServiceOrderResult {
 @JsonSerializable()
 final class CancelServiceOrderRequest {
   /// Cria o corpo.
-  const CancelServiceOrderRequest({required this.reason});
+  const new({required this.reason});
 
   /// Lê o corpo.
-  factory CancelServiceOrderRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$CancelServiceOrderRequestFromJson(json);
 
   /// Motivo.

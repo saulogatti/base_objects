@@ -9,7 +9,7 @@ part 'stock.g.dart';
 @JsonSerializable()
 final class StockBalance {
   /// Cria o saldo.
-  const StockBalance({
+  const new({
     required this.storeId,
     required this.productId,
     required this.code,
@@ -20,7 +20,7 @@ final class StockBalance {
   });
 
   /// Lê o saldo.
-  factory StockBalance.fromJson(Map<String, dynamic> json) => _$StockBalanceFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$StockBalanceFromJson(json);
 
   /// Loja.
   final String storeId;
@@ -51,7 +51,7 @@ final class StockBalance {
 @JsonSerializable()
 final class StockMovement {
   /// Cria o movimento.
-  const StockMovement({
+  const new({
     required this.id,
     required this.storeId,
     required this.productId,
@@ -66,7 +66,7 @@ final class StockMovement {
   });
 
   /// Lê o movimento.
-  factory StockMovement.fromJson(Map<String, dynamic> json) => _$StockMovementFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$StockMovementFromJson(json);
 
   /// UUID.
   final String id;
@@ -109,7 +109,7 @@ final class StockMovement {
 @JsonSerializable()
 final class StockAdjustmentItem {
   /// Cria o item.
-  const StockAdjustmentItem({
+  const new({
     required this.productId,
     this.countedQuantity,
     this.delta,
@@ -117,7 +117,7 @@ final class StockAdjustmentItem {
   });
 
   /// Lê o item.
-  factory StockAdjustmentItem.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$StockAdjustmentItemFromJson(json);
 
   /// Produto.
@@ -140,7 +140,7 @@ final class StockAdjustmentItem {
 @JsonSerializable()
 final class StockAdjustmentRequest {
   /// Cria o corpo.
-  const StockAdjustmentRequest({
+  const new({
     required this.operationId,
     required this.reason,
     required this.notes,
@@ -148,7 +148,7 @@ final class StockAdjustmentRequest {
   });
 
   /// Lê o corpo.
-  factory StockAdjustmentRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$StockAdjustmentRequestFromJson(json);
 
   /// Chave de idempotência.
@@ -171,10 +171,10 @@ final class StockAdjustmentRequest {
 @JsonSerializable()
 final class StockTransferItem {
   /// Cria o item.
-  const StockTransferItem({required this.id, required this.productId, required this.quantity});
+  const new({required this.id, required this.productId, required this.quantity});
 
   /// Lê o item.
-  factory StockTransferItem.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$StockTransferItemFromJson(json);
 
   /// UUID do item.
@@ -194,7 +194,7 @@ final class StockTransferItem {
 @JsonSerializable()
 final class StockTransfer {
   /// Cria a transferência.
-  const StockTransfer({
+  const new({
     required this.id,
     required this.originStoreId,
     required this.targetStoreId,
@@ -211,7 +211,7 @@ final class StockTransfer {
   });
 
   /// Lê a transferência.
-  factory StockTransfer.fromJson(Map<String, dynamic> json) => _$StockTransferFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$StockTransferFromJson(json);
 
   /// UUID.
   final String id;
@@ -260,10 +260,10 @@ final class StockTransfer {
 @JsonSerializable()
 final class StockTransferItemRequest {
   /// Cria o item.
-  const StockTransferItemRequest({required this.productId, required this.quantity});
+  const new({required this.productId, required this.quantity});
 
   /// Lê o item.
-  factory StockTransferItemRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$StockTransferItemRequestFromJson(json);
 
   /// Produto.
@@ -280,7 +280,7 @@ final class StockTransferItemRequest {
 @JsonSerializable()
 final class CreateStockTransferRequest {
   /// Cria o corpo.
-  const CreateStockTransferRequest({
+  const new({
     required this.id,
     required this.targetStoreId,
     required this.items,
@@ -288,7 +288,7 @@ final class CreateStockTransferRequest {
   });
 
   /// Lê o corpo.
-  factory CreateStockTransferRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$CreateStockTransferRequestFromJson(json);
 
   /// UUID da transferência, gerado pelo app.
@@ -311,10 +311,10 @@ final class CreateStockTransferRequest {
 @JsonSerializable()
 final class CancelStockTransferRequest {
   /// Cria o corpo.
-  const CancelStockTransferRequest({required this.reason});
+  const new({required this.reason});
 
   /// Lê o corpo.
-  factory CancelStockTransferRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$CancelStockTransferRequestFromJson(json);
 
   /// Motivo.

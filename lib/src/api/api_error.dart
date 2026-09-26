@@ -7,7 +7,7 @@ part 'api_error.g.dart';
 @JsonSerializable()
 final class ApiError {
   /// Cria o erro.
-  const ApiError({
+  const new({
     required this.code,
     required this.message,
     required this.requestId,
@@ -15,7 +15,7 @@ final class ApiError {
   });
 
   /// Lê o objeto `error`.
-  factory ApiError.fromJson(Map<String, dynamic> json) => _$ApiErrorFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ApiErrorFromJson(json);
 
   /// Código estável, por exemplo `VALIDATION_ERROR`.
   final String code;
@@ -38,10 +38,10 @@ final class ApiError {
 @JsonSerializable()
 final class ApiErrorResponse {
   /// Cria o envelope.
-  const ApiErrorResponse({required this.error});
+  const new({required this.error});
 
   /// Lê o envelope.
-  factory ApiErrorResponse.fromJson(Map<String, dynamic> json) => _$ApiErrorResponseFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ApiErrorResponseFromJson(json);
 
   /// Erro da resposta.
   final ApiError error;

@@ -6,7 +6,7 @@ part 'page.g.dart';
 @JsonSerializable(genericArgumentFactories: true)
 final class ApiPage<T> {
   /// Cria a página.
-  const ApiPage({
+  const new({
     required this.items,
     required this.total,
     required this.limit,
@@ -14,7 +14,7 @@ final class ApiPage<T> {
   });
 
   /// Lê o envelope. [fromJsonT] converte cada item.
-  factory ApiPage.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
+  factory fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
       _$ApiPageFromJson(json, fromJsonT);
 
   /// Página corrente.

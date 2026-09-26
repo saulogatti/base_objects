@@ -2,7 +2,7 @@ import 'package:base_objects/base_objects.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final instant = ApiInstant.parse('2026-09-13T14:30:00-03:00');
+  final instant = ApiInstant(value: DateTime.parse('2026-09-13T14:30:00-03:00').toUtc());
 
   group('Scaled amounts', () {
     test('money normalizes scale 2 and rejects numbers and extra digits', () {
@@ -59,9 +59,11 @@ void main() {
     test('login response keeps nullable store for the owner', () {
       final session = AuthSession(
         accessToken: 'eyJ',
-        accessTokenExpiresAt: ApiInstant.parse('2026-09-13T14:45:00-03:00'),
+        accessTokenExpiresAt: ApiInstant(
+          value: DateTime.parse('2026-09-13T14:45:00-03:00').toUtc(),
+        ),
         refreshToken: 'rt_7Qm',
-        refreshTokenExpiresAt: ApiInstant.parse('2026-10-13T14:30:00Z'),
+        refreshTokenExpiresAt: ApiInstant(value: DateTime.parse('2026-10-13T14:30:00Z').toUtc()),
         session: UserSession(
           user: User(
             id: '0192',
@@ -78,9 +80,10 @@ void main() {
       );
       final json = session.toJson();
       final body = json['session']! as Map<String, dynamic>;
+      final accessTokenExpiresAt = json['accessTokenExpiresAt'] as Map<String, dynamic>;
       expect(body['activeStore'], isNull);
       expect(body['membership'], isNull);
-      expect(json['accessTokenExpiresAt'], '2026-09-13T17:45:00.000Z');
+      expect(accessTokenExpiresAt['value'], '2026-09-13T17:45:00.000Z');
       expect(AuthSession.fromJson(json).session.user.email, 'gerente@loja.com');
     });
 

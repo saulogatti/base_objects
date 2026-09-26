@@ -8,7 +8,7 @@ part 'catalog.g.dart';
 @JsonSerializable()
 final class ProductCategory {
   /// Cria a categoria.
-  const ProductCategory({
+  const new({
     required this.name,
     this.id,
     this.description,
@@ -17,7 +17,7 @@ final class ProductCategory {
   });
 
   /// Lê a categoria.
-  factory ProductCategory.fromJson(Map<String, dynamic> json) => _$ProductCategoryFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ProductCategoryFromJson(json);
 
   /// UUID. Opcional no corpo.
   final String? id;
@@ -42,10 +42,10 @@ final class ProductCategory {
 @JsonSerializable()
 final class CategoryUsage {
   /// Cria o uso.
-  const CategoryUsage({required this.inUse, required this.productCount});
+  const new({required this.inUse, required this.productCount});
 
   /// Lê o uso.
-  factory CategoryUsage.fromJson(Map<String, dynamic> json) => _$CategoryUsageFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$CategoryUsageFromJson(json);
 
   /// Se há pelo menos um produto.
   final bool inUse;
@@ -63,7 +63,7 @@ final class CategoryUsage {
 @JsonSerializable()
 final class Product {
   /// Cria o produto.
-  const Product({
+  const new({
     required this.code,
     required this.name,
     required this.salePrice,
@@ -78,7 +78,7 @@ final class Product {
   });
 
   /// Lê o produto.
-  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
 
   /// UUID. Opcional no corpo.
   final String? id;
@@ -121,7 +121,7 @@ final class Product {
 @JsonSerializable()
 final class StoreProduct {
   /// Cria a visão.
-  const StoreProduct({
+  const new({
     required this.storeId,
     required this.product,
     required this.salePrice,
@@ -133,7 +133,7 @@ final class StoreProduct {
   });
 
   /// Lê a visão.
-  factory StoreProduct.fromJson(Map<String, dynamic> json) => _$StoreProductFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$StoreProductFromJson(json);
 
   /// Loja.
   final String storeId;
@@ -169,14 +169,14 @@ final class StoreProduct {
 @JsonSerializable()
 final class StoreProductSettingsRequest {
   /// Cria o corpo.
-  const StoreProductSettingsRequest({
+  const new({
     required this.minStock,
     required this.isActive,
     this.salePrice,
   });
 
   /// Lê o corpo.
-  factory StoreProductSettingsRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$StoreProductSettingsRequestFromJson(json);
 
   /// Preço da loja, ou `null` para herdar o catálogo.
@@ -196,10 +196,10 @@ final class StoreProductSettingsRequest {
 @JsonSerializable()
 final class ProductCodeAvailability {
   /// Cria a resposta.
-  const ProductCodeAvailability({required this.available});
+  const new({required this.available});
 
   /// Lê a resposta.
-  factory ProductCodeAvailability.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ProductCodeAvailabilityFromJson(json);
 
   /// Se o código está livre.
@@ -213,10 +213,10 @@ final class ProductCodeAvailability {
 @JsonSerializable()
 final class ProductCodeIssued {
   /// Cria a resposta.
-  const ProductCodeIssued({required this.code});
+  const new({required this.code});
 
   /// Lê a resposta.
-  factory ProductCodeIssued.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ProductCodeIssuedFromJson(json);
 
   /// Próximo código, por exemplo `PRD-000124`.
@@ -230,7 +230,7 @@ final class ProductCodeIssued {
 @JsonSerializable()
 final class LaborService {
   /// Cria o serviço.
-  const LaborService({
+  const new({
     required this.code,
     required this.name,
     required this.price,
@@ -244,7 +244,7 @@ final class LaborService {
   });
 
   /// Lê o serviço.
-  factory LaborService.fromJson(Map<String, dynamic> json) => _$LaborServiceFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$LaborServiceFromJson(json);
 
   /// UUID. Opcional no corpo.
   final String? id;
@@ -284,7 +284,7 @@ final class LaborService {
 @JsonSerializable()
 final class StoreService {
   /// Cria a visão.
-  const StoreService({
+  const new({
     required this.storeId,
     required this.service,
     required this.price,
@@ -293,7 +293,7 @@ final class StoreService {
   });
 
   /// Lê a visão.
-  factory StoreService.fromJson(Map<String, dynamic> json) => _$StoreServiceFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$StoreServiceFromJson(json);
 
   /// Loja.
   final String storeId;
@@ -320,10 +320,10 @@ final class StoreService {
 @JsonSerializable()
 final class StoreServiceSettingsRequest {
   /// Cria o corpo.
-  const StoreServiceSettingsRequest({required this.isActive, this.price});
+  const new({required this.isActive, this.price});
 
   /// Lê o corpo.
-  factory StoreServiceSettingsRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$StoreServiceSettingsRequestFromJson(json);
 
   /// Preço da loja, ou `null` para herdar o catálogo.

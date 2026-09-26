@@ -1,12 +1,41 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+
+part 'api_time.g.dart';
+
+/// Instante ISO 8601 com fuso, guardado em UTC (`API.md` §1.2).
+@immutable
+@JsonSerializable(dateTimeUtc: true)
+final class ApiInstant {
+  new({required this.value}) : assert(value.isUtc, 'datetime deve ser UTC.');
+  factory fromJson(Map<String, dynamic> json) => _$ApiInstantFromJson(json);
+
+  /// Instante em UTC.
+  final DateTime value;
+
+  @override
+  int get hashCode => value.hashCode;
+
+  @override
+  bool operator ==(Object other) => other is ApiInstant && value == other.value;
+
+  /// Serializa em ISO 8601 UTC.
+  Map<String, dynamic> toJson() => _$ApiInstantToJson(this);
+}
 
 /// Data de calendário `YYYY-MM-DD` (`API.md` §1.2).
 @immutable
 final class CalendarDate {
-  const CalendarDate._(this.value);
+  /// Lê a string JSON.
+  factory fromJson(Object? json) {
+    if (json is! String) {
+      throw const FormatException('date deve ser string YYYY-MM-DD.');
+    }
+    return CalendarDate.parse(json);
+  }
 
   /// Interpreta [raw] e recusa hora, fuso e datas inexistentes.
-  factory CalendarDate.parse(String raw) {
+  factory parse(String raw) {
     final match = RegExp(r'^(\d{4})-(\d{2})-(\d{2})$').firstMatch(raw);
     if (match == null) {
       throw FormatException('date deve ser YYYY-MM-DD.', raw);
@@ -21,64 +50,20 @@ final class CalendarDate {
     return CalendarDate._(raw);
   }
 
-  /// Lê a string JSON.
-  factory CalendarDate.fromJson(Object? json) {
-    if (json is! String) {
-      throw const FormatException('date deve ser string YYYY-MM-DD.');
-    }
-    return CalendarDate.parse(json);
-  }
+  const new _(this.value);
 
   /// Literal `YYYY-MM-DD`.
   final String value;
+
+  @override
+  int get hashCode => value.hashCode;
+
+  @override
+  bool operator ==(Object other) => other is CalendarDate && value == other.value;
 
   /// Serializa o literal.
   String toJson() => value;
 
   @override
-  bool operator ==(Object other) => other is CalendarDate && value == other.value;
-
-  @override
-  int get hashCode => value.hashCode;
-
-  @override
   String toString() => value;
-}
-
-/// Instante ISO 8601 com fuso, guardado em UTC (`API.md` §1.2).
-@immutable
-final class ApiInstant {
-  const ApiInstant._(this.value);
-
-  /// Interpreta [raw] com `Z` ou `±HH:MM` e converte para UTC.
-  factory ApiInstant.parse(String raw) {
-    final hasZone = raw.endsWith('Z') || RegExp(r'[+-]\d{2}:\d{2}$').hasMatch(raw);
-    if (!hasZone) {
-      throw FormatException('datetime deve incluir fuso (Z ou ±HH:MM).', raw);
-    }
-    return ApiInstant._(DateTime.parse(raw).toUtc());
-  }
-
-  /// Lê a string JSON.
-  factory ApiInstant.fromJson(Object? json) {
-    if (json is! String) {
-      throw const FormatException('datetime deve ser string ISO 8601.');
-    }
-    return ApiInstant.parse(json);
-  }
-
-  /// Instante em UTC.
-  final DateTime value;
-
-  /// Serializa em ISO 8601 UTC.
-  String toJson() => value.toUtc().toIso8601String();
-
-  @override
-  bool operator ==(Object other) => other is ApiInstant && value == other.value;
-
-  @override
-  int get hashCode => value.hashCode;
-
-  @override
-  String toString() => toJson();
 }

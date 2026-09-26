@@ -11,7 +11,7 @@ part 'party.g.dart';
 @JsonSerializable()
 final class Customer {
   /// Cria o cliente.
-  const Customer({
+  const new({
     required this.name,
     required this.isActive,
     this.id,
@@ -25,7 +25,7 @@ final class Customer {
   });
 
   /// Lê o cliente.
-  factory Customer.fromJson(Map<String, dynamic> json) => _$CustomerFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$CustomerFromJson(json);
 
   /// UUID. Opcional no corpo; obrigatório na resposta.
   final String? id;
@@ -65,7 +65,7 @@ final class Customer {
 @JsonSerializable()
 final class Device {
   /// Cria o aparelho.
-  const Device({
+  const new({
     required this.customerId,
     required this.brand,
     required this.model,
@@ -79,7 +79,7 @@ final class Device {
   });
 
   /// Lê o aparelho.
-  factory Device.fromJson(Map<String, dynamic> json) => _$DeviceFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$DeviceFromJson(json);
 
   /// UUID. Opcional no corpo; obrigatório na resposta.
   final String? id;
@@ -121,7 +121,7 @@ final class Device {
 @JsonSerializable()
 final class Supplier {
   /// Cria o fornecedor.
-  const Supplier({
+  const new({
     required this.name,
     required this.isActive,
     this.id,
@@ -134,7 +134,7 @@ final class Supplier {
   });
 
   /// Lê o fornecedor.
-  factory Supplier.fromJson(Map<String, dynamic> json) => _$SupplierFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$SupplierFromJson(json);
 
   /// UUID. Opcional no corpo; obrigatório na resposta.
   final String? id;

@@ -6,10 +6,10 @@ part 'installation.g.dart';
 @JsonSerializable()
 final class InstallationStatus {
   /// Cria o status.
-  const InstallationStatus({required this.installed});
+  const new({required this.installed});
 
   /// Lê o status.
-  factory InstallationStatus.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$InstallationStatusFromJson(json);
 
   /// Se já existe o único responsável da instalação.
@@ -23,7 +23,7 @@ final class InstallationStatus {
 @JsonSerializable()
 final class SystemUserData {
   /// Cria os dados.
-  const SystemUserData({
+  const new({
     required this.name,
     required this.email,
     required this.systemKey,
@@ -32,7 +32,7 @@ final class SystemUserData {
   });
 
   /// Lê o objeto.
-  factory SystemUserData.fromJson(Map<String, dynamic> json) => _$SystemUserDataFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$SystemUserDataFromJson(json);
 
   /// Nome do responsável.
   final String name;
@@ -57,10 +57,10 @@ final class SystemUserData {
 @JsonSerializable()
 final class InstallationRequest {
   /// Cria o corpo.
-  const InstallationRequest({required this.systemUserData, required this.administratorPassword});
+  const new({required this.systemUserData, required this.administratorPassword});
 
   /// Lê o corpo.
-  factory InstallationRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$InstallationRequestFromJson(json);
 
   /// Responsável que vira o superadmin.

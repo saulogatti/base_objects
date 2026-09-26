@@ -11,7 +11,7 @@ part 'store.g.dart';
 @JsonSerializable()
 final class Store {
   /// Cria a loja.
-  const Store({
+  const new({
     required this.name,
     required this.isActive,
     this.id,
@@ -25,7 +25,7 @@ final class Store {
   });
 
   /// Lê a loja.
-  factory Store.fromJson(Map<String, dynamic> json) => _$StoreFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$StoreFromJson(json);
 
   /// UUID. Opcional na criação.
   final String? id;

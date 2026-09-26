@@ -8,10 +8,10 @@ part 'address.g.dart';
 @JsonSerializable()
 final class Address {
   /// Cria o endereço.
-  const Address({this.street, this.zipCode, this.neighborhood, this.city, this.state});
+  const new({this.street, this.zipCode, this.neighborhood, this.city, this.state});
 
   /// Lê o objeto da §1.3.
-  factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
 
   /// Logradouro.
   final String? street;

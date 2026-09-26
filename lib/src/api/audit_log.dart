@@ -12,7 +12,7 @@ part 'audit_log.g.dart';
 @JsonSerializable()
 final class AuditEntry {
   /// Cria a entrada.
-  const AuditEntry({
+  const new({
     required this.id,
     required this.actorName,
     required this.action,
@@ -30,7 +30,7 @@ final class AuditEntry {
   });
 
   /// Lê a entrada.
-  factory AuditEntry.fromJson(Map<String, dynamic> json) => _$AuditEntryFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$AuditEntryFromJson(json);
 
   /// `bigserial`.
   final int id;

@@ -7,8 +7,9 @@ targets:
           explicit_to_json: true
           checked: true
           create_json_schema: true
+          date_time_utc: true
       source_gen:combining_builder:
         options:
           preamble: |
             // coverage:ignore-file
-            // ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, inference_failure_on_collection_literal
+            // ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, unnecessary_lambdas, inference_failure_on_collection_literal

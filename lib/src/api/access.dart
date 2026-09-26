@@ -7,10 +7,10 @@ part 'access.g.dart';
 @JsonSerializable()
 final class UserUpsertRequest {
   /// Cria o corpo.
-  const UserUpsertRequest({required this.name, required this.email, this.phone, this.password});
+  const new({required this.name, required this.email, this.phone, this.password});
 
   /// Lê o corpo.
-  factory UserUpsertRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$UserUpsertRequestFromJson(json);
 
   /// Nome.
@@ -33,10 +33,10 @@ final class UserUpsertRequest {
 @JsonSerializable()
 final class ActiveFlagRequest {
   /// Cria o corpo.
-  const ActiveFlagRequest({required this.isActive});
+  const new({required this.isActive});
 
   /// Lê o corpo.
-  factory ActiveFlagRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ActiveFlagRequestFromJson(json);
 
   /// Novo estado.
@@ -50,10 +50,10 @@ final class ActiveFlagRequest {
 @JsonSerializable()
 final class ChangePasswordRequest {
   /// Cria o corpo.
-  const ChangePasswordRequest({required this.newPassword, this.currentPassword});
+  const new({required this.newPassword, this.currentPassword});
 
   /// Lê o corpo.
-  factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ChangePasswordRequestFromJson(json);
 
   /// Senha atual. Obrigatória quando o próprio usuário troca.
@@ -70,7 +70,7 @@ final class ChangePasswordRequest {
 @JsonSerializable()
 final class Role {
   /// Cria o papel.
-  const Role({
+  const new({
     required this.id,
     required this.code,
     required this.name,
@@ -81,7 +81,7 @@ final class Role {
   });
 
   /// Lê o papel.
-  factory Role.fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
 
   /// UUID.
   final String id;
@@ -112,7 +112,7 @@ final class Role {
 @JsonSerializable()
 final class Permission {
   /// Cria a permissão.
-  const Permission({
+  const new({
     required this.code,
     required this.resource,
     required this.action,
@@ -120,7 +120,7 @@ final class Permission {
   });
 
   /// Lê a permissão.
-  factory Permission.fromJson(Map<String, dynamic> json) => _$PermissionFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$PermissionFromJson(json);
 
   /// Código `recurso:ação`.
   final String code;
@@ -142,10 +142,10 @@ final class Permission {
 @JsonSerializable()
 final class AssignRoleRequest {
   /// Cria o corpo.
-  const AssignRoleRequest({required this.roleCode});
+  const new({required this.roleCode});
 
   /// Lê o corpo.
-  factory AssignRoleRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$AssignRoleRequestFromJson(json);
 
   /// Código do papel, por exemplo `technician`.
@@ -159,10 +159,10 @@ final class AssignRoleRequest {
 @JsonSerializable()
 final class PermissionOverrideRequest {
   /// Cria o corpo.
-  const PermissionOverrideRequest({required this.granted});
+  const new({required this.granted});
 
   /// Lê o corpo.
-  factory PermissionOverrideRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$PermissionOverrideRequestFromJson(json);
 
   /// Se a exceção concede (`true`) ou revoga (`false`) a permissão.

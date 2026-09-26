@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // coverage:ignore-file
-// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, inference_failure_on_collection_literal
+// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, unnecessary_lambdas, inference_failure_on_collection_literal
 
 part of 'invoice.dart';
 
@@ -14,36 +14,58 @@ InvoiceItemDraft _$InvoiceItemDraftFromJson(Map<String, dynamic> json) =>
       final val = InvoiceItemDraft(
         id: $checkedConvert('id', (v) => v as String),
         description: $checkedConvert('description', (v) => v as String),
-        quantity: $checkedConvert('quantity', (v) => QuantityAmount.fromJson(v)),
+        quantity: $checkedConvert(
+          'quantity',
+          (v) => QuantityAmount.fromJson(v),
+        ),
         unitPrice: $checkedConvert('unitPrice', (v) => MoneyAmount.fromJson(v)),
         productId: $checkedConvert('productId', (v) => v as String?),
         serviceId: $checkedConvert('serviceId', (v) => v as String?),
-        discount: $checkedConvert('discount', (v) => v == null ? null : MoneyAmount.fromJson(v)),
+        discount: $checkedConvert(
+          'discount',
+          (v) => v == null ? null : MoneyAmount.fromJson(v),
+        ),
       );
       return val;
     });
 
-Map<String, dynamic> _$InvoiceItemDraftToJson(InvoiceItemDraft instance) => <String, dynamic>{
-  'id': instance.id,
-  'productId': instance.productId,
-  'serviceId': instance.serviceId,
-  'description': instance.description,
-  'quantity': instance.quantity.toJson(),
-  'unitPrice': instance.unitPrice.toJson(),
-  'discount': instance.discount?.toJson(),
-};
+Map<String, dynamic> _$InvoiceItemDraftToJson(InvoiceItemDraft instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'productId': instance.productId,
+      'serviceId': instance.serviceId,
+      'description': instance.description,
+      'quantity': instance.quantity.toJson(),
+      'unitPrice': instance.unitPrice.toJson(),
+      'discount': instance.discount?.toJson(),
+    };
 
 const _$InvoiceItemDraftJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
     'id': {'type': 'string', 'description': 'UUID do item.'},
-    'productId': {'type': 'string', 'description': 'Peça, ou `null` se for serviço.'},
-    'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null` se for peça.'},
+    'productId': {
+      'type': 'string',
+      'description': 'Peça, ou `null` se for serviço.',
+    },
+    'serviceId': {
+      'type': 'string',
+      'description': 'Mão de obra, ou `null` se for peça.',
+    },
     'description': {'type': 'string', 'description': 'Nome congelado.'},
-    'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-    'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
-    'discount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Desconto do item, ou `null`.'},
+    'quantity': {
+      r'$ref': r'#/$defs/QuantityAmount',
+      'description': 'Quantidade, escala 3.',
+    },
+    'unitPrice': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Preço unitário.',
+    },
+    'discount': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Desconto do item, ou `null`.',
+    },
   },
   'required': ['id', 'description', 'quantity', 'unitPrice'],
   r'$defs': {
@@ -55,7 +77,10 @@ const _$InvoiceItemDraftJsonSchema = {
 InvoiceDraft _$InvoiceDraftFromJson(Map<String, dynamic> json) =>
     $checkedCreate('InvoiceDraft', json, ($checkedConvert) {
       final val = InvoiceDraft(
-        type: $checkedConvert('type', (v) => $enumDecode(_$InvoiceTypeEnumMap, v)),
+        type: $checkedConvert(
+          'type',
+          (v) => $enumDecode(_$InvoiceTypeEnumMap, v),
+        ),
         items: $checkedConvert(
           'items',
           (v) => (v as List<dynamic>)
@@ -64,29 +89,39 @@ InvoiceDraft _$InvoiceDraftFromJson(Map<String, dynamic> json) =>
         ),
         customerId: $checkedConvert('customerId', (v) => v as String?),
         supplierId: $checkedConvert('supplierId', (v) => v as String?),
-        issueDate: $checkedConvert('issueDate', (v) => v == null ? null : CalendarDate.fromJson(v)),
-        discount: $checkedConvert('discount', (v) => v == null ? null : MoneyAmount.fromJson(v)),
+        issueDate: $checkedConvert(
+          'issueDate',
+          (v) => v == null ? null : CalendarDate.fromJson(v),
+        ),
+        discount: $checkedConvert(
+          'discount',
+          (v) => v == null ? null : MoneyAmount.fromJson(v),
+        ),
         notes: $checkedConvert('notes', (v) => v as String?),
       );
       return val;
     });
 
-Map<String, dynamic> _$InvoiceDraftToJson(InvoiceDraft instance) => <String, dynamic>{
-  'type': _$InvoiceTypeEnumMap[instance.type]!,
-  'customerId': instance.customerId,
-  'supplierId': instance.supplierId,
-  'issueDate': instance.issueDate?.toJson(),
-  'discount': instance.discount?.toJson(),
-  'notes': instance.notes,
-  'items': instance.items.map((e) => e.toJson()).toList(),
-};
+Map<String, dynamic> _$InvoiceDraftToJson(InvoiceDraft instance) =>
+    <String, dynamic>{
+      'type': _$InvoiceTypeEnumMap[instance.type]!,
+      'customerId': instance.customerId,
+      'supplierId': instance.supplierId,
+      'issueDate': instance.issueDate?.toJson(),
+      'discount': instance.discount?.toJson(),
+      'notes': instance.notes,
+      'items': instance.items.map((e) => e.toJson()).toList(),
+    };
 
 const _$InvoiceDraftJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
     'type': {'type': 'object', 'description': 'Entrada ou saída.'},
-    'customerId': {'type': 'string', 'description': 'Cliente, obrigatório em saída.'},
+    'customerId': {
+      'type': 'string',
+      'description': 'Cliente, obrigatório em saída.',
+    },
     'supplierId': {
       'type': 'string',
       'description': 'Fornecedor, obrigatório em entrada. No app o campo se chama `companyId`.',
@@ -115,11 +150,23 @@ const _$InvoiceDraftJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID do item.'},
-        'productId': {'type': 'string', 'description': 'Peça, ou `null` se for serviço.'},
-        'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null` se for peça.'},
+        'productId': {
+          'type': 'string',
+          'description': 'Peça, ou `null` se for serviço.',
+        },
+        'serviceId': {
+          'type': 'string',
+          'description': 'Mão de obra, ou `null` se for peça.',
+        },
         'description': {'type': 'string', 'description': 'Nome congelado.'},
-        'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-        'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
+        'quantity': {
+          r'$ref': r'#/$defs/QuantityAmount',
+          'description': 'Quantidade, escala 3.',
+        },
+        'unitPrice': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Preço unitário.',
+        },
         'discount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Desconto do item, ou `null`.',
@@ -130,35 +177,45 @@ const _$InvoiceDraftJsonSchema = {
   },
 };
 
-const _$InvoiceTypeEnumMap = {InvoiceType.entry: 'entry', InvoiceType.exit: 'exit'};
-
-InvoiceItem _$InvoiceItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('InvoiceItem', json, ($checkedConvert) {
-      final val = InvoiceItem(
-        id: $checkedConvert('id', (v) => v as String),
-        description: $checkedConvert('description', (v) => v as String),
-        quantity: $checkedConvert('quantity', (v) => QuantityAmount.fromJson(v)),
-        unitPrice: $checkedConvert('unitPrice', (v) => MoneyAmount.fromJson(v)),
-        discount: $checkedConvert('discount', (v) => MoneyAmount.fromJson(v)),
-        totalValue: $checkedConvert('totalValue', (v) => MoneyAmount.fromJson(v)),
-        productId: $checkedConvert('productId', (v) => v as String?),
-        serviceId: $checkedConvert('serviceId', (v) => v as String?),
-        unitCost: $checkedConvert('unitCost', (v) => v == null ? null : MoneyAmount.fromJson(v)),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$InvoiceItemToJson(InvoiceItem instance) => <String, dynamic>{
-  'id': instance.id,
-  'productId': instance.productId,
-  'serviceId': instance.serviceId,
-  'description': instance.description,
-  'quantity': instance.quantity.toJson(),
-  'unitPrice': instance.unitPrice.toJson(),
-  'unitCost': instance.unitCost?.toJson(),
-  'discount': instance.discount.toJson(),
-  'totalValue': instance.totalValue.toJson(),
+const _$InvoiceTypeEnumMap = {
+  InvoiceType.entry: 'entry',
+  InvoiceType.exit: 'exit',
 };
+
+InvoiceItem _$InvoiceItemFromJson(Map<String, dynamic> json) => $checkedCreate(
+  'InvoiceItem',
+  json,
+  ($checkedConvert) {
+    final val = InvoiceItem(
+      id: $checkedConvert('id', (v) => v as String),
+      description: $checkedConvert('description', (v) => v as String),
+      quantity: $checkedConvert('quantity', (v) => QuantityAmount.fromJson(v)),
+      unitPrice: $checkedConvert('unitPrice', (v) => MoneyAmount.fromJson(v)),
+      discount: $checkedConvert('discount', (v) => MoneyAmount.fromJson(v)),
+      totalValue: $checkedConvert('totalValue', (v) => MoneyAmount.fromJson(v)),
+      productId: $checkedConvert('productId', (v) => v as String?),
+      serviceId: $checkedConvert('serviceId', (v) => v as String?),
+      unitCost: $checkedConvert(
+        'unitCost',
+        (v) => v == null ? null : MoneyAmount.fromJson(v),
+      ),
+    );
+    return val;
+  },
+);
+
+Map<String, dynamic> _$InvoiceItemToJson(InvoiceItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'productId': instance.productId,
+      'serviceId': instance.serviceId,
+      'description': instance.description,
+      'quantity': instance.quantity.toJson(),
+      'unitPrice': instance.unitPrice.toJson(),
+      'unitCost': instance.unitCost?.toJson(),
+      'discount': instance.discount.toJson(),
+      'totalValue': instance.totalValue.toJson(),
+    };
 
 const _$InvoiceItemJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -168,62 +225,83 @@ const _$InvoiceItemJsonSchema = {
     'productId': {'type': 'string', 'description': 'Peça, ou `null`.'},
     'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null`.'},
     'description': {'type': 'string', 'description': 'Nome congelado.'},
-    'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-    'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
+    'quantity': {
+      r'$ref': r'#/$defs/QuantityAmount',
+      'description': 'Quantidade, escala 3.',
+    },
+    'unitPrice': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Preço unitário.',
+    },
     'unitCost': {
       r'$ref': r'#/$defs/MoneyAmount',
       'description': 'Custo unitário. `null` sem `product:view_cost`.',
     },
-    'discount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Desconto do item.'},
-    'totalValue': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Total calculado no servidor.'},
+    'discount': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Desconto do item.',
+    },
+    'totalValue': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Total calculado no servidor.',
+    },
   },
-  'required': ['id', 'description', 'quantity', 'unitPrice', 'discount', 'totalValue'],
+  'required': [
+    'id',
+    'description',
+    'quantity',
+    'unitPrice',
+    'discount',
+    'totalValue',
+  ],
   r'$defs': {
     'QuantityAmount': {'type': 'object', 'properties': {}},
     'MoneyAmount': {'type': 'object', 'properties': {}},
   },
 };
 
-InvoicePayment _$InvoicePaymentFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('InvoicePayment', json, ($checkedConvert) {
-      final val = InvoicePayment(
-        id: $checkedConvert('id', (v) => v as String),
-        invoiceId: $checkedConvert('invoiceId', (v) => v as String),
-        paymentMethodId: $checkedConvert('paymentMethodId', (v) => v as String),
-        amount: $checkedConvert('amount', (v) => MoneyAmount.fromJson(v)),
-        installments: $checkedConvert('installments', (v) => (v as num).toInt()),
-        checkoutId: $checkedConvert('checkoutId', (v) => v as String),
-        methodName: $checkedConvert('methodName', (v) => v as String),
-        affectsCashDrawer: $checkedConvert('affectsCashDrawer', (v) => v as bool),
-        feePercent: $checkedConvert('feePercent', (v) => PercentAmount.fromJson(v)),
-        feeAmount: $checkedConvert('feeAmount', (v) => MoneyAmount.fromJson(v)),
-        netAmount: $checkedConvert('netAmount', (v) => MoneyAmount.fromJson(v)),
-        cashSessionId: $checkedConvert('cashSessionId', (v) => v as String?),
-        cashMovementId: $checkedConvert('cashMovementId', (v) => v as String?),
-        expectedSettlementAt: $checkedConvert(
-          'expectedSettlementAt',
-          (v) => v == null ? null : ApiInstant.fromJson(v),
-        ),
-      );
-      return val;
-    });
+InvoicePayment _$InvoicePaymentFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('InvoicePayment', json, ($checkedConvert) {
+  final val = InvoicePayment(
+    id: $checkedConvert('id', (v) => v as String),
+    invoiceId: $checkedConvert('invoiceId', (v) => v as String),
+    paymentMethodId: $checkedConvert('paymentMethodId', (v) => v as String),
+    amount: $checkedConvert('amount', (v) => MoneyAmount.fromJson(v)),
+    installments: $checkedConvert('installments', (v) => (v as num).toInt()),
+    checkoutId: $checkedConvert('checkoutId', (v) => v as String),
+    methodName: $checkedConvert('methodName', (v) => v as String),
+    affectsCashDrawer: $checkedConvert('affectsCashDrawer', (v) => v as bool),
+    feePercent: $checkedConvert('feePercent', (v) => PercentAmount.fromJson(v)),
+    feeAmount: $checkedConvert('feeAmount', (v) => MoneyAmount.fromJson(v)),
+    netAmount: $checkedConvert('netAmount', (v) => MoneyAmount.fromJson(v)),
+    cashSessionId: $checkedConvert('cashSessionId', (v) => v as String?),
+    cashMovementId: $checkedConvert('cashMovementId', (v) => v as String?),
+    expectedSettlementAt: $checkedConvert(
+      'expectedSettlementAt',
+      (v) => v == null ? null : ApiInstant.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$InvoicePaymentToJson(InvoicePayment instance) => <String, dynamic>{
-  'id': instance.id,
-  'invoiceId': instance.invoiceId,
-  'paymentMethodId': instance.paymentMethodId,
-  'amount': instance.amount.toJson(),
-  'installments': instance.installments,
-  'cashSessionId': instance.cashSessionId,
-  'checkoutId': instance.checkoutId,
-  'cashMovementId': instance.cashMovementId,
-  'methodName': instance.methodName,
-  'affectsCashDrawer': instance.affectsCashDrawer,
-  'feePercent': instance.feePercent.toJson(),
-  'feeAmount': instance.feeAmount.toJson(),
-  'netAmount': instance.netAmount.toJson(),
-  'expectedSettlementAt': instance.expectedSettlementAt?.toJson(),
-};
+Map<String, dynamic> _$InvoicePaymentToJson(InvoicePayment instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'invoiceId': instance.invoiceId,
+      'paymentMethodId': instance.paymentMethodId,
+      'amount': instance.amount.toJson(),
+      'installments': instance.installments,
+      'cashSessionId': instance.cashSessionId,
+      'checkoutId': instance.checkoutId,
+      'cashMovementId': instance.cashMovementId,
+      'methodName': instance.methodName,
+      'affectsCashDrawer': instance.affectsCashDrawer,
+      'feePercent': instance.feePercent.toJson(),
+      'feeAmount': instance.feeAmount.toJson(),
+      'netAmount': instance.netAmount.toJson(),
+      'expectedSettlementAt': instance.expectedSettlementAt?.toJson(),
+    };
 
 const _$InvoicePaymentJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -240,10 +318,22 @@ const _$InvoicePaymentJsonSchema = {
       'type': 'string',
       'description': 'Movimento de caixa, ou `null` no crediário.',
     },
-    'methodName': {'type': 'string', 'description': 'Nome da forma no momento do recebimento.'},
-    'affectsCashDrawer': {'type': 'boolean', 'description': 'Se afetou a gaveta.'},
-    'feePercent': {r'$ref': r'#/$defs/PercentAmount', 'description': 'Taxa percentual, escala 3.'},
-    'feeAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor da taxa.'},
+    'methodName': {
+      'type': 'string',
+      'description': 'Nome da forma no momento do recebimento.',
+    },
+    'affectsCashDrawer': {
+      'type': 'boolean',
+      'description': 'Se afetou a gaveta.',
+    },
+    'feePercent': {
+      r'$ref': r'#/$defs/PercentAmount',
+      'description': 'Taxa percentual, escala 3.',
+    },
+    'feeAmount': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Valor da taxa.',
+    },
     'netAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Líquido.'},
     'expectedSettlementAt': {
       r'$ref': r'#/$defs/ApiInstant',
@@ -266,27 +356,41 @@ const _$InvoicePaymentJsonSchema = {
   r'$defs': {
     'MoneyAmount': {'type': 'object', 'properties': {}},
     'PercentAmount': {'type': 'object', 'properties': {}},
-    'ApiInstant': {'type': 'object', 'properties': {}},
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
   },
 };
 
-Invoice _$InvoiceFromJson(Map<String, dynamic> json) => $checkedCreate('Invoice', json, (
-  $checkedConvert,
-) {
+Invoice _$InvoiceFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('Invoice', json, ($checkedConvert) {
   final val = Invoice(
     id: $checkedConvert('id', (v) => v as String),
     storeId: $checkedConvert('storeId', (v) => v as String),
     number: $checkedConvert('number', (v) => (v as num).toInt()),
     type: $checkedConvert('type', (v) => $enumDecode(_$InvoiceTypeEnumMap, v)),
-    status: $checkedConvert('status', (v) => $enumDecode(_$InvoiceStatusEnumMap, v)),
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecode(_$InvoiceStatusEnumMap, v),
+    ),
     issueDate: $checkedConvert('issueDate', (v) => CalendarDate.fromJson(v)),
     discount: $checkedConvert('discount', (v) => MoneyAmount.fromJson(v)),
     subtotal: $checkedConvert('subtotal', (v) => MoneyAmount.fromJson(v)),
     totalValue: $checkedConvert('totalValue', (v) => MoneyAmount.fromJson(v)),
     items: $checkedConvert(
       'items',
-      (v) =>
-          (v as List<dynamic>).map((e) => InvoiceItem.fromJson(e as Map<String, dynamic>)).toList(),
+      (v) => (v as List<dynamic>)
+          .map((e) => InvoiceItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
     ),
     payments: $checkedConvert(
       'payments',
@@ -294,8 +398,14 @@ Invoice _$InvoiceFromJson(Map<String, dynamic> json) => $checkedCreate('Invoice'
           .map((e) => InvoicePayment.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
-    createdAt: $checkedConvert('createdAt', (v) => ApiInstant.fromJson(v)),
-    updatedAt: $checkedConvert('updatedAt', (v) => ApiInstant.fromJson(v)),
+    createdAt: $checkedConvert(
+      'createdAt',
+      (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+    ),
+    updatedAt: $checkedConvert(
+      'updatedAt',
+      (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+    ),
     customerId: $checkedConvert('customerId', (v) => v as String?),
     supplierId: $checkedConvert('supplierId', (v) => v as String?),
     customerName: $checkedConvert('customerName', (v) => v as String?),
@@ -303,7 +413,10 @@ Invoice _$InvoiceFromJson(Map<String, dynamic> json) => $checkedCreate('Invoice'
     notes: $checkedConvert('notes', (v) => v as String?),
     createdBy: $checkedConvert('createdBy', (v) => v as String?),
     cancelledBy: $checkedConvert('cancelledBy', (v) => v as String?),
-    cancelledAt: $checkedConvert('cancelledAt', (v) => v == null ? null : ApiInstant.fromJson(v)),
+    cancelledAt: $checkedConvert(
+      'cancelledAt',
+      (v) => v == null ? null : ApiInstant.fromJson(v as Map<String, dynamic>),
+    ),
     cancelReason: $checkedConvert('cancelReason', (v) => v as String?),
   );
   return val;
@@ -339,16 +452,37 @@ const _$InvoiceJsonSchema = {
   'type': 'object',
   'properties': {
     'id': {'type': 'string', 'description': 'UUID.'},
-    'storeId': {'type': 'string', 'description': 'Loja. Vem do caminho, não do corpo.'},
+    'storeId': {
+      'type': 'string',
+      'description': 'Loja. Vem do caminho, não do corpo.',
+    },
     'number': {'type': 'integer', 'description': 'Sequencial por loja.'},
     'type': {'type': 'object', 'description': 'Entrada ou saída.'},
-    'status': {'type': 'object', 'description': 'Situação. Muda só por comando.'},
-    'customerId': {'type': 'string', 'description': 'Cliente, ou `null` na entrada.'},
-    'supplierId': {'type': 'string', 'description': 'Fornecedor, ou `null` na saída.'},
-    'customerName': {'type': 'string', 'description': 'Nome do cliente na listagem, ou `null`.'},
-    'supplierName': {'type': 'string', 'description': 'Nome do fornecedor na listagem, ou `null`.'},
+    'status': {
+      'type': 'object',
+      'description': 'Situação. Muda só por comando.',
+    },
+    'customerId': {
+      'type': 'string',
+      'description': 'Cliente, ou `null` na entrada.',
+    },
+    'supplierId': {
+      'type': 'string',
+      'description': 'Fornecedor, ou `null` na saída.',
+    },
+    'customerName': {
+      'type': 'string',
+      'description': 'Nome do cliente na listagem, ou `null`.',
+    },
+    'supplierName': {
+      'type': 'string',
+      'description': 'Nome do fornecedor na listagem, ou `null`.',
+    },
     'issueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Emissão.'},
-    'discount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Desconto no total.'},
+    'discount': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Desconto no total.',
+    },
     'subtotal': {
       r'$ref': r'#/$defs/MoneyAmount',
       'description': 'Soma dos itens, calculada no servidor.',
@@ -369,11 +503,23 @@ const _$InvoiceJsonSchema = {
       'description': 'Pagamentos. Vazio fora da saída confirmada.',
     },
     'createdBy': {'type': 'string', 'description': 'Autor, ou `null`.'},
-    'cancelledBy': {'type': 'string', 'description': 'Quem cancelou, ou `null`.'},
-    'cancelledAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Cancelamento, ou `null`.'},
-    'cancelReason': {'type': 'string', 'description': 'Motivo do cancelamento, ou `null`.'},
+    'cancelledBy': {
+      'type': 'string',
+      'description': 'Quem cancelou, ou `null`.',
+    },
+    'cancelledAt': {
+      r'$ref': r'#/$defs/ApiInstant',
+      'description': 'Cancelamento, ou `null`.',
+    },
+    'cancelReason': {
+      'type': 'string',
+      'description': 'Motivo do cancelamento, ou `null`.',
+    },
     'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Criação.'},
-    'updatedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Última alteração.'},
+    'updatedAt': {
+      r'$ref': r'#/$defs/ApiInstant',
+      'description': 'Última alteração.',
+    },
   },
   'required': [
     'id',
@@ -399,24 +545,53 @@ const _$InvoiceJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID do item.'},
         'productId': {'type': 'string', 'description': 'Peça, ou `null`.'},
-        'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null`.'},
+        'serviceId': {
+          'type': 'string',
+          'description': 'Mão de obra, ou `null`.',
+        },
         'description': {'type': 'string', 'description': 'Nome congelado.'},
-        'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-        'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
+        'quantity': {
+          r'$ref': r'#/$defs/QuantityAmount',
+          'description': 'Quantidade, escala 3.',
+        },
+        'unitPrice': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Preço unitário.',
+        },
         'unitCost': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Custo unitário. `null` sem `product:view_cost`.',
         },
-        'discount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Desconto do item.'},
+        'discount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Desconto do item.',
+        },
         'totalValue': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Total calculado no servidor.',
         },
       },
-      'required': ['id', 'description', 'quantity', 'unitPrice', 'discount', 'totalValue'],
+      'required': [
+        'id',
+        'description',
+        'quantity',
+        'unitPrice',
+        'discount',
+        'totalValue',
+      ],
     },
     'PercentAmount': {'type': 'object', 'properties': {}},
-    'ApiInstant': {'type': 'object', 'properties': {}},
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
     'InvoicePayment': {
       'type': 'object',
       'properties': {
@@ -424,21 +599,36 @@ const _$InvoiceJsonSchema = {
         'invoiceId': {'type': 'string', 'description': 'Nota.'},
         'paymentMethodId': {'type': 'string', 'description': 'Forma.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
-        'installments': {'type': 'integer', 'description': 'Número de parcelas.'},
+        'installments': {
+          'type': 'integer',
+          'description': 'Número de parcelas.',
+        },
         'cashSessionId': {'type': 'string', 'description': 'Turno, ou `null`.'},
         'checkoutId': {'type': 'string', 'description': 'Recebimento.'},
         'cashMovementId': {
           'type': 'string',
           'description': 'Movimento de caixa, ou `null` no crediário.',
         },
-        'methodName': {'type': 'string', 'description': 'Nome da forma no momento do recebimento.'},
-        'affectsCashDrawer': {'type': 'boolean', 'description': 'Se afetou a gaveta.'},
+        'methodName': {
+          'type': 'string',
+          'description': 'Nome da forma no momento do recebimento.',
+        },
+        'affectsCashDrawer': {
+          'type': 'boolean',
+          'description': 'Se afetou a gaveta.',
+        },
         'feePercent': {
           r'$ref': r'#/$defs/PercentAmount',
           'description': 'Taxa percentual, escala 3.',
         },
-        'feeAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor da taxa.'},
-        'netAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Líquido.'},
+        'feeAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Valor da taxa.',
+        },
+        'netAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Líquido.',
+        },
         'expectedSettlementAt': {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Previsão de liquidação, ou `null`.',
@@ -467,22 +657,24 @@ const _$InvoiceStatusEnumMap = {
   InvoiceStatus.cancelled: 'cancelled',
 };
 
-CheckoutInstallmentRequest _$CheckoutInstallmentRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('CheckoutInstallmentRequest', json, ($checkedConvert) {
-      final val = CheckoutInstallmentRequest(
-        id: $checkedConvert('id', (v) => v as String),
-        amount: $checkedConvert('amount', (v) => MoneyAmount.fromJson(v)),
-        dueDate: $checkedConvert('dueDate', (v) => CalendarDate.fromJson(v)),
-      );
-      return val;
-    });
+CheckoutInstallmentRequest _$CheckoutInstallmentRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CheckoutInstallmentRequest', json, ($checkedConvert) {
+  final val = CheckoutInstallmentRequest(
+    id: $checkedConvert('id', (v) => v as String),
+    amount: $checkedConvert('amount', (v) => MoneyAmount.fromJson(v)),
+    dueDate: $checkedConvert('dueDate', (v) => CalendarDate.fromJson(v)),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$CheckoutInstallmentRequestToJson(CheckoutInstallmentRequest instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'amount': instance.amount.toJson(),
-      'dueDate': instance.dueDate.toJson(),
-    };
+Map<String, dynamic> _$CheckoutInstallmentRequestToJson(
+  CheckoutInstallmentRequest instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'amount': instance.amount.toJson(),
+  'dueDate': instance.dueDate.toJson(),
+};
 
 const _$CheckoutInstallmentRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -499,37 +691,45 @@ const _$CheckoutInstallmentRequestJsonSchema = {
   },
 };
 
-CheckoutPaymentRequest _$CheckoutPaymentRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('CheckoutPaymentRequest', json, ($checkedConvert) {
-      final val = CheckoutPaymentRequest(
-        id: $checkedConvert('id', (v) => v as String),
-        paymentMethodId: $checkedConvert('paymentMethodId', (v) => v as String),
-        amount: $checkedConvert('amount', (v) => MoneyAmount.fromJson(v)),
-        installments: $checkedConvert('installments', (v) => (v as num).toInt()),
-        schedule: $checkedConvert(
-          'schedule',
-          (v) => (v as List<dynamic>)
-              .map((e) => CheckoutInstallmentRequest.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+CheckoutPaymentRequest _$CheckoutPaymentRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CheckoutPaymentRequest', json, ($checkedConvert) {
+  final val = CheckoutPaymentRequest(
+    id: $checkedConvert('id', (v) => v as String),
+    paymentMethodId: $checkedConvert('paymentMethodId', (v) => v as String),
+    amount: $checkedConvert('amount', (v) => MoneyAmount.fromJson(v)),
+    installments: $checkedConvert('installments', (v) => (v as num).toInt()),
+    schedule: $checkedConvert(
+      'schedule',
+      (v) => (v as List<dynamic>)
+          .map(
+            (e) =>
+                CheckoutInstallmentRequest.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$CheckoutPaymentRequestToJson(CheckoutPaymentRequest instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'paymentMethodId': instance.paymentMethodId,
-      'amount': instance.amount.toJson(),
-      'installments': instance.installments,
-      'schedule': instance.schedule.map((e) => e.toJson()).toList(),
-    };
+Map<String, dynamic> _$CheckoutPaymentRequestToJson(
+  CheckoutPaymentRequest instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'paymentMethodId': instance.paymentMethodId,
+  'amount': instance.amount.toJson(),
+  'installments': instance.installments,
+  'schedule': instance.schedule.map((e) => e.toJson()).toList(),
+};
 
 const _$CheckoutPaymentRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'id': {'type': 'string', 'description': 'UUID. Vira `invoice_payments.id`.'},
+    'id': {
+      'type': 'string',
+      'description': 'UUID. Vira `invoice_payments.id`.',
+    },
     'paymentMethodId': {'type': 'string', 'description': 'Forma ativa.'},
     'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
     'installments': {
@@ -551,7 +751,10 @@ const _$CheckoutPaymentRequestJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID. Vira `receivables.id`.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
-        'dueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Vencimento.'},
+        'dueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Vencimento.',
+        },
       },
       'required': ['id', 'amount', 'dueDate'],
     },
@@ -566,25 +769,35 @@ CheckoutRequest _$CheckoutRequestFromJson(Map<String, dynamic> json) =>
         payments: $checkedConvert(
           'payments',
           (v) => (v as List<dynamic>)
-              .map((e) => CheckoutPaymentRequest.fromJson(e as Map<String, dynamic>))
+              .map(
+                (e) =>
+                    CheckoutPaymentRequest.fromJson(e as Map<String, dynamic>),
+              )
               .toList(),
         ),
       );
       return val;
     });
 
-Map<String, dynamic> _$CheckoutRequestToJson(CheckoutRequest instance) => <String, dynamic>{
-  'id': instance.id,
-  'sessionId': instance.sessionId,
-  'payments': instance.payments.map((e) => e.toJson()).toList(),
-};
+Map<String, dynamic> _$CheckoutRequestToJson(CheckoutRequest instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'sessionId': instance.sessionId,
+      'payments': instance.payments.map((e) => e.toJson()).toList(),
+    };
 
 const _$CheckoutRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'id': {'type': 'string', 'description': 'Chave de idempotência do recebimento.'},
-    'sessionId': {'type': 'string', 'description': 'Turno aberto do operador do token.'},
+    'id': {
+      'type': 'string',
+      'description': 'Chave de idempotência do recebimento.',
+    },
+    'sessionId': {
+      'type': 'string',
+      'description': 'Turno aberto do operador do token.',
+    },
     'payments': {
       'type': 'array',
       'items': {r'$ref': r'#/$defs/CheckoutPaymentRequest'},
@@ -600,14 +813,20 @@ const _$CheckoutRequestJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID. Vira `receivables.id`.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
-        'dueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Vencimento.'},
+        'dueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Vencimento.',
+        },
       },
       'required': ['id', 'amount', 'dueDate'],
     },
     'CheckoutPaymentRequest': {
       'type': 'object',
       'properties': {
-        'id': {'type': 'string', 'description': 'UUID. Vira `invoice_payments.id`.'},
+        'id': {
+          'type': 'string',
+          'description': 'UUID. Vira `invoice_payments.id`.',
+        },
         'paymentMethodId': {'type': 'string', 'description': 'Forma ativa.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
         'installments': {
@@ -620,33 +839,44 @@ const _$CheckoutRequestJsonSchema = {
           'description': 'Cronograma. Só no crediário.',
         },
       },
-      'required': ['id', 'paymentMethodId', 'amount', 'installments', 'schedule'],
+      'required': [
+        'id',
+        'paymentMethodId',
+        'amount',
+        'installments',
+        'schedule',
+      ],
     },
   },
 };
 
-ConfirmInvoiceRequest _$ConfirmInvoiceRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ConfirmInvoiceRequest', json, ($checkedConvert) {
-      final val = ConfirmInvoiceRequest(
-        allowNegativeStock: $checkedConvert('allowNegativeStock', (v) => v as bool),
-        invoice: $checkedConvert(
-          'invoice',
-          (v) => v == null ? null : InvoiceDraft.fromJson(v as Map<String, dynamic>),
-        ),
-        checkout: $checkedConvert(
-          'checkout',
-          (v) => v == null ? null : CheckoutRequest.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+ConfirmInvoiceRequest _$ConfirmInvoiceRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ConfirmInvoiceRequest', json, ($checkedConvert) {
+  final val = ConfirmInvoiceRequest(
+    allowNegativeStock: $checkedConvert('allowNegativeStock', (v) => v as bool),
+    invoice: $checkedConvert(
+      'invoice',
+      (v) =>
+          v == null ? null : InvoiceDraft.fromJson(v as Map<String, dynamic>),
+    ),
+    checkout: $checkedConvert(
+      'checkout',
+      (v) => v == null
+          ? null
+          : CheckoutRequest.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$ConfirmInvoiceRequestToJson(ConfirmInvoiceRequest instance) =>
-    <String, dynamic>{
-      'invoice': instance.invoice?.toJson(),
-      'allowNegativeStock': instance.allowNegativeStock,
-      'checkout': instance.checkout?.toJson(),
-    };
+Map<String, dynamic> _$ConfirmInvoiceRequestToJson(
+  ConfirmInvoiceRequest instance,
+) => <String, dynamic>{
+  'invoice': instance.invoice?.toJson(),
+  'allowNegativeStock': instance.allowNegativeStock,
+  'checkout': instance.checkout?.toJson(),
+};
 
 const _$ConfirmInvoiceRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -674,11 +904,23 @@ const _$ConfirmInvoiceRequestJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID do item.'},
-        'productId': {'type': 'string', 'description': 'Peça, ou `null` se for serviço.'},
-        'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null` se for peça.'},
+        'productId': {
+          'type': 'string',
+          'description': 'Peça, ou `null` se for serviço.',
+        },
+        'serviceId': {
+          'type': 'string',
+          'description': 'Mão de obra, ou `null` se for peça.',
+        },
         'description': {'type': 'string', 'description': 'Nome congelado.'},
-        'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-        'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
+        'quantity': {
+          r'$ref': r'#/$defs/QuantityAmount',
+          'description': 'Quantidade, escala 3.',
+        },
+        'unitPrice': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Preço unitário.',
+        },
         'discount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Desconto do item, ou `null`.',
@@ -690,7 +932,10 @@ const _$ConfirmInvoiceRequestJsonSchema = {
       'type': 'object',
       'properties': {
         'type': {'type': 'object', 'description': 'Entrada ou saída.'},
-        'customerId': {'type': 'string', 'description': 'Cliente, obrigatório em saída.'},
+        'customerId': {
+          'type': 'string',
+          'description': 'Cliente, obrigatório em saída.',
+        },
         'supplierId': {
           'type': 'string',
           'description': 'Fornecedor, obrigatório em entrada. No app o campo se chama `companyId`.',
@@ -701,7 +946,8 @@ const _$ConfirmInvoiceRequestJsonSchema = {
         },
         'discount': {
           r'$ref': r'#/$defs/MoneyAmount',
-          'description': 'Desconto no total, ou `null` (o servidor grava zero).',
+          'description':
+              'Desconto no total, ou `null` (o servidor grava zero).',
         },
         'notes': {'type': 'string', 'description': 'Observações, ou `null`.'},
         'items': {
@@ -717,14 +963,20 @@ const _$ConfirmInvoiceRequestJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID. Vira `receivables.id`.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
-        'dueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Vencimento.'},
+        'dueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Vencimento.',
+        },
       },
       'required': ['id', 'amount', 'dueDate'],
     },
     'CheckoutPaymentRequest': {
       'type': 'object',
       'properties': {
-        'id': {'type': 'string', 'description': 'UUID. Vira `invoice_payments.id`.'},
+        'id': {
+          'type': 'string',
+          'description': 'UUID. Vira `invoice_payments.id`.',
+        },
         'paymentMethodId': {'type': 'string', 'description': 'Forma ativa.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
         'installments': {
@@ -737,13 +989,25 @@ const _$ConfirmInvoiceRequestJsonSchema = {
           'description': 'Cronograma. Só no crediário.',
         },
       },
-      'required': ['id', 'paymentMethodId', 'amount', 'installments', 'schedule'],
+      'required': [
+        'id',
+        'paymentMethodId',
+        'amount',
+        'installments',
+        'schedule',
+      ],
     },
     'CheckoutRequest': {
       'type': 'object',
       'properties': {
-        'id': {'type': 'string', 'description': 'Chave de idempotência do recebimento.'},
-        'sessionId': {'type': 'string', 'description': 'Turno aberto do operador do token.'},
+        'id': {
+          'type': 'string',
+          'description': 'Chave de idempotência do recebimento.',
+        },
+        'sessionId': {
+          'type': 'string',
+          'description': 'Turno aberto do operador do token.',
+        },
         'payments': {
           'type': 'array',
           'items': {r'$ref': r'#/$defs/CheckoutPaymentRequest'},
@@ -755,30 +1019,35 @@ const _$ConfirmInvoiceRequestJsonSchema = {
   },
 };
 
-ConfirmInvoiceResult _$ConfirmInvoiceResultFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ConfirmInvoiceResult', json, ($checkedConvert) {
-      final val = ConfirmInvoiceResult(
-        invoice: $checkedConvert('invoice', (v) => Invoice.fromJson(v as Map<String, dynamic>)),
-        receivables: $checkedConvert(
-          'receivables',
-          (v) => (v as List<dynamic>)
-              .map((e) => Receivable.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        cashSummary: $checkedConvert(
-          'cashSummary',
-          (v) => CashSummary.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+ConfirmInvoiceResult _$ConfirmInvoiceResultFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ConfirmInvoiceResult', json, ($checkedConvert) {
+  final val = ConfirmInvoiceResult(
+    invoice: $checkedConvert(
+      'invoice',
+      (v) => Invoice.fromJson(v as Map<String, dynamic>),
+    ),
+    receivables: $checkedConvert(
+      'receivables',
+      (v) => (v as List<dynamic>)
+          .map((e) => Receivable.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    cashSummary: $checkedConvert(
+      'cashSummary',
+      (v) => CashSummary.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$ConfirmInvoiceResultToJson(ConfirmInvoiceResult instance) =>
-    <String, dynamic>{
-      'invoice': instance.invoice.toJson(),
-      'receivables': instance.receivables.map((e) => e.toJson()).toList(),
-      'cashSummary': instance.cashSummary.toJson(),
-    };
+Map<String, dynamic> _$ConfirmInvoiceResultToJson(
+  ConfirmInvoiceResult instance,
+) => <String, dynamic>{
+  'invoice': instance.invoice.toJson(),
+  'receivables': instance.receivables.map((e) => e.toJson()).toList(),
+  'cashSummary': instance.cashSummary.toJson(),
+};
 
 const _$ConfirmInvoiceResultJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -790,7 +1059,10 @@ const _$ConfirmInvoiceResultJsonSchema = {
       'items': {r'$ref': r'#/$defs/Receivable'},
       'description': 'Parcelas geradas.',
     },
-    'cashSummary': {r'$ref': r'#/$defs/CashSummary', 'description': 'Turno atualizado.'},
+    'cashSummary': {
+      r'$ref': r'#/$defs/CashSummary',
+      'description': 'Turno atualizado.',
+    },
   },
   'required': ['invoice', 'receivables', 'cashSummary'],
   r'$defs': {
@@ -802,24 +1074,53 @@ const _$ConfirmInvoiceResultJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID do item.'},
         'productId': {'type': 'string', 'description': 'Peça, ou `null`.'},
-        'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null`.'},
+        'serviceId': {
+          'type': 'string',
+          'description': 'Mão de obra, ou `null`.',
+        },
         'description': {'type': 'string', 'description': 'Nome congelado.'},
-        'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-        'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
+        'quantity': {
+          r'$ref': r'#/$defs/QuantityAmount',
+          'description': 'Quantidade, escala 3.',
+        },
+        'unitPrice': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Preço unitário.',
+        },
         'unitCost': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Custo unitário. `null` sem `product:view_cost`.',
         },
-        'discount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Desconto do item.'},
+        'discount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Desconto do item.',
+        },
         'totalValue': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Total calculado no servidor.',
         },
       },
-      'required': ['id', 'description', 'quantity', 'unitPrice', 'discount', 'totalValue'],
+      'required': [
+        'id',
+        'description',
+        'quantity',
+        'unitPrice',
+        'discount',
+        'totalValue',
+      ],
     },
     'PercentAmount': {'type': 'object', 'properties': {}},
-    'ApiInstant': {'type': 'object', 'properties': {}},
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
     'InvoicePayment': {
       'type': 'object',
       'properties': {
@@ -827,21 +1128,36 @@ const _$ConfirmInvoiceResultJsonSchema = {
         'invoiceId': {'type': 'string', 'description': 'Nota.'},
         'paymentMethodId': {'type': 'string', 'description': 'Forma.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
-        'installments': {'type': 'integer', 'description': 'Número de parcelas.'},
+        'installments': {
+          'type': 'integer',
+          'description': 'Número de parcelas.',
+        },
         'cashSessionId': {'type': 'string', 'description': 'Turno, ou `null`.'},
         'checkoutId': {'type': 'string', 'description': 'Recebimento.'},
         'cashMovementId': {
           'type': 'string',
           'description': 'Movimento de caixa, ou `null` no crediário.',
         },
-        'methodName': {'type': 'string', 'description': 'Nome da forma no momento do recebimento.'},
-        'affectsCashDrawer': {'type': 'boolean', 'description': 'Se afetou a gaveta.'},
+        'methodName': {
+          'type': 'string',
+          'description': 'Nome da forma no momento do recebimento.',
+        },
+        'affectsCashDrawer': {
+          'type': 'boolean',
+          'description': 'Se afetou a gaveta.',
+        },
         'feePercent': {
           r'$ref': r'#/$defs/PercentAmount',
           'description': 'Taxa percentual, escala 3.',
         },
-        'feeAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor da taxa.'},
-        'netAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Líquido.'},
+        'feeAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Valor da taxa.',
+        },
+        'netAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Líquido.',
+        },
         'expectedSettlementAt': {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Previsão de liquidação, ou `null`.',
@@ -865,12 +1181,24 @@ const _$ConfirmInvoiceResultJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID.'},
-        'storeId': {'type': 'string', 'description': 'Loja. Vem do caminho, não do corpo.'},
+        'storeId': {
+          'type': 'string',
+          'description': 'Loja. Vem do caminho, não do corpo.',
+        },
         'number': {'type': 'integer', 'description': 'Sequencial por loja.'},
         'type': {'type': 'object', 'description': 'Entrada ou saída.'},
-        'status': {'type': 'object', 'description': 'Situação. Muda só por comando.'},
-        'customerId': {'type': 'string', 'description': 'Cliente, ou `null` na entrada.'},
-        'supplierId': {'type': 'string', 'description': 'Fornecedor, ou `null` na saída.'},
+        'status': {
+          'type': 'object',
+          'description': 'Situação. Muda só por comando.',
+        },
+        'customerId': {
+          'type': 'string',
+          'description': 'Cliente, ou `null` na entrada.',
+        },
+        'supplierId': {
+          'type': 'string',
+          'description': 'Fornecedor, ou `null` na saída.',
+        },
         'customerName': {
           'type': 'string',
           'description': 'Nome do cliente na listagem, ou `null`.',
@@ -879,8 +1207,14 @@ const _$ConfirmInvoiceResultJsonSchema = {
           'type': 'string',
           'description': 'Nome do fornecedor na listagem, ou `null`.',
         },
-        'issueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Emissão.'},
-        'discount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Desconto no total.'},
+        'issueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Emissão.',
+        },
+        'discount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Desconto no total.',
+        },
         'subtotal': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Soma dos itens, calculada no servidor.',
@@ -901,11 +1235,26 @@ const _$ConfirmInvoiceResultJsonSchema = {
           'description': 'Pagamentos. Vazio fora da saída confirmada.',
         },
         'createdBy': {'type': 'string', 'description': 'Autor, ou `null`.'},
-        'cancelledBy': {'type': 'string', 'description': 'Quem cancelou, ou `null`.'},
-        'cancelledAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Cancelamento, ou `null`.'},
-        'cancelReason': {'type': 'string', 'description': 'Motivo do cancelamento, ou `null`.'},
-        'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Criação.'},
-        'updatedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Última alteração.'},
+        'cancelledBy': {
+          'type': 'string',
+          'description': 'Quem cancelou, ou `null`.',
+        },
+        'cancelledAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Cancelamento, ou `null`.',
+        },
+        'cancelReason': {
+          'type': 'string',
+          'description': 'Motivo do cancelamento, ou `null`.',
+        },
+        'createdAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Criação.',
+        },
+        'updatedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Última alteração.',
+        },
       },
       'required': [
         'id',
@@ -937,24 +1286,42 @@ const _$ConfirmInvoiceResultJsonSchema = {
           'type': 'string',
           'description': 'Nota de origem, ou `null` quando o SQL permite.',
         },
-        'invoiceNumber': {'type': 'integer', 'description': 'Número da nota, ou `null`.'},
+        'invoiceNumber': {
+          'type': 'integer',
+          'description': 'Número da nota, ou `null`.',
+        },
         'installmentNumber': {
           'type': 'integer',
           'description': 'Número da parcela, a partir de 1.',
         },
-        'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor da parcela.'},
-        'dueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Vencimento.'},
+        'amount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Valor da parcela.',
+        },
+        'dueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Vencimento.',
+        },
         'paidAmount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Valor já pago. Na v1, zero ou o total.',
         },
-        'paidAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Quitação, ou `null`.'},
+        'paidAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Quitação, ou `null`.',
+        },
         'cashMovementId': {
           'type': 'string',
           'description': 'Movimento de caixa da baixa, ou `null`.',
         },
-        'cancelledAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Cancelamento, ou `null`.'},
-        'cancelReason': {'type': 'string', 'description': 'Motivo do cancelamento, ou `null`.'},
+        'cancelledAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Cancelamento, ou `null`.',
+        },
+        'cancelReason': {
+          'type': 'string',
+          'description': 'Motivo do cancelamento, ou `null`.',
+        },
         'isOverdue': {
           'type': 'boolean',
           'description': 'Se está vencida e em aberto. Calculado no servidor.',
@@ -978,9 +1345,18 @@ const _$ConfirmInvoiceResultJsonSchema = {
         'id': {'type': 'string', 'description': 'UUID.'},
         'sessionId': {'type': 'string', 'description': 'Turno.'},
         'type': {'type': 'object', 'description': 'Natureza.'},
-        'paymentMethodId': {'type': 'string', 'description': 'Forma, ou `null`.'},
-        'methodName': {'type': 'string', 'description': 'Nome da forma no momento do lançamento.'},
-        'affectsCashDrawer': {'type': 'boolean', 'description': 'Se afetou a gaveta.'},
+        'paymentMethodId': {
+          'type': 'string',
+          'description': 'Forma, ou `null`.',
+        },
+        'methodName': {
+          'type': 'string',
+          'description': 'Nome da forma no momento do lançamento.',
+        },
+        'affectsCashDrawer': {
+          'type': 'boolean',
+          'description': 'Se afetou a gaveta.',
+        },
         'amount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Valor. Positivo entra, negativo sai.',
@@ -989,7 +1365,10 @@ const _$ConfirmInvoiceResultJsonSchema = {
           r'$ref': r'#/$defs/PercentAmount',
           'description': 'Taxa percentual, escala 3.',
         },
-        'feeAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor da taxa.'},
+        'feeAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Valor da taxa.',
+        },
         'netAmount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Líquido (`amount` menos a taxa).',
@@ -998,12 +1377,27 @@ const _$ConfirmInvoiceResultJsonSchema = {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Previsão de liquidação, ou `null`.',
         },
-        'description': {'type': 'string', 'description': 'Descrição, ou `null`.'},
-        'referenceType': {'type': 'string', 'description': 'Tipo da referência, ou `null`.'},
-        'referenceId': {'type': 'string', 'description': 'Id da referência, ou `null`.'},
-        'refundedMovementId': {'type': 'string', 'description': 'Movimento estornado, ou `null`.'},
+        'description': {
+          'type': 'string',
+          'description': 'Descrição, ou `null`.',
+        },
+        'referenceType': {
+          'type': 'string',
+          'description': 'Tipo da referência, ou `null`.',
+        },
+        'referenceId': {
+          'type': 'string',
+          'description': 'Id da referência, ou `null`.',
+        },
+        'refundedMovementId': {
+          'type': 'string',
+          'description': 'Movimento estornado, ou `null`.',
+        },
         'createdBy': {'type': 'string', 'description': 'Autor, ou `null`.'},
-        'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Inclusão.'},
+        'createdAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Inclusão.',
+        },
       },
       'required': [
         'id',
@@ -1026,10 +1420,22 @@ const _$ConfirmInvoiceResultJsonSchema = {
         'registerId': {'type': 'string', 'description': 'Terminal.'},
         'status': {'type': 'object', 'description': 'Situação.'},
         'openedBy': {'type': 'string', 'description': 'Quem abriu.'},
-        'openedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Abertura.'},
-        'openingAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Fundo de troco.'},
-        'closedBy': {'type': 'string', 'description': 'Quem fechou, ou `null`.'},
-        'closedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Fechamento, ou `null`.'},
+        'openedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Abertura.',
+        },
+        'openingAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Fundo de troco.',
+        },
+        'closedBy': {
+          'type': 'string',
+          'description': 'Quem fechou, ou `null`.',
+        },
+        'closedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Fechamento, ou `null`.',
+        },
         'countedAmount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Valor contado, ou `null` enquanto aberto.',
@@ -1042,7 +1448,10 @@ const _$ConfirmInvoiceResultJsonSchema = {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Diferença, ou `null` enquanto aberto.',
         },
-        'closingNotes': {'type': 'string', 'description': 'Observação do fechamento, ou `null`.'},
+        'closingNotes': {
+          'type': 'string',
+          'description': 'Observação do fechamento, ou `null`.',
+        },
         'movements': {
           'type': 'array',
           'items': {r'$ref': r'#/$defs/CashMovement'},
@@ -1075,7 +1484,10 @@ const _$ConfirmInvoiceResultJsonSchema = {
         'session': {r'$ref': r'#/$defs/CashSession', 'description': 'Turno.'},
         'registerName': {'type': 'string', 'description': 'Nome do terminal.'},
         'operatorName': {'type': 'string', 'description': 'Nome do operador.'},
-        'expectedCash': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Gaveta esperada.'},
+        'expectedCash': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Gaveta esperada.',
+        },
         'income': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Entradas.'},
         'outgoing': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Saídas.'},
         'totalsByMethod': {
@@ -1119,11 +1531,12 @@ RefundMethodAmount _$RefundMethodAmountFromJson(Map<String, dynamic> json) =>
       return val;
     });
 
-Map<String, dynamic> _$RefundMethodAmountToJson(RefundMethodAmount instance) => <String, dynamic>{
-  'paymentMethodId': instance.paymentMethodId,
-  'name': instance.name,
-  'amount': instance.amount.toJson(),
-};
+Map<String, dynamic> _$RefundMethodAmountToJson(RefundMethodAmount instance) =>
+    <String, dynamic>{
+      'paymentMethodId': instance.paymentMethodId,
+      'name': instance.name,
+      'amount': instance.amount.toJson(),
+    };
 
 const _$RefundMethodAmountJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -1139,22 +1552,28 @@ const _$RefundMethodAmountJsonSchema = {
   },
 };
 
-RefundPreview _$RefundPreviewFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('RefundPreview', json, ($checkedConvert) {
-      final val = RefundPreview(
-        amountsByMethod: $checkedConvert(
-          'amountsByMethod',
-          (v) => (v as List<dynamic>)
-              .map((e) => RefundMethodAmount.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        openInstallments: $checkedConvert('openInstallments', (v) => (v as num).toInt()),
-        openAmount: $checkedConvert('openAmount', (v) => MoneyAmount.fromJson(v)),
-      );
-      return val;
-    });
+RefundPreview _$RefundPreviewFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('RefundPreview', json, ($checkedConvert) {
+  final val = RefundPreview(
+    amountsByMethod: $checkedConvert(
+      'amountsByMethod',
+      (v) => (v as List<dynamic>)
+          .map((e) => RefundMethodAmount.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    openInstallments: $checkedConvert(
+      'openInstallments',
+      (v) => (v as num).toInt(),
+    ),
+    openAmount: $checkedConvert('openAmount', (v) => MoneyAmount.fromJson(v)),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$RefundPreviewToJson(RefundPreview instance) => <String, dynamic>{
+Map<String, dynamic> _$RefundPreviewToJson(
+  RefundPreview instance,
+) => <String, dynamic>{
   'amountsByMethod': instance.amountsByMethod.map((e) => e.toJson()).toList(),
   'openInstallments': instance.openInstallments,
   'openAmount': instance.openAmount.toJson(),
@@ -1169,8 +1588,14 @@ const _$RefundPreviewJsonSchema = {
       'items': {r'$ref': r'#/$defs/RefundMethodAmount'},
       'description': 'Valores por forma, em lista.',
     },
-    'openInstallments': {'type': 'integer', 'description': 'Parcelas ainda em aberto.'},
-    'openAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Soma das parcelas em aberto.'},
+    'openInstallments': {
+      'type': 'integer',
+      'description': 'Parcelas ainda em aberto.',
+    },
+    'openAmount': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Soma das parcelas em aberto.',
+    },
   },
   'required': ['amountsByMethod', 'openInstallments', 'openAmount'],
   r'$defs': {
@@ -1187,17 +1612,22 @@ const _$RefundPreviewJsonSchema = {
   },
 };
 
-CancelInvoiceRequest _$CancelInvoiceRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('CancelInvoiceRequest', json, ($checkedConvert) {
-      final val = CancelInvoiceRequest(
-        reason: $checkedConvert('reason', (v) => v as String),
-        sessionId: $checkedConvert('sessionId', (v) => v as String?),
-      );
-      return val;
-    });
+CancelInvoiceRequest _$CancelInvoiceRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CancelInvoiceRequest', json, ($checkedConvert) {
+  final val = CancelInvoiceRequest(
+    reason: $checkedConvert('reason', (v) => v as String),
+    sessionId: $checkedConvert('sessionId', (v) => v as String?),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$CancelInvoiceRequestToJson(CancelInvoiceRequest instance) =>
-    <String, dynamic>{'reason': instance.reason, 'sessionId': instance.sessionId};
+Map<String, dynamic> _$CancelInvoiceRequestToJson(
+  CancelInvoiceRequest instance,
+) => <String, dynamic>{
+  'reason': instance.reason,
+  'sessionId': instance.sessionId,
+};
 
 const _$CancelInvoiceRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',

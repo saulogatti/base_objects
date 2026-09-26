@@ -10,7 +10,7 @@ part 'receivable.g.dart';
 @JsonSerializable()
 final class Receivable {
   /// Cria a parcela.
-  const Receivable({
+  const new({
     required this.id,
     required this.storeId,
     required this.customerId,
@@ -29,7 +29,7 @@ final class Receivable {
   });
 
   /// Lê a parcela.
-  factory Receivable.fromJson(Map<String, dynamic> json) => _$ReceivableFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ReceivableFromJson(json);
 
   /// UUID.
   final String id;
@@ -84,14 +84,14 @@ final class Receivable {
 @JsonSerializable()
 final class SettleReceivableRequest {
   /// Cria o corpo.
-  const SettleReceivableRequest({
+  const new({
     required this.id,
     required this.sessionId,
     required this.paymentMethodId,
   });
 
   /// Lê o corpo.
-  factory SettleReceivableRequest.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$SettleReceivableRequestFromJson(json);
 
   /// Chave de idempotência. Vira o id do movimento de caixa.

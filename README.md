@@ -1,4 +1,6 @@
-Objetos compartilhados entre o app `admin_loja` e a API `backend_admin_loja`.
+# README
+
+## Objetos compartilhados entre o app `admin_loja` e a API `backend_admin_loja`
 
 O pacote é Dart puro: sem Flutter, Shelf nem Postgres. O que entra aqui é o
 que viaja no JSON — campos, `fromJson`/`toJson` (`json_serializable`) e o

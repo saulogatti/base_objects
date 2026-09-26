@@ -12,7 +12,7 @@ part 'report.g.dart';
 @JsonSerializable()
 final class AnalyticsPoint {
   /// Cria o ponto.
-  const AnalyticsPoint({
+  const new({
     required this.label,
     required this.salesValue,
     required this.productsCount,
@@ -21,7 +21,7 @@ final class AnalyticsPoint {
   });
 
   /// Lê o ponto.
-  factory AnalyticsPoint.fromJson(Map<String, dynamic> json) => _$AnalyticsPointFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$AnalyticsPointFromJson(json);
 
   /// Data `YYYY-MM-DD` ou nome do produto.
   final String label;
@@ -46,7 +46,7 @@ final class AnalyticsPoint {
 @JsonSerializable()
 final class ReportOverview {
   /// Cria o consolidado.
-  const ReportOverview({
+  const new({
     required this.salesTotal,
     required this.averageTicket,
     required this.invoiceCount,
@@ -57,7 +57,7 @@ final class ReportOverview {
   });
 
   /// Lê o consolidado.
-  factory ReportOverview.fromJson(Map<String, dynamic> json) => _$ReportOverviewFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ReportOverviewFromJson(json);
 
   /// Soma das notas de saída confirmadas.
   final MoneyAmount salesTotal;
@@ -88,7 +88,7 @@ final class ReportOverview {
 @JsonSerializable()
 final class ReportInvoiceRef {
   /// Cria o recorte.
-  const ReportInvoiceRef({
+  const new({
     required this.id,
     required this.number,
     required this.type,
@@ -102,7 +102,7 @@ final class ReportInvoiceRef {
   });
 
   /// Lê o recorte.
-  factory ReportInvoiceRef.fromJson(Map<String, dynamic> json) => _$ReportInvoiceRefFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ReportInvoiceRefFromJson(json);
 
   /// UUID da nota.
   final String id;
@@ -142,7 +142,7 @@ final class ReportInvoiceRef {
 @JsonSerializable()
 final class ReportInvoiceItemRef {
   /// Cria o item.
-  const ReportInvoiceItemRef({
+  const new({
     required this.id,
     required this.productId,
     required this.description,
@@ -154,7 +154,7 @@ final class ReportInvoiceItemRef {
   });
 
   /// Lê o item.
-  factory ReportInvoiceItemRef.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ReportInvoiceItemRefFromJson(json);
 
   /// UUID do item.
@@ -189,10 +189,10 @@ final class ReportInvoiceItemRef {
 @JsonSerializable()
 final class ProductInvoiceMovement {
   /// Cria o movimento.
-  const ProductInvoiceMovement({required this.invoice, required this.item});
+  const new({required this.invoice, required this.item});
 
   /// Lê o movimento.
-  factory ProductInvoiceMovement.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ProductInvoiceMovementFromJson(json);
 
   /// Nota.
@@ -209,7 +209,7 @@ final class ProductInvoiceMovement {
 @JsonSerializable()
 final class ProductMovementSummary {
   /// Cria o resumo.
-  const ProductMovementSummary({
+  const new({
     required this.totalEntryQuantity,
     required this.totalExitQuantity,
     required this.totalEntryValue,
@@ -219,7 +219,7 @@ final class ProductMovementSummary {
   });
 
   /// Lê o resumo.
-  factory ProductMovementSummary.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ProductMovementSummaryFromJson(json);
 
   /// Quantidade de entrada.
@@ -248,7 +248,7 @@ final class ProductMovementSummary {
 @JsonSerializable()
 final class ProductMovementsReport {
   /// Cria o relatório.
-  const ProductMovementsReport({
+  const new({
     required this.categoryName,
     required this.entries,
     required this.exits,
@@ -256,7 +256,7 @@ final class ProductMovementsReport {
   });
 
   /// Lê o relatório.
-  factory ProductMovementsReport.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ProductMovementsReportFromJson(json);
 
   /// Nome da categoria, ou texto vazio sem categoria.
@@ -279,7 +279,7 @@ final class ProductMovementsReport {
 @JsonSerializable()
 final class ServiceOrdersReport {
   /// Cria o consolidado.
-  const ServiceOrdersReport({
+  const new({
     required this.openedCount,
     required this.deliveredCount,
     required this.cancelledCount,
@@ -289,7 +289,7 @@ final class ServiceOrdersReport {
   });
 
   /// Lê o consolidado.
-  factory ServiceOrdersReport.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ServiceOrdersReportFromJson(json);
 
   /// Ordens abertas no período.
@@ -318,7 +318,7 @@ final class ServiceOrdersReport {
 @JsonSerializable()
 final class FinancialByMethod {
   /// Cria a linha.
-  const FinancialByMethod({
+  const new({
     required this.paymentMethodId,
     required this.methodName,
     required this.amount,
@@ -327,7 +327,7 @@ final class FinancialByMethod {
   });
 
   /// Lê a linha.
-  factory FinancialByMethod.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$FinancialByMethodFromJson(json);
 
   /// Forma.
@@ -353,7 +353,7 @@ final class FinancialByMethod {
 @JsonSerializable()
 final class FinancialReport {
   /// Cria o relatório.
-  const FinancialReport({
+  const new({
     required this.revenue,
     required this.fees,
     required this.net,
@@ -363,7 +363,7 @@ final class FinancialReport {
   });
 
   /// Lê o relatório.
-  factory FinancialReport.fromJson(Map<String, dynamic> json) => _$FinancialReportFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$FinancialReportFromJson(json);
 
   /// Receita bruta.
   final MoneyAmount revenue;

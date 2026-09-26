@@ -56,13 +56,13 @@ bool _isScaledLiteral(String raw, int scale) {
 /// Dinheiro em string JSON com escala 2 (`API.md` §1.2).
 @immutable
 final class MoneyAmount {
-  const MoneyAmount._(this.value);
+  const new _(this.value);
 
   /// Interpreta [raw]. Aceita `"89.9"` e grava `"89.90"`.
-  factory MoneyAmount.parse(String raw) => MoneyAmount._(_canonicalizeScaled(raw, scale: scale));
+  factory parse(String raw) => MoneyAmount._(_canonicalizeScaled(raw, scale: scale));
 
   /// Lê a string JSON. Número JSON é recusado.
-  factory MoneyAmount.fromJson(Object? json) {
+  factory fromJson(Object? json) {
     if (json is! String) {
       throw const FormatException('money deve ser string JSON.');
     }
@@ -91,14 +91,14 @@ final class MoneyAmount {
 /// Quantidade em string JSON com escala 3 (`API.md` §1.2).
 @immutable
 final class QuantityAmount {
-  const QuantityAmount._(this.value);
+  const new _(this.value);
 
   /// Interpreta [raw] e normaliza para três casas.
-  factory QuantityAmount.parse(String raw) =>
+  factory parse(String raw) =>
       QuantityAmount._(_canonicalizeScaled(raw, scale: scale));
 
   /// Lê a string JSON. Número JSON é recusado.
-  factory QuantityAmount.fromJson(Object? json) {
+  factory fromJson(Object? json) {
     if (json is! String) {
       throw const FormatException('quantity deve ser string JSON.');
     }
@@ -127,14 +127,14 @@ final class QuantityAmount {
 /// Percentual em string JSON com escala 3 (`feePercent`, `API.md` §1.2).
 @immutable
 final class PercentAmount {
-  const PercentAmount._(this.value);
+  const new _(this.value);
 
   /// Interpreta [raw] e normaliza para três casas.
-  factory PercentAmount.parse(String raw) =>
+  factory parse(String raw) =>
       PercentAmount._(_canonicalizeScaled(raw, scale: scale));
 
   /// Lê a string JSON. Número JSON é recusado.
-  factory PercentAmount.fromJson(Object? json) {
+  factory fromJson(Object? json) {
     if (json is! String) {
       throw const FormatException('percent deve ser string JSON.');
     }
@@ -163,13 +163,13 @@ final class PercentAmount {
 /// Horas estimadas em string com escala 2 (`estimatedHours`, `API.md` §8.4).
 @immutable
 final class HoursAmount {
-  const HoursAmount._(this.value);
+  const new _(this.value);
 
   /// Interpreta [raw] e normaliza para duas casas.
-  factory HoursAmount.parse(String raw) => HoursAmount._(_canonicalizeScaled(raw, scale: scale));
+  factory parse(String raw) => HoursAmount._(_canonicalizeScaled(raw, scale: scale));
 
   /// Lê a string JSON. Número JSON é recusado.
-  factory HoursAmount.fromJson(Object? json) {
+  factory fromJson(Object? json) {
     if (json is! String) {
       throw const FormatException('estimatedHours deve ser string JSON.');
     }
