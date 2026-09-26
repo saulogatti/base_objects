@@ -11,4 +11,4 @@ targets:
         options:
           preamble: |
             // coverage:ignore-file
-            // ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks
+            // ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, inference_failure_on_collection_literal

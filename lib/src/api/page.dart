@@ -1,0 +1,34 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'page.g.dart';
+
+/// Envelope `{ items, total, limit, offset }` das listagens (`API.md` §1.7).
+@JsonSerializable(genericArgumentFactories: true)
+final class ApiPage<T> {
+  /// Cria a página.
+  const ApiPage({
+    required this.items,
+    required this.total,
+    required this.limit,
+    required this.offset,
+  });
+
+  /// Lê o envelope. [fromJsonT] converte cada item.
+  factory ApiPage.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
+      _$ApiPageFromJson(json, fromJsonT);
+
+  /// Página corrente.
+  final List<T> items;
+
+  /// Total que casa o filtro, independente de [limit].
+  final int total;
+
+  /// `limit` efetivo.
+  final int limit;
+
+  /// `offset` efetivo.
+  final int offset;
+
+  /// Serializa o envelope. [toJsonT] converte cada item.
+  Map<String, dynamic> toJson(Object? Function(T value) toJsonT) => _$ApiPageToJson(this, toJsonT);
+}
