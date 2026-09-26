@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // coverage:ignore-file
-// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks
+// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks, unused_element, unnecessary_lambdas, inference_failure_on_collection_literal
 
 part of 'system_model.dart';
 
@@ -37,8 +37,8 @@ SystemModel _$SystemModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SystemModelToJson(SystemModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': instance.createdAt.toUtc().toIso8601String(),
+      'updatedAt': instance.updatedAt.toUtc().toIso8601String(),
       'systemUser': instance.systemUser.toJson(),
       'activationKey': instance.activationKey.toJson(),
       'serverUrl': instance.serverUrl,

@@ -1,8 +1,5 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// Objetos compartilhados da API e modelos de domínio já presentes no pacote.
 library;
 
+export 'src/api/api.dart';
 export 'src/base_objects_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
