@@ -1,20 +1,39 @@
-# base_template_flutter
+<!--
+This README describes the package. If you publish this package to pub.dev,
+this README's contents appear on the landing page for your package.
 
-Este é um template de projeto Flutter que segue as melhores práticas de arquitetura e desenvolvimento. Ele é projetado para ser escalável, testável e fácil de manter, utilizando Clean Architecture, BLoC para gerenciamento de estado e outras convenções modernas do Flutter.
+For information about how to write a good package README, see the guide for
+[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
 
-## Estrutura do Projeto
+For general information about developing packages, see the Dart guide for
+[creating packages](https://dart.dev/tools/pub/create-packages)
+and the Flutter guide for
+[developing packages and plugins](https://flutter.dev/to/develop-packages).
+-->
 
-- `lib/`
-  - `domain/`: Contém as entidades, casos de uso e repositórios abstratos.
-  - `data/`: Implementações concretas dos repositórios, fontes de dados e modelos.
-  - `core/`: Configurações de injeção de dependência e outras infraestruturas.
-  - `presentation/`: Widgets, BLoCs e outros componentes relacionados à interface do usuário.
-- `test/`: Testes unitários e de widget.
+TODO: Put a short description of the package here that helps potential users
+know whether this package might be useful for them.
 
-## Regras de Desenvolvimento
+## Features
 
-1. **Arquitetura:** Siga a Clean Architecture estrita. O `domain` não deve conhecer nada de `data`, `core` ou `presentation`. Nenhuma biblioteca externa do Flutter deve ser usada no `domain`.
-2. **Gerência de Estado:** Use exclusivamente BLoC (`flutter_bloc`) com `freezed`. Não crie Cubits a menos que explicitamente solicitado. Todo estado e evento deve ser mapeado com Freezed.
-3. **Proibição de Singletons:** É terminantemente proibido criar Singletons. A injeção de dependência deve ser feita via construtor. Se um Singleton for criado, considere isso uma falha crítica.
-4. **Anti-God Class:** Mantenha o princípio da Responsabilidade Única (SRP). Se um BLoC ou Widget passar de 200 linhas, divida-o imediatamente.
-5. **Estilo de Código:** Escreva código declarativo, com tipagem forte, e sempre lide com o tratamento de erros (use `Result` incluso no projeto `lib/core/result/simple_result.dart`).
+TODO: List what your package can do. Maybe include images, gifs, or videos.
+
+## Getting started
+
+TODO: List prerequisites and provide or point to information on how to
+start using the package.
+
+## Usage
+
+TODO: Include short and useful examples for package users. Add longer examples
+to `/example` folder.
+
+```dart
+const like = 'sample';
+```
+
+## Additional information
+
+TODO: Tell users more about the package: where to find more information, how to
+contribute to the package, how to file issues, what response they can expect
+from the package authors, and more.

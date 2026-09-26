@@ -1,0 +1,53 @@
+dartdoc:
+  categories:
+    contratos:
+      markdown: documentation/dartdoc/contratos.md
+      displayName: Interfaces
+    modelos:
+      markdown: documentation/dartdoc/modelos.md
+      displayName: Modelos de domínio
+    repositorios:
+      markdown: documentation/dartdoc/repositorios.md
+      displayName: Repositórios
+    servicos:
+      markdown: documentation/dartdoc/servicos.md
+      displayName: Serviços
+    persistencia:
+      markdown: documentation/dartdoc/persistencia.md
+      displayName: Persistência Drift
+    dados:
+      markdown: documentation/dartdoc/dados.md
+      displayName: DTOs e cache
+    utilitarios:
+      markdown: documentation/dartdoc/utilitarios.md
+      displayName: Utilitários
+    apresentacao:
+      markdown: documentation/dartdoc/apresentacao.md
+      displayName: Apresentação
+  categoryOrder:
+    - contratos
+    - modelos
+    - repositorios
+    - servicos
+    - persistencia
+    - dados
+    - utilitarios
+    - apresentacao
+  nodoc:
+    - "**.g.dart"
+    - "**.freezed.dart"
+    - "**.gr.dart"
+    - "lib/screens/**/cubit/*.dart"
+    - "lib/screens/**/bloc/*.dart"
+    - "lib/screens/**/widgets/*.dart"
+    - "lib/screens/widgets/*.dart"
+    - "lib/screens/**/widgets/**.dart"
+  linkTo:
+    url: "https://saulogatti.github.io/admin_loja/"
+  showUndocumentedCategories: false
+  ignore:
+    - ambiguous-doc-reference
+  errors:
+    - unresolved-doc-reference
+  warnings:
+    - tool-error
