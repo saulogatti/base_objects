@@ -3,32 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'access.g.dart';
 
-/// Corpo de `PUT /users/{id}`. `password` só na criação.
-@JsonSerializable()
-final class UserUpsertRequest {
-  /// Cria o corpo.
-  const new({required this.name, required this.email, this.phone, this.password});
-
-  /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$UserUpsertRequestFromJson(json);
-
-  /// Nome.
-  final String name;
-
-  /// E-mail único.
-  final String email;
-
-  /// Telefone, ou `null`.
-  final String? phone;
-
-  /// Senha em texto na criação. Na edição o servidor recusa o campo.
-  final String? password;
-
-  /// Serializa o corpo.
-  Map<String, dynamic> toJson() => _$UserUpsertRequestToJson(this);
-}
-
 /// Corpo `{ isActive }` de `PATCH .../active`.
 @JsonSerializable()
 final class ActiveFlagRequest {
@@ -36,14 +10,33 @@ final class ActiveFlagRequest {
   const new({required this.isActive});
 
   /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$ActiveFlagRequestFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ActiveFlagRequestFromJson(json);
+
+  static Map<String, Object> get jsonSchema => _$ActiveFlagRequestJsonSchema;
 
   /// Novo estado.
   final bool isActive;
 
   /// Serializa o corpo.
   Map<String, dynamic> toJson() => _$ActiveFlagRequestToJson(this);
+}
+
+/// Corpo de `PUT .../membership`.
+@JsonSerializable()
+final class AssignRoleRequest {
+  /// Cria o corpo.
+  const new({required this.roleCode});
+
+  /// Lê o corpo.
+  factory fromJson(Map<String, dynamic> json) => _$AssignRoleRequestFromJson(json);
+
+  static Map<String, Object> get jsonSchema => _$AssignRoleRequestJsonSchema;
+
+  /// Código do papel, por exemplo `technician`.
+  final String roleCode;
+
+  /// Serializa o corpo.
+  Map<String, dynamic> toJson() => _$AssignRoleRequestToJson(this);
 }
 
 /// Corpo de `PUT /users/{id}/password`.
@@ -53,8 +46,9 @@ final class ChangePasswordRequest {
   const new({required this.newPassword, this.currentPassword});
 
   /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$ChangePasswordRequestFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ChangePasswordRequestFromJson(json);
+
+  static Map<String, Object> get jsonSchema => _$ChangePasswordRequestJsonSchema;
 
   /// Senha atual. Obrigatória quando o próprio usuário troca.
   final String? currentPassword;
@@ -64,6 +58,56 @@ final class ChangePasswordRequest {
 
   /// Serializa o corpo.
   Map<String, dynamic> toJson() => _$ChangePasswordRequestToJson(this);
+}
+
+/// Item de `GET /permissions`.
+@JsonSerializable()
+final class Permission {
+  /// Cria a permissão.
+  const new({
+    required this.code,
+    required this.resource,
+    required this.action,
+    required this.description,
+  });
+
+  /// Lê a permissão.
+  factory fromJson(Map<String, dynamic> json) => _$PermissionFromJson(json);
+
+  static Map<String, Object> get jsonSchema => _$PermissionJsonSchema;
+
+  /// Código `recurso:ação`.
+  final String code;
+
+  /// Recurso.
+  final String resource;
+
+  /// Ação.
+  final String action;
+
+  /// Descrição em português.
+  final String description;
+
+  /// Serializa a permissão.
+  Map<String, dynamic> toJson() => _$PermissionToJson(this);
+}
+
+/// Corpo de `PUT .../overrides/{permissionCode}`.
+@JsonSerializable()
+final class PermissionOverrideRequest {
+  /// Cria o corpo.
+  const new({required this.granted});
+
+  /// Lê o corpo.
+  factory fromJson(Map<String, dynamic> json) => _$PermissionOverrideRequestFromJson(json);
+
+  static Map<String, Object> get jsonSchema => _$PermissionOverrideRequestJsonSchema;
+
+  /// Se a exceção concede (`true`) ou revoga (`false`) a permissão.
+  final bool granted;
+
+  /// Serializa o corpo.
+  Map<String, dynamic> toJson() => _$PermissionOverrideRequestToJson(this);
 }
 
 /// Papel do catálogo `GET /roles`, com `createdAt` (`API.md` §6.2).
@@ -82,6 +126,8 @@ final class Role {
 
   /// Lê o papel.
   factory fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
+
+  static Map<String, Object> get jsonSchema => _$RoleJsonSchema;
 
   /// UUID.
   final String id;
@@ -108,66 +154,29 @@ final class Role {
   Map<String, dynamic> toJson() => _$RoleToJson(this);
 }
 
-/// Item de `GET /permissions`.
+/// Corpo de `PUT /users/{id}`. `password` só na criação.
 @JsonSerializable()
-final class Permission {
-  /// Cria a permissão.
-  const new({
-    required this.code,
-    required this.resource,
-    required this.action,
-    required this.description,
-  });
-
-  /// Lê a permissão.
-  factory fromJson(Map<String, dynamic> json) => _$PermissionFromJson(json);
-
-  /// Código `recurso:ação`.
-  final String code;
-
-  /// Recurso.
-  final String resource;
-
-  /// Ação.
-  final String action;
-
-  /// Descrição em português.
-  final String description;
-
-  /// Serializa a permissão.
-  Map<String, dynamic> toJson() => _$PermissionToJson(this);
-}
-
-/// Corpo de `PUT .../membership`.
-@JsonSerializable()
-final class AssignRoleRequest {
+final class UserUpsertRequest {
   /// Cria o corpo.
-  const new({required this.roleCode});
+  const new({required this.name, required this.email, this.phone, this.password});
 
   /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$AssignRoleRequestFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$UserUpsertRequestFromJson(json);
 
-  /// Código do papel, por exemplo `technician`.
-  final String roleCode;
+  static Map<String, Object> get jsonSchema => _$UserUpsertRequestJsonSchema;
 
-  /// Serializa o corpo.
-  Map<String, dynamic> toJson() => _$AssignRoleRequestToJson(this);
-}
+  /// Nome.
+  final String name;
 
-/// Corpo de `PUT .../overrides/{permissionCode}`.
-@JsonSerializable()
-final class PermissionOverrideRequest {
-  /// Cria o corpo.
-  const new({required this.granted});
+  /// E-mail único.
+  final String email;
 
-  /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$PermissionOverrideRequestFromJson(json);
+  /// Telefone, ou `null`.
+  final String? phone;
 
-  /// Se a exceção concede (`true`) ou revoga (`false`) a permissão.
-  final bool granted;
+  /// Senha em texto na criação. Na edição o servidor recusa o campo.
+  final String? password;
 
   /// Serializa o corpo.
-  Map<String, dynamic> toJson() => _$PermissionOverrideRequestToJson(this);
+  Map<String, dynamic> toJson() => _$UserUpsertRequestToJson(this);
 }

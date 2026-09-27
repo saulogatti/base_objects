@@ -10,6 +10,7 @@ metadata:
 # Safe Cross-Platform Path Manipulation in Dart
 
 ## Contents
+
 * [1. Core Principles & Cross-Platform Rules](#1-core-principles--cross-platform-rules)
 * [2. Recommended package:path Idioms vs. String Anti-Patterns](#2-recommended-packagepath-idioms-vs-string-anti-patterns)
 * [3. Bridging Native Paths to POSIX, Git, & URL Contexts](#3-bridging-native-paths-to-posix-git--url-contexts)
@@ -23,6 +24,7 @@ metadata:
 ## 1. Core Principles & Cross-Platform Rules
 
 ### Avoid Treating File Paths as Raw Strings
+
 * Native file paths on Windows use backslashes (`\`), whereas macOS and Linux use forward slashes (`/`).
 * String operations like `.contains('foo/')`, `.startsWith('foo/')`, or `.split('/')` silently fail on Windows native paths.
 * String interpolation like `'$dir/$file'` injects forward slashes on Windows and produces duplicate slashes (`//`) when `$dir` ends with a trailing slash.
@@ -30,15 +32,18 @@ metadata:
 **Rule**: Always decompose paths into segments using `p.split(path)` before inspecting directory hierarchy or segment names, and always join path components using `p.join(...)`.
 
 ### Pragmatic Boundary Joining vs. Multi-Segment Decomposition (`p.join`)
+
 * **Cross-Platform Libraries (Windows + POSIX)**: Pass individual path segments to `p.join(dir, 'sub', 'file.json')` so `package:path` inserts OS-native separators (`\` on Windows, `/` on POSIX) between every component.
 * **POSIX-Only Tools & Static Subpath Greppability**: In codebases exclusively targeting Linux/macOS (or when joining a dynamic base path to a known static subpath), decomposing 5–6 static segments into separate arguments (`p.join(home, '.local', 'share', 'app', 'bin', 'config.json')`) causes `dart format` to wrap across 6–8 vertical lines and **destroys substring greppability** (`grep` / `code_search` for `.local/share/app/bin`).
 * **Rule for POSIX Targets**: Prefer **2-argument boundary joining** (`p.join(home, '.local/share/app/bin/config.json')`). This prevents duplicate-slash bugs (`//`) at variable boundaries while preserving single-line readability and exact string searchability.
 
 ### Normalization vs. Canonicalization (`p.normalize` vs. `p.canonicalize`)
+
 * `p.normalize(path)` resolves `.` and `..` segments purely lexically without consulting the filesystem or standardizing case.
 * When deduplicating directory paths or comparing physical file identity across symlinks, relative roots, or case-insensitive filesystems, use `p.canonicalize(path)`.
 
 ### Strip Location Specifiers & Convert URIs Safely
+
 * Strings formatted as `<path>:<line>-<col>` or `<path>:<line>` are not pure file paths. Passing them directly to `p.normalize` or `Uri.parse` causes bugs (on Windows, `Uri.parse` mistakes `C:` for a URI scheme and `:line` for a port).
 * Extract the trailing `:line-col` suffix via regular expression (`RegExp(r'^(.*?):(\d+(?:-\d+)?)$')`) *before* passing the file path to `package:path`.
 * **URI Boundary Conversions**: When converting between file paths and `Uri` objects, always use `p.toUri(path)` and `p.fromUri(uri)` rather than `Uri.parse(path)` or manual string concatenation.
@@ -48,48 +53,56 @@ metadata:
 ## 2. Recommended package:path Idioms vs. String Anti-Patterns
 
 ### Path Joining
+
 * **Prefer**: `p.join(dir, file)`
 * **Avoid**: `'$dir/$file'` or `'a/$b'`
 * **Why**: String interpolation injects `/` on Windows and creates duplicate
   slashes (`//`) when `$dir` ends with a trailing separator.
 
 ### Segment Matching
+
 * **Prefer**: `p.split(path).contains('foo')`
 * **Avoid**: `path.contains('foo/')`
 * **Why**: String matching fails on Windows backslashes (`foo\bar`) and produces
   false positives on partial substring names (e.g. `barfoo/`).
 
 ### Root and Directory Prefixes
+
 * **Prefer**: `p.split(path).first == 'foo'` or `p.isWithin('foo', path)`
 * **Avoid**: `path.startsWith('foo/')`
 * **Why**: Fails on Windows separators and misses relative prefix variants such
   as `./foo/`.
 
 ### File Extensions
+
 * **Prefer**: `p.extension(path) == '.wasm'`
 * **Avoid**: `path.endsWith('.wasm')`
 * **Why**: Substring suffix matching falsely matches directories (`foo.wasm/`)
   or non-extension suffixes.
 
 ### Extension Slicing and Compound Extensions
+
 * **Prefer**: `p.withoutExtension(path)` and `p.extension(path, 2)`
 * **Avoid**: `path.lastIndexOf('.')` and manual `substring` slicing
 * **Why**: Manual arithmetic breaks on hidden dotfiles (`.gitignore`) and
   compound extensions (`.js.map`, `.tar.gz`).
 
 ### POSIX and URL Path Conversion
+
 * **Prefer**: `p.posix.joinAll(p.split(path))` or `p.url.joinAll(p.split(path))`
 * **Avoid**: `path.replaceAll(r'\', '/')`
 * **Why**: Ad-hoc separator replacement fails on root drives and mixes OS
   context with POSIX or URL targets.
 
 ### URI Conversion
+
 * **Prefer**: `p.toUri(path)` and `p.fromUri(uri)`
 * **Avoid**: `Uri.parse(path)` and `uri.path`
 * **Why**: Direct URI parsing fails on Windows drive letters (`C:`) and leaks
   percent-encoding (e.g. `%20` for spaces).
 
 ### Directory Basename Helper
+
 * **Prefer**:
   `String canonicalDirName(Directory d) => p.basename(p.normalize(d.absolute.path));`
 * **Avoid**: Repeating `p.basename(p.normalize(dir.absolute.path))` inline
@@ -124,6 +137,7 @@ String computeWebAssetKey(String filePath, String projectRoot) {
 ```
 
 ### Git Paths and Repository Metadata
+
 * Git repository tree objects, `.gitignore` pattern rules, `.gitattributes`,
   and git-tracked symlinks strictly use POSIX forward slashes (`/`), even on
   Windows.
@@ -187,13 +201,15 @@ String insertContentHash(String filename, String hash) {
 ## 6. Workflows & Audit Checklist
 
 ### Path Refactoring Checklist
-- [ ] Replace string interpolation (`'$dir/$file'`) with `p.join(dir, file)`.
-- [ ] Replace `.contains('dir/')` and `.startsWith('dir/')` with `p.split(path)` segment checks or `p.isWithin(parent, child)`.
-- [ ] Replace `.replaceAll(r'\', '/')` with `p.posix.joinAll(p.split(path))` (or `p.url.joinAll`).
-- [ ] Replace `.endsWith('.ext')` on file paths with `p.extension(path) == '.ext'`.
-- [ ] Replace manual dot-index slicing with `p.withoutExtension(path)` and `p.extension(path, [level])`.
-- [ ] Verify that code using `package:file` accesses `fileSystem.path` instead of global `p.*`.
-- [ ] Ensure Git paths, `.gitignore` entries, and symlink targets use `p.posix` forward slashes.
+
+* [ ] Replace string interpolation (`'$dir/$file'`) with `p.join(dir, file)`.
+
+* [ ] Replace `.contains('dir/')` and `.startsWith('dir/')` with `p.split(path)` segment checks or `p.isWithin(parent, child)`.
+* [ ] Replace `.replaceAll(r'\', '/')` with `p.posix.joinAll(p.split(path))` (or `p.url.joinAll`).
+* [ ] Replace `.endsWith('.ext')` on file paths with `p.extension(path) == '.ext'`.
+* [ ] Replace manual dot-index slicing with `p.withoutExtension(path)` and `p.extension(path, [level])`.
+* [ ] Verify that code using `package:file` accesses `fileSystem.path` instead of global `p.*`.
+* [ ] Ensure Git paths, `.gitignore` entries, and symlink targets use `p.posix` forward slashes.
 
 ---
 
