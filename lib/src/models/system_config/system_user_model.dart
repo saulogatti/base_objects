@@ -2,6 +2,8 @@ import 'package:base_objects/src/models/document/cpf.dart';
 import 'package:base_objects/src/models/person/person.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+export 'package:base_objects/src/models/document/cpf.dart';
+
 part 'system_user_model.g.dart';
 
 /// Dados do usuário do sistema, incluindo chave e descrição.
