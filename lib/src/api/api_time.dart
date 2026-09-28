@@ -1,3 +1,4 @@
+import 'package:base_objects/src/constants/app_constants.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -36,7 +37,7 @@ final class CalendarDate {
 
   /// Interpreta [raw] e recusa hora, fuso e datas inexistentes.
   factory parse(String raw) {
-    final match = RegExp(r'^(\d{4})-(\d{2})-(\d{2})$').firstMatch(raw);
+    final match = AppRegexConstants.calendarDateRegExp.firstMatch(raw);
     if (match == null) {
       throw FormatException('date deve ser YYYY-MM-DD.', raw);
     }

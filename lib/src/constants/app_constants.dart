@@ -140,4 +140,7 @@ abstract final class AppRegexConstants {
     r',\s*CHECK \(.*\)\s*\)$',
     dotAll: true,
   );
+
+  /// Data no calendário ISO 8601, formato `YYYY-MM-DD`.
+  static final RegExp calendarDateRegExp = RegExp(r'^(\d{4})-(\d{2})-(\d{2})$');
 }

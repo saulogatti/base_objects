@@ -5,7 +5,7 @@ Não é publicado (`publish_to: none`). O que entra aqui é o que viaja no JSON.
 
 ## Escopo
 
-- Campos, `fromJson`/`toJson` (`json_serializable`) e o formato decimal do fio.
+- Campos, `fromJson`/`toJson` gerados pelo `json_serializable` que fazem checagem do tipo e a data sempre com UTC (`build.yaml` §1.3).
 - Dinheiro, quantidade e percentual são `String`, nunca `double`.
 - Modelos em `lib/src/models/` não são o formato do fio.
 - Lógica que não altera o JSON fica no app ou no backend.
