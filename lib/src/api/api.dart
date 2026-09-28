@@ -14,6 +14,7 @@ export 'auth.dart';
 export 'cash.dart';
 export 'catalog.dart';
 export 'installation/installation.dart';
+export 'installation/installation_api.dart';
 export 'invoice.dart';
 export 'page.dart';
 export 'party.dart';
