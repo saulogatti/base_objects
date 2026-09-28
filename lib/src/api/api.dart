@@ -13,7 +13,7 @@ export 'audit_log.dart';
 export 'auth.dart';
 export 'cash.dart';
 export 'catalog.dart';
-export 'installation.dart';
+export 'installation/installation.dart';
 export 'invoice.dart';
 export 'page.dart';
 export 'party.dart';

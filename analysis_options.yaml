@@ -60,7 +60,8 @@ analyzer:
     valid_regexps: warning
     new_constructor_new_name: warning
     unnecessary_new: warning
-    unnecessary_constructor_name: info
+    unnecessary_constructor_name: warning
+    unnecessary_type_name_in_constructor: warning
 
 linter:
   rules:

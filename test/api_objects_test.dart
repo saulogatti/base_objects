@@ -1,4 +1,5 @@
 import 'package:base_objects/base_objects.dart';
+import 'package:base_objects/src/models/document/cpf.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -88,21 +89,29 @@ void main() {
     });
 
     test('installation body has no stores and no password on the user', () {
-      const request = InstallationRequest(
-        systemUserData: SystemUserData(
-          name: 'João Proprietário',
-          email: 'joao@loja.com',
-          phone: '11988887777',
-          systemKey: 'CHAVE-DO-CLIENTE',
-          description: 'Rede Celular Center',
+      final request = InstallationRequest(
+        systemModel: SystemModel(
+          systemUser: SystemUserModel(
+            name: 'João Proprietário',
+            email: 'joao@loja.com',
+            phone: '11988887777',
+            description: 'Rede Celular Center',
+            document: Cpf('12345678900'),
+          ),
+          activationKey: SystemActivationKeyModel(activationKey: 'CHAVE-DO-CLIENTE'),
+          serverUrl: 'https://api.loja.com.br',
         ),
         administratorPassword: 'secret',
       );
       final json = request.toJson();
       expect(json.containsKey('stores'), isFalse);
       expect(json['administratorPassword'], 'secret');
-      final data = SystemUserData.fromJson(json['systemUserData']! as Map<String, dynamic>);
-      expect(data.toJson().containsKey('password'), isFalse);
+      final data = SystemUserModel.fromJson(json['systemUserModel']! as Map<String, dynamic>);
+      expect(data.name, 'João Proprietário');
+      expect(data.email, 'joao@loja.com');
+      expect(data.phone, '11988887777');
+      expect(data.description, 'Rede Celular Center');
+      expect(data.document, Cpf('12345678900'));
     });
   });
 

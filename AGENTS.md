@@ -46,3 +46,4 @@ Se aparecer um bug que não faz parte do trabalho atual, não corrija no meio da
 - DTOs imutáveis: `final class`, construtor `const`, campos `final`.
 - Imports sempre `package:base_objects/...`.
 - Antes de encerrar: `dart analyze` e `dart test`.
+- Construtor dos objetos não precisam ter nome da classe no construtor, apenas os campos. (Deve ser chamado de `new`)
