@@ -23,6 +23,7 @@ class SystemUserModel extends Person<Cpf> {
     super.createdAt,
     super.updatedAt,
     this.lastLoginAt,
+    this.password,
   });
   factory fromJson(Map<String, dynamic> json) => _$SystemUserModelFromJson(json);
 
@@ -35,6 +36,7 @@ class SystemUserModel extends Person<Cpf> {
   @JsonKey(unknownEnumValue: SystemUserType.user)
   final SystemUserType userType;
   final DateTime? lastLoginAt;
+  final String? password;
 
   /// Cria uma cópia com os campos informados alterados.
   SystemUserModel copyWith({

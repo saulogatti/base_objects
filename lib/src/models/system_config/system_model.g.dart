@@ -121,6 +121,7 @@ const _$SystemModelJsonSchema = {
         },
         'userType': {'type': 'object', 'description': 'Tipo de usuário.'},
         'lastLoginAt': {'type': 'string', 'format': 'date-time'},
+        'password': {'type': 'string'},
       },
       'required': ['email', 'name', 'document'],
     },

@@ -1,5 +1,4 @@
 import 'package:base_objects/base_objects.dart';
-import 'package:base_objects/src/models/document/cpf.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -106,12 +105,13 @@ void main() {
       final json = request.toJson();
       expect(json.containsKey('stores'), isFalse);
       expect(json['administratorPassword'], 'secret');
-      final data = SystemUserModel.fromJson(json['systemUserModel']! as Map<String, dynamic>);
+      final systemUser = json['systemModel']! as Map<String, dynamic>;
+      final data = SystemUserModel.fromJson(systemUser['systemUser']! as Map<String, dynamic>);
       expect(data.name, 'João Proprietário');
       expect(data.email, 'joao@loja.com');
       expect(data.phone, '11988887777');
       expect(data.description, 'Rede Celular Center');
-      expect(data.document, Cpf('12345678900'));
+      expect(data.document.value, Cpf('12345678900').value);
     });
   });
 

@@ -1,5 +1,4 @@
 import 'package:base_objects/base_objects.dart';
-import 'package:base_objects/src/models/document/cpf.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -43,6 +43,7 @@ SystemUserModel _$SystemUserModelFromJson(Map<String, dynamic> json) =>
           'lastLoginAt',
           (v) => v == null ? null : DateTime.parse(v as String),
         ),
+        password: $checkedConvert('password', (v) => v as String?),
       );
       return val;
     });
@@ -59,6 +60,7 @@ Map<String, dynamic> _$SystemUserModelToJson(SystemUserModel instance) =>
       'description': instance.description,
       'userType': _$SystemUserTypeEnumMap[instance.userType]!,
       'lastLoginAt': instance.lastLoginAt?.toUtc().toIso8601String(),
+      'password': instance.password,
     };
 
 const _$SystemUserModelJsonSchema = {
@@ -95,6 +97,7 @@ const _$SystemUserModelJsonSchema = {
     'description': {'type': 'string', 'description': 'Descrição do usuário.'},
     'userType': {'type': 'object', 'description': 'Tipo de usuário.'},
     'lastLoginAt': {'type': 'string', 'format': 'date-time'},
+    'password': {'type': 'string'},
   },
   'required': ['email', 'name', 'document'],
   r'$defs': {

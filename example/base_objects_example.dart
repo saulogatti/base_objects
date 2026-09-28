@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:base_objects/base_objects.dart';
-import 'package:base_objects/src/models/document/cpf.dart';
 
 void main() {
   final SystemModel system = SystemModel(
