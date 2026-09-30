@@ -23,7 +23,7 @@ const _$CpfJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'value': {'type': 'string'},
+    'value': {'type': 'string', 'description': 'Valor original do documento.'},
   },
   'required': ['value'],
 };
