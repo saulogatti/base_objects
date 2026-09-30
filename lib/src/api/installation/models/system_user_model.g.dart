@@ -58,9 +58,9 @@ Map<String, dynamic> _$SystemUserModelToJson(SystemUserModel instance) =>
       'phone': instance.phone,
       'document': instance.document.toJson(),
       'description': instance.description,
-      'password': instance.password,
       'userType': _$SystemUserTypeEnumMap[instance.userType]!,
       'lastLoginAt': instance.lastLoginAt?.toUtc().toIso8601String(),
+      'password': instance.password,
     };
 
 const _$SystemUserModelJsonSchema = {
@@ -95,9 +95,9 @@ const _$SystemUserModelJsonSchema = {
     },
     'document': {r'$ref': r'#/$defs/Cpf'},
     'description': {'type': 'string', 'description': 'Descrição do usuário.'},
-    'password': {'type': 'string'},
     'userType': {'type': 'object', 'description': 'Tipo de usuário.'},
     'lastLoginAt': {'type': 'string', 'format': 'date-time'},
+    'password': {'type': 'string'},
   },
   'required': ['email', 'name', 'document'],
   r'$defs': {

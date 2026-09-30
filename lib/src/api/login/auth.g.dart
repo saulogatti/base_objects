@@ -394,18 +394,31 @@ const _$UserSessionJsonSchema = {
         'updatedAt',
       ],
     },
-    'Address': {
+    'AddressEntry': {
       'type': 'object',
       'properties': {
-        'street': {'type': 'string', 'description': 'Logradouro.'},
+        'street': {
+          'type': 'string',
+          'description': 'Logradouro (nome da rua, avenida, etc.).',
+        },
         'zipCode': {
           'type': 'string',
-          'description': 'CEP, com ou sem máscara.',
+          'description': 'CEP no formato com ou sem máscara.',
+          'default': '',
         },
-        'neighborhood': {'type': 'string', 'description': 'Bairro.'},
-        'city': {'type': 'string', 'description': 'Cidade.'},
-        'state': {'type': 'string', 'description': 'UF de duas letras.'},
+        'neighborhood': {
+          'type': 'string',
+          'description': 'Bairro.',
+          'default': '',
+        },
+        'city': {'type': 'string', 'description': 'Cidade.', 'default': ''},
+        'state': {
+          'type': 'string',
+          'description': 'Estado (sigla de 2 letras, ex.: SP, RJ).',
+          'default': '',
+        },
       },
+      'required': ['street'],
     },
     'Store': {
       'type': 'object',
@@ -423,7 +436,7 @@ const _$UserSessionJsonSchema = {
         'email': {'type': 'string', 'description': 'E-mail, ou `null`.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
         'address': {
-          r'$ref': r'#/$defs/Address',
+          r'$ref': r'#/$defs/AddressEntry',
           'description': 'Endereço, ou `null`.',
         },
         'isActive': {
@@ -592,18 +605,31 @@ const _$AuthSessionJsonSchema = {
         'updatedAt',
       ],
     },
-    'Address': {
+    'AddressEntry': {
       'type': 'object',
       'properties': {
-        'street': {'type': 'string', 'description': 'Logradouro.'},
+        'street': {
+          'type': 'string',
+          'description': 'Logradouro (nome da rua, avenida, etc.).',
+        },
         'zipCode': {
           'type': 'string',
-          'description': 'CEP, com ou sem máscara.',
+          'description': 'CEP no formato com ou sem máscara.',
+          'default': '',
         },
-        'neighborhood': {'type': 'string', 'description': 'Bairro.'},
-        'city': {'type': 'string', 'description': 'Cidade.'},
-        'state': {'type': 'string', 'description': 'UF de duas letras.'},
+        'neighborhood': {
+          'type': 'string',
+          'description': 'Bairro.',
+          'default': '',
+        },
+        'city': {'type': 'string', 'description': 'Cidade.', 'default': ''},
+        'state': {
+          'type': 'string',
+          'description': 'Estado (sigla de 2 letras, ex.: SP, RJ).',
+          'default': '',
+        },
       },
+      'required': ['street'],
     },
     'Store': {
       'type': 'object',
@@ -621,7 +647,7 @@ const _$AuthSessionJsonSchema = {
         'email': {'type': 'string', 'description': 'E-mail, ou `null`.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
         'address': {
-          r'$ref': r'#/$defs/Address',
+          r'$ref': r'#/$defs/AddressEntry',
           'description': 'Endereço, ou `null`.',
         },
         'isActive': {
@@ -782,18 +808,31 @@ const _$SessionResponseJsonSchema = {
         'updatedAt',
       ],
     },
-    'Address': {
+    'AddressEntry': {
       'type': 'object',
       'properties': {
-        'street': {'type': 'string', 'description': 'Logradouro.'},
+        'street': {
+          'type': 'string',
+          'description': 'Logradouro (nome da rua, avenida, etc.).',
+        },
         'zipCode': {
           'type': 'string',
-          'description': 'CEP, com ou sem máscara.',
+          'description': 'CEP no formato com ou sem máscara.',
+          'default': '',
         },
-        'neighborhood': {'type': 'string', 'description': 'Bairro.'},
-        'city': {'type': 'string', 'description': 'Cidade.'},
-        'state': {'type': 'string', 'description': 'UF de duas letras.'},
+        'neighborhood': {
+          'type': 'string',
+          'description': 'Bairro.',
+          'default': '',
+        },
+        'city': {'type': 'string', 'description': 'Cidade.', 'default': ''},
+        'state': {
+          'type': 'string',
+          'description': 'Estado (sigla de 2 letras, ex.: SP, RJ).',
+          'default': '',
+        },
       },
+      'required': ['street'],
     },
     'Store': {
       'type': 'object',
@@ -811,7 +850,7 @@ const _$SessionResponseJsonSchema = {
         'email': {'type': 'string', 'description': 'E-mail, ou `null`.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
         'address': {
-          r'$ref': r'#/$defs/Address',
+          r'$ref': r'#/$defs/AddressEntry',
           'description': 'Endereço, ou `null`.',
         },
         'isActive': {
