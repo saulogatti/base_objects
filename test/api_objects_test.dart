@@ -1,9 +1,5 @@
-import 'package:base_objects/base_apis.dart';
 import 'package:base_objects/base_objects.dart';
-import 'package:base_objects/src/api/address_entry.dart';
 import 'package:test/test.dart';
-
-import '../lib/src/api/movement/record_cash_movement_request.dart';
 
 void main() {
   final instant = ApiInstant(value: DateTime.parse('2026-09-13T14:30:00-03:00').toUtc());
@@ -23,10 +19,10 @@ void main() {
 
   group('Address, page and error', () {
     test('keeps null address fields', () {
-      const address = AddressEntry(street: 'Rua das Flores, 120', zipCode: '01001000');
+      const address = Address(street: 'Rua das Flores, 120', zipCode: '01001000');
       final json = address.toJson();
       expect(json['neighborhood'], isNull);
-      expect(AddressEntry.fromJson(json).city, isNull);
+      expect(Address.fromJson(json).city, isNull);
     });
 
     test('page round-trips items', () {

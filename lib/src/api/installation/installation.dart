@@ -1,4 +1,4 @@
-import 'package:base_objects/src/api/installation/models/system_model.dart';
+import 'package:base_objects/src/api/installation/system_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'installation.g.dart';
@@ -11,6 +11,8 @@ final class InstallationRequest {
 
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$InstallationRequestFromJson(json);
+
+  static const schema = _$InstallationRequestJsonSchema;
 
   /// Responsável que vira o superadmin.
   final SystemModel systemModel;
@@ -30,6 +32,8 @@ final class InstallationStatus {
 
   /// Lê o status.
   factory fromJson(Map<String, dynamic> json) => _$InstallationStatusFromJson(json);
+
+  static const schema = _$InstallationStatusJsonSchema;
 
   /// Se já existe o único responsável da instalação.
   final bool installed;
