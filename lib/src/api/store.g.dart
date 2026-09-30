@@ -9,33 +9,37 @@ part of 'store.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Store _$StoreFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('Store', json, ($checkedConvert) {
-      final val = Store(
-        name: $checkedConvert('name', (v) => v as String),
-        isActive: $checkedConvert('isActive', (v) => v as bool),
-        id: $checkedConvert('id', (v) => v as String?),
-        legalName: $checkedConvert('legalName', (v) => v as String?),
-        cnpj: $checkedConvert('cnpj', (v) => v as String?),
-        email: $checkedConvert('email', (v) => v as String?),
-        phone: $checkedConvert('phone', (v) => v as String?),
-        address: $checkedConvert(
-          'address',
-          (v) => v == null ? null : Address.fromJson(v as Map<String, dynamic>),
-        ),
-        createdAt: $checkedConvert(
-          'createdAt',
-          (v) =>
-              v == null ? null : ApiInstant.fromJson(v as Map<String, dynamic>),
-        ),
-        updatedAt: $checkedConvert(
-          'updatedAt',
-          (v) =>
-              v == null ? null : ApiInstant.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+Store _$StoreFromJson(Map<String, dynamic> json) => $checkedCreate(
+  'Store',
+  json,
+  ($checkedConvert) {
+    final val = Store(
+      name: $checkedConvert('name', (v) => v as String),
+      isActive: $checkedConvert('isActive', (v) => v as bool),
+      id: $checkedConvert('id', (v) => v as String?),
+      legalName: $checkedConvert('legalName', (v) => v as String?),
+      cnpj: $checkedConvert('cnpj', (v) => v as String?),
+      email: $checkedConvert('email', (v) => v as String?),
+      phone: $checkedConvert('phone', (v) => v as String?),
+      address: $checkedConvert(
+        'address',
+        (v) =>
+            v == null ? null : AddressEntry.fromJson(v as Map<String, dynamic>),
+      ),
+      createdAt: $checkedConvert(
+        'createdAt',
+        (v) =>
+            v == null ? null : ApiInstant.fromJson(v as Map<String, dynamic>),
+      ),
+      updatedAt: $checkedConvert(
+        'updatedAt',
+        (v) =>
+            v == null ? null : ApiInstant.fromJson(v as Map<String, dynamic>),
+      ),
+    );
+    return val;
+  },
+);
 
 Map<String, dynamic> _$StoreToJson(Store instance) => <String, dynamic>{
   'id': instance.id,
@@ -64,7 +68,7 @@ const _$StoreJsonSchema = {
     'email': {'type': 'string', 'description': 'E-mail, ou `null`.'},
     'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
     'address': {
-      r'$ref': r'#/$defs/Address',
+      r'$ref': r'#/$defs/AddressEntry',
       'description': 'Endereço, ou `null`.',
     },
     'isActive': {
@@ -82,18 +86,31 @@ const _$StoreJsonSchema = {
   },
   'required': ['name', 'isActive'],
   r'$defs': {
-    'Address': {
+    'AddressEntry': {
       'type': 'object',
       'properties': {
-        'street': {'type': 'string', 'description': 'Logradouro.'},
+        'street': {
+          'type': 'string',
+          'description': 'Logradouro (nome da rua, avenida, etc.).',
+        },
         'zipCode': {
           'type': 'string',
-          'description': 'CEP, com ou sem máscara.',
+          'description': 'CEP no formato com ou sem máscara.',
+          'default': '',
         },
-        'neighborhood': {'type': 'string', 'description': 'Bairro.'},
-        'city': {'type': 'string', 'description': 'Cidade.'},
-        'state': {'type': 'string', 'description': 'UF de duas letras.'},
+        'neighborhood': {
+          'type': 'string',
+          'description': 'Bairro.',
+          'default': '',
+        },
+        'city': {'type': 'string', 'description': 'Cidade.', 'default': ''},
+        'state': {
+          'type': 'string',
+          'description': 'Estado (sigla de 2 letras, ex.: SP, RJ).',
+          'default': '',
+        },
       },
+      'required': ['street'],
     },
     'ApiInstant': {
       'type': 'object',

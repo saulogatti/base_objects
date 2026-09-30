@@ -7,7 +7,7 @@ import 'package:base_objects/src/models/default/default_object.dart';
 ///
 /// Faz parte do catálogo, portanto é compartilhada entre as lojas.
 /// Referenciada por [Product.categoryId].
-class ProductCategory extends DefaultObject {
+class ProductCategoryModel extends DefaultObject {
   /// Cria uma categoria.
   new({required this.name, this.description, super.id, super.createdAt, super.updatedAt});
 
@@ -18,8 +18,8 @@ class ProductCategory extends DefaultObject {
   final String name;
 
   /// Cria uma cópia com os campos informados alterados.
-  ProductCategory copyWith({String? name, String? description, DateTime? updatedAt}) =>
-      ProductCategory(
+  ProductCategoryModel copyWith({String? name, String? description, DateTime? updatedAt}) =>
+      ProductCategoryModel(
         id: id,
         name: name ?? this.name,
         description: description ?? this.description,

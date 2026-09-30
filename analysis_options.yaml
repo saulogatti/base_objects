@@ -62,6 +62,7 @@ analyzer:
     unnecessary_new: warning
     unnecessary_constructor_name: warning
     unnecessary_type_name_in_constructor: warning
+    new_with_undefined_constructor: info
 
 linter:
   rules:

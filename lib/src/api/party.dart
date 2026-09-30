@@ -1,4 +1,4 @@
-import 'package:base_objects/src/api/address.dart';
+import 'package:base_objects/src/api/address_entry.dart';
 import 'package:base_objects/src/api/api_time.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -43,7 +43,7 @@ final class Customer {
   final String? phone;
 
   /// Endereço, ou `null`.
-  final Address? address;
+  final AddressEntry? address;
 
   /// Observações, ou `null`.
   final String? notes;
@@ -152,7 +152,7 @@ final class Supplier {
   final String? phone;
 
   /// Endereço, ou `null`.
-  final Address? address;
+  final AddressEntry? address;
 
   /// Se o cadastro está ativo.
   final bool isActive;
