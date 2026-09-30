@@ -1,4 +1,4 @@
-import 'package:base_objects/src/constants/app_constants.dart';
+import 'package:base_objects/src/constants/app_regular_exp.dart';
 import 'package:path/path.dart' as p;
 
 /// Extensões para manipulação segura de strings em nomes de arquivos.
@@ -72,7 +72,7 @@ extension FileNameStringExtensions on String {
   bool isValidFileName({int maxLength = 255}) {
     if (isEmpty || length > maxLength) return false;
     if (isReservedFileName()) return false;
-    if (contains(AppRegexConstants.invalidFileNameCharsRegExp)) return false;
+    if (contains(AppRegularExp.invalidFileNameCharsRegExp)) return false;
 
     return true;
   }
@@ -120,9 +120,9 @@ extension FileNameStringExtensions on String {
   /// 'Nome  com   espaços'.sanitizeFileName(); // 'Nome_com_espaços'
   /// ```
   String sanitizeFileName() => toLowerCase()
-      .replaceAll(AppRegexConstants.invalidFileNameCharsRegExp, '_')
-      .replaceAll(AppRegexConstants.oneOrMoreWhitespaceRegExp, '_')
-      .replaceAll(AppRegexConstants.oneOrMoreUnderscoreRegExp, '_')
+      .replaceAll(AppRegularExp.invalidFileNameCharsRegExp, '_')
+      .replaceAll(AppRegularExp.oneOrMoreWhitespaceRegExp, '_')
+      .replaceAll(AppRegularExp.oneOrMoreUnderscoreRegExp, '_')
       .trim();
 
   /// Converte caracteres acentuados para ASCII.
@@ -135,14 +135,14 @@ extension FileNameStringExtensions on String {
   /// 'relatório_ção.txt'.toAsciiFileName(); // 'relatorio_cao.txt'
   /// 'José_García.pdf'.toAsciiFileName(); // 'Jose_Garcia.pdf'
   /// ```
-  String toAsciiFileName() => replaceAll(AppRegexConstants.accentARegExp, 'a')
-      .replaceAll(AppRegexConstants.accentERegExp, 'e')
-      .replaceAll(AppRegexConstants.accentIRegExp, 'i')
-      .replaceAll(AppRegexConstants.accentORegExp, 'o')
-      .replaceAll(AppRegexConstants.accentURegExp, 'u')
-      .replaceAll(AppRegexConstants.cedillaRegExp, 'c')
-      .replaceAll(AppRegexConstants.tildeNRegExp, 'n')
-      .replaceAll(AppRegexConstants.yVariantsRegExp, 'y');
+  String toAsciiFileName() => replaceAll(AppRegularExp.accentARegExp, 'a')
+      .replaceAll(AppRegularExp.accentERegExp, 'e')
+      .replaceAll(AppRegularExp.accentIRegExp, 'i')
+      .replaceAll(AppRegularExp.accentORegExp, 'o')
+      .replaceAll(AppRegularExp.accentURegExp, 'u')
+      .replaceAll(AppRegularExp.cedillaRegExp, 'c')
+      .replaceAll(AppRegularExp.tildeNRegExp, 'n')
+      .replaceAll(AppRegularExp.yVariantsRegExp, 'y');
 
   /// Aplica todas as proteções recomendadas para nomes de arquivo.
   ///
@@ -228,9 +228,9 @@ extension ValidateDataCustomer on String {
   /// '123.456.789-09'.isValidCPF(); // true ou false
   /// ```
   bool isValidCpf() {
-    final cpf = replaceAll(AppRegexConstants.nonNumericRegExp, '');
+    final cpf = replaceAll(AppRegularExp.nonNumericRegExp, '');
 
-    if (cpf.length != 11 || AppRegexConstants.cpfSameDigitRegExp.hasMatch(cpf)) {
+    if (cpf.length != 11 || AppRegularExp.cpfSameDigitRegExp.hasMatch(cpf)) {
       return false;
     }
 
@@ -257,7 +257,7 @@ extension ValidateDataCustomer on String {
   /// ```dart
   /// 'example@example.com'.isValidEmail(); // true ou false
   /// ```
-  bool isValidEmail() => AppRegexConstants.emailRegExp.hasMatch(this);
+  bool isValidEmail() => AppRegularExp.emailRegExp.hasMatch(this);
 
   /// Valida se a string é um número de telefone válido.
   /// Verifica o formato básico de um número de telefone.
@@ -266,7 +266,7 @@ extension ValidateDataCustomer on String {
   /// ```dart
   /// '(11) 91234-5678'.isValidPhone(); // true ou false
   /// ```
-  bool isValidPhone() => AppRegexConstants.phoneRegExp.hasMatch(this);
+  bool isValidPhone() => AppRegularExp.phoneRegExp.hasMatch(this);
 
   /// Valida a força da senha
   ///
@@ -281,13 +281,13 @@ extension ValidateDataCustomer on String {
     if (password.length < minPasswordLength) {
       return 'Senha deve ter no mínimo $minPasswordLength caracteres';
     }
-    if (!password.contains(AppRegexConstants.uppercaseLetterRegExp)) {
+    if (!password.contains(AppRegularExp.uppercaseLetterRegExp)) {
       return 'Senha deve conter pelo menos uma letra maiúscula';
     }
-    if (!password.contains(AppRegexConstants.lowercaseLetterRegExp)) {
+    if (!password.contains(AppRegularExp.lowercaseLetterRegExp)) {
       return 'Senha deve conter pelo menos uma letra minúscula';
     }
-    if (!password.contains(AppRegexConstants.digitRegExp)) {
+    if (!password.contains(AppRegularExp.digitRegExp)) {
       return 'Senha deve conter pelo menos um número';
     }
     return null;

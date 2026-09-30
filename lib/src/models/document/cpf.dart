@@ -1,4 +1,4 @@
-import 'package:base_objects/src/constants/app_constants.dart';
+import 'package:base_objects/src/constants/app_regular_exp.dart';
 import 'package:base_objects/src/models/document/document.dart';
 import 'package:base_objects/src/utils/string_extensions.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -24,7 +24,7 @@ class Cpf extends Document {
 
   @override
   String get formatted {
-    final d = value.replaceAll(AppRegexConstants.nonDigitRegExp, '');
+    final d = value.replaceAll(AppRegularExp.nonDigitRegExp, '');
     if (d.length != 11) return value;
     return '${d.substring(0, 3)}.${d.substring(3, 6)}.${d.substring(6, 9)}-${d.substring(9)}';
   }
@@ -38,8 +38,8 @@ class Cpf extends Document {
       return null;
     }
 
-    if (!AppRegexConstants.cpfRegExp.hasMatch(valueCheck) &&
-        !AppRegexConstants.cpfCleanRegExp.hasMatch(valueCheck)) {
+    if (!AppRegularExp.cpfRegExp.hasMatch(valueCheck) &&
+        !AppRegularExp.cpfCleanRegExp.hasMatch(valueCheck)) {
       return 'CPF deve estar no formato XXX.XXX.XXX-XX ou conter apenas 11 dígitos';
     }
 

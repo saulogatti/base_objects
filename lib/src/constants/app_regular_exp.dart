@@ -9,7 +9,7 @@ const String kStringGenerate = 'Será gerado automaticamente';
 /// entra em [String.replaceAll]. Os demais validam formato com `hasMatch`.
 ///
 /// {@category utilitarios}
-abstract final class AppRegexConstants {
+abstract final class AppRegularExp {
   new _();
 
   /// Limiar padrão de estoque baixo, em unidades, quando o item não tem mínimo.

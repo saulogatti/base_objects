@@ -1,4 +1,4 @@
-import 'package:base_objects/src/constants/app_constants.dart';
+import 'package:base_objects/src/constants/app_regular_exp.dart';
 import 'package:base_objects/src/models/document/document.dart';
 
 class Email extends Document {
@@ -9,7 +9,7 @@ class Email extends Document {
 
   @override
   String? validateDocument() {
-    return formatted.isNotEmpty && AppRegexConstants.emailRegExp.hasMatch(formatted)
+    return formatted.isNotEmpty && AppRegularExp.emailRegExp.hasMatch(formatted)
         ? null
         : "e-mail invalido";
   }
