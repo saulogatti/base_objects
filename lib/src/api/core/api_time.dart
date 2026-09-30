@@ -35,11 +35,11 @@ final class ApiInstant {
 /// Data de calendário `YYYY-MM-DD` (`API.md` §1.2).
 @immutable
 final class CalendarDate {
-/// Lê uma string JSON no formato `YYYY-MM-DD`.
-///
-/// Lança [FormatException] para outros tipos, formatos inválidos ou datas
-/// inexistentes.
-factory fromJson(Object? json) {
+  /// Lê uma string JSON no formato `YYYY-MM-DD`.
+  ///
+  /// Lança [FormatException] para outros tipos, formatos inválidos ou datas
+  /// inexistentes.
+  factory fromJson(Object? json) {
     if (json is! String) {
       throw const FormatException('date deve ser string YYYY-MM-DD.');
     }

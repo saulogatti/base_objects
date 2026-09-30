@@ -85,8 +85,6 @@ Os tipos em `api/access/` descrevem usuários e controles de acesso:
 - `UserUpsertRequest`, `ActiveFlagRequest`, `ChangePasswordRequest` e
   `AssignRoleRequest` representam operações sobre usuários e seus vínculos.
 - `PermissionOverrideRequest` altera uma exceção de permissão.
-- `AuditEntry` representa uma entrada de auditoria, incluindo os estados JSON
-  anterior e posterior quando disponíveis.
 
 `SessionRole` é o papel incluído na sessão e não contém `createdAt`.
 `StoreMembership.permissions` contém as permissões efetivas; em `SessionRole`,
@@ -189,9 +187,11 @@ Os tipos em `api/report/` são respostas de relatórios:
 - `ServiceOrdersReport` resume ordens de serviço.
 - `FinancialReport` e `FinancialByMethod` detalham valores por forma de
   pagamento.
+- `AuditEntry` representa uma entrada de auditoria, incluindo os estados JSON
+  anterior e posterior quando disponíveis.
 
 Campos financeiros podem ser nulos ou omitidos conforme as permissões de
-relatório. `AuditEntry` está descrito na seção 6.
+relatório.
 
 ## Biblioteca de domínio
 
