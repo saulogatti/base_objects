@@ -1,5 +1,4 @@
 import 'package:base_objects/base_objects.dart';
-import 'package:base_objects/src/api/cash/record_cash_movement_request.dart';
 import 'package:test/test.dart';
 
 void main() {
