@@ -1,4 +1,4 @@
-import 'package:base_objects/src/api/installation/models/system_model.dart';
+import 'package:base_objects/src/api/installation/system_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'installation.g.dart';

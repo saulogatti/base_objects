@@ -1,5 +1,5 @@
-import 'package:base_objects/src/api/address_entry.dart';
-import 'package:base_objects/src/api/api_time.dart';
+import 'package:base_objects/src/api/core/address.dart';
+import 'package:base_objects/src/api/core/api_time.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'party.g.dart';
@@ -43,7 +43,7 @@ final class Customer {
   final String? phone;
 
   /// Endereço, ou `null`.
-  final AddressEntry? address;
+  final Address? address;
 
   /// Observações, ou `null`.
   final String? notes;
@@ -115,6 +115,12 @@ final class Device {
   Map<String, dynamic> toJson() => _$DeviceToJson(this);
 }
 
+/// Exibição do [Device].
+extension DeviceDisplay on Device {
+  /// Descrição curta para listagem, ex.: `Samsung Galaxy S21`.
+  String get displayName => '$brand $model';
+}
+
 /// Fornecedor (`API.md` §7.3). No app o mesmo cadastro se chama company.
 ///
 /// `cnpj` é string de dígitos ou `null`.
@@ -152,7 +158,7 @@ final class Supplier {
   final String? phone;
 
   /// Endereço, ou `null`.
-  final AddressEntry? address;
+  final Address? address;
 
   /// Se o cadastro está ativo.
   final bool isActive;

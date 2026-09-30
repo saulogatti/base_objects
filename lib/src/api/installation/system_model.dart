@@ -1,5 +1,5 @@
-import 'package:base_objects/src/api/installation/models/system_activation_key.dart';
-import 'package:base_objects/src/api/installation/models/system_user_model.dart';
+import 'package:base_objects/src/api/installation/system_activation_key.dart';
+import 'package:base_objects/src/api/installation/system_user_model.dart';
 import 'package:base_objects/src/models/default/default_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 

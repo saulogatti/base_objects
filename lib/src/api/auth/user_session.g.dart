@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // coverage:ignore-file
-// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks,  unnecessary_lambdas, inference_failure_on_collection_literal
+// ignore_for_file: cast_nullable_to_non_nullable, unnecessary_null_checks,  unnecessary_lambdas, inference_failure_on_collection_literal, unused_element
 
 part of 'user_session.dart';
 
@@ -116,31 +116,24 @@ const _$UserSessionJsonSchema = {
         'updatedAt',
       ],
     },
-    'AddressEntry': {
+    'Address': {
       'type': 'object',
       'properties': {
         'street': {
           'type': 'string',
-          'description': 'Logradouro (nome da rua, avenida, etc.).',
+          'description': 'Logradouro (nome da rua, avenida, etc.), ou `null`.',
         },
         'zipCode': {
           'type': 'string',
-          'description': 'CEP no formato com ou sem máscara.',
-          'default': '',
+          'description': 'CEP com ou sem máscara, ou `null`.',
         },
-        'neighborhood': {
-          'type': 'string',
-          'description': 'Bairro.',
-          'default': '',
-        },
-        'city': {'type': 'string', 'description': 'Cidade.', 'default': ''},
+        'neighborhood': {'type': 'string', 'description': 'Bairro, ou `null`.'},
+        'city': {'type': 'string', 'description': 'Cidade, ou `null`.'},
         'state': {
           'type': 'string',
-          'description': 'Estado (sigla de 2 letras, ex.: SP, RJ).',
-          'default': '',
+          'description': 'Estado (sigla de 2 letras, ex.: SP, RJ), ou `null`.',
         },
       },
-      'required': ['street'],
     },
     'Store': {
       'type': 'object',
@@ -158,7 +151,7 @@ const _$UserSessionJsonSchema = {
         'email': {'type': 'string', 'description': 'E-mail, ou `null`.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
         'address': {
-          r'$ref': r'#/$defs/AddressEntry',
+          r'$ref': r'#/$defs/Address',
           'description': 'Endereço, ou `null`.',
         },
         'isActive': {

@@ -1,7 +1,7 @@
-import 'package:base_objects/src/api/api_time.dart';
 import 'package:base_objects/src/api/cash/cash_movement.dart';
-import 'package:base_objects/src/api/scaled_amount.dart';
-import 'package:base_objects/src/api/wire_enums.dart';
+import 'package:base_objects/src/api/core/api_time.dart';
+import 'package:base_objects/src/api/core/scaled_amount.dart';
+import 'package:base_objects/src/api/core/wire_enums.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cash_session.g.dart';

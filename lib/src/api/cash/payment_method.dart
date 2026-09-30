@@ -1,5 +1,4 @@
-
-import 'package:base_objects/src/api/scaled_amount.dart';
+import 'package:base_objects/src/api/core/scaled_amount.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'payment_method.g.dart';
@@ -54,4 +53,3 @@ final class PaymentMethod {
   /// Serializa a forma.
   Map<String, dynamic> toJson() => _$PaymentMethodToJson(this);
 }
-

@@ -1,5 +1,5 @@
-import 'package:base_objects/src/api/address_entry.dart';
-import 'package:base_objects/src/api/api_time.dart';
+import 'package:base_objects/src/api/core/address.dart';
+import 'package:base_objects/src/api/core/api_time.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'store.g.dart';
@@ -46,7 +46,7 @@ final class Store {
   final String? phone;
 
   /// Endereço, ou `null`.
-  final AddressEntry? address;
+  final Address? address;
 
   /// Se a unidade está em operação.
   final bool isActive;

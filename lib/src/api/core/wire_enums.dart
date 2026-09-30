@@ -60,6 +60,27 @@ enum ServiceOrderStatus {
   returnedUnrepaired,
 }
 
+/// Fases do ciclo de uma [ServiceOrderStatus].
+extension ServiceOrderStatusStage on ServiceOrderStatus {
+  /// Se a ordem está encerrada e não deve mais aparecer na fila da bancada.
+  bool get isClosed => switch (this) {
+    ServiceOrderStatus.delivered ||
+    ServiceOrderStatus.cancelled ||
+    ServiceOrderStatus.returnedUnrepaired => true,
+    _ => false,
+  };
+
+  /// Se o orçamento já foi aceito e o serviço pode ser executado.
+  bool get isApproved => switch (this) {
+    ServiceOrderStatus.approved ||
+    ServiceOrderStatus.awaitingParts ||
+    ServiceOrderStatus.inRepair ||
+    ServiceOrderStatus.ready ||
+    ServiceOrderStatus.delivered => true,
+    _ => false,
+  };
+}
+
 /// Motivo do movimento de estoque.
 @JsonEnum(fieldRename: FieldRename.snake)
 enum StockReason {

@@ -1,7 +1,5 @@
 import 'package:base_objects/base_objects.dart';
-import 'package:base_objects/src/api/login/user.dart';
-import 'package:base_objects/src/api/login/user_session.dart';
-import 'package:base_objects/src/api/movement/record_cash_movement_request.dart';
+import 'package:base_objects/src/api/cash/record_cash_movement_request.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -22,10 +20,10 @@ void main() {
 
   group('Address, page and error', () {
     test('keeps null address fields', () {
-      const address = AddressEntry(street: 'Rua das Flores, 120', zipCode: '01001000');
+      const address = Address(street: 'Rua das Flores, 120', zipCode: '01001000');
       final json = address.toJson();
       expect(json['neighborhood'], isNull);
-      expect(AddressEntry.fromJson(json).city, isNull);
+      expect(Address.fromJson(json).city, isNull);
     });
 
     test('page round-trips items', () {

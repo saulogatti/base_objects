@@ -1,4 +1,4 @@
-import 'package:base_objects/src/api/api_time.dart';
+import 'package:base_objects/src/api/core/api_time.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'access.g.dart';

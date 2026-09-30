@@ -1,9 +1,9 @@
-import 'package:base_objects/src/api/api_time.dart';
-import 'package:base_objects/src/api/invoice.dart';
-import 'package:base_objects/src/api/party.dart';
-import 'package:base_objects/src/api/receivable.dart';
-import 'package:base_objects/src/api/scaled_amount.dart';
-import 'package:base_objects/src/api/wire_enums.dart';
+import 'package:base_objects/src/api/core/api_time.dart';
+import 'package:base_objects/src/api/core/scaled_amount.dart';
+import 'package:base_objects/src/api/core/wire_enums.dart';
+import 'package:base_objects/src/api/invoice/invoice.dart';
+import 'package:base_objects/src/api/party/party.dart';
+import 'package:base_objects/src/api/receivable/receivable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'service_order.g.dart';
@@ -59,6 +59,12 @@ final class DeviceEntryCondition {
   Map<String, dynamic> toJson() => _$DeviceEntryConditionToJson(this);
 }
 
+/// Leitura do checklist [DeviceEntryCondition].
+extension DeviceEntryConditionDamage on DeviceEntryCondition {
+  /// Se o checklist registra algum dano físico na entrada.
+  bool get hasRecordedDamage => screenCracked || housingDamaged || waterDamage || batterySwollen;
+}
+
 /// Item do orçamento na resposta.
 @JsonSerializable()
 final class ServiceOrderItem {
@@ -111,6 +117,15 @@ final class ServiceOrderItem {
 
   /// Serializa o item.
   Map<String, dynamic> toJson() => _$ServiceOrderItemToJson(this);
+}
+
+/// Natureza do [ServiceOrderItem].
+extension ServiceOrderItemKind on ServiceOrderItem {
+  /// Se o item é peça, que dá baixa no estoque.
+  bool get isPart => productId != null;
+
+  /// Se o item é mão de obra, que não movimenta estoque.
+  bool get isService => serviceId != null;
 }
 
 /// Ordem de serviço (`API.md` §11).

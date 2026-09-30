@@ -1,4 +1,4 @@
-import 'package:base_objects/src/api/json_object.dart';
+import 'package:base_objects/src/api/core/json_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'api_error.g.dart';

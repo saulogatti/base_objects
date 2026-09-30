@@ -1,6 +1,6 @@
-import 'package:base_objects/src/api/login/auth.dart';
-import 'package:base_objects/src/api/login/user.dart';
-import 'package:base_objects/src/api/store.dart';
+import 'package:base_objects/src/api/auth/auth.dart';
+import 'package:base_objects/src/api/auth/user.dart';
+import 'package:base_objects/src/api/store/store.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_session.g.dart';

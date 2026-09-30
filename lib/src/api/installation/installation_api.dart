@@ -1,5 +1,5 @@
-import 'package:base_objects/src/api/installation/models/system_model.dart';
-import 'package:base_objects/src/api/installation/models/system_user_model.dart';
+import 'package:base_objects/src/api/installation/system_model.dart';
+import 'package:base_objects/src/api/installation/system_user_model.dart';
 
 /// Contrato da instalação para o handler e para stubs de teste.
 abstract interface class InstallationApi {
