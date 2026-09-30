@@ -32,7 +32,11 @@ class SystemModel extends DefaultObject {
     super.createdAt,
     super.updatedAt,
   });
+
+  /// Lê os dados da instalação.
   factory fromJson(Map<String, dynamic> json) => _$SystemModelFromJson(json);
+
+  /// Esquema JSON gerado para os dados da instalação.
   static Map<String, Object> get schema => _$SystemModelJsonSchema;
 
   /// Responsável pela instalação, que vira o usuário proprietário.
@@ -59,5 +63,6 @@ class SystemModel extends DefaultObject {
     serverUrl: serverUrl ?? this.serverUrl,
   );
 
+  /// Serializa os dados da instalação.
   Map<String, dynamic> toJson() => _$SystemModelToJson(this);
 }

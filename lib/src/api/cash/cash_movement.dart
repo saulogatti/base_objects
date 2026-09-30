@@ -32,6 +32,7 @@ final class CashMovement {
   /// Lê o movimento.
   factory fromJson(Map<String, dynamic> json) => _$CashMovementFromJson(json);
 
+  /// Esquema JSON gerado para o movimento.
   static Map<String, Object> get schema => _$CashMovementJsonSchema;
 
   /// UUID.

@@ -61,8 +61,10 @@ enum ServiceOrderStatus {
 }
 
 /// Fases do ciclo de uma [ServiceOrderStatus].
+///
+/// Fornece consultas simples sobre o estado atual da ordem.
 extension ServiceOrderStatusStage on ServiceOrderStatus {
-  /// Se a ordem está encerrada e não deve mais aparecer na fila da bancada.
+  /// Se a ordem está entregue, cancelada ou devolvida sem conserto.
   bool get isClosed => switch (this) {
     ServiceOrderStatus.delivered ||
     ServiceOrderStatus.cancelled ||
@@ -70,7 +72,10 @@ extension ServiceOrderStatusStage on ServiceOrderStatus {
     _ => false,
   };
 
-  /// Se o orçamento já foi aceito e o serviço pode ser executado.
+  /// Se a ordem está aprovada ou em uma etapa posterior do atendimento.
+  ///
+  /// Inclui os estados de espera de peças, conserto, pronta para retirada e
+  /// entregue.
   bool get isApproved => switch (this) {
     ServiceOrderStatus.approved ||
     ServiceOrderStatus.awaitingParts ||

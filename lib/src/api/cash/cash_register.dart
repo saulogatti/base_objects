@@ -17,6 +17,8 @@ final class CashRegister {
 
   /// Lê o terminal.
   factory fromJson(Map<String, dynamic> json) => _$CashRegisterFromJson(json);
+
+  /// Esquema JSON gerado para o terminal.
   static Map<String, Object> get schema => _$CashRegisterJsonSchema;
 
   /// UUID.

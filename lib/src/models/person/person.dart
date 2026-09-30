@@ -16,5 +16,6 @@ abstract class Person<D extends Document> extends PersonDefault {
     super.updatedAt,
   });
 
+  /// Documento de identificação da pessoa.
   final D document;
 }

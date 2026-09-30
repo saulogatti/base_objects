@@ -15,6 +15,8 @@ final class CancelInvoiceRequest {
 
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$CancelInvoiceRequestFromJson(json);
+
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get schema => _$CancelInvoiceRequestJsonSchema;
 
   /// Motivo obrigatório.
@@ -35,6 +37,8 @@ final class CheckoutInstallmentRequest {
 
   /// Lê a parcela.
   factory fromJson(Map<String, dynamic> json) => _$CheckoutInstallmentRequestFromJson(json);
+
+  /// Esquema JSON gerado para a parcela.
   static Map<String, Object> get schema => _$CheckoutInstallmentRequestJsonSchema;
 
   /// UUID. Vira `receivables.id`.
@@ -65,6 +69,7 @@ final class CheckoutPaymentRequest {
   /// Lê o pagamento.
   factory fromJson(Map<String, dynamic> json) => _$CheckoutPaymentRequestFromJson(json);
 
+  /// Esquema JSON gerado para o pagamento.
   static Map<String, Object> get schema => _$CheckoutPaymentRequestJsonSchema;
 
   /// UUID. Vira `invoice_payments.id`.
@@ -95,6 +100,7 @@ final class CheckoutRequest {
   /// Lê o recebimento.
   factory fromJson(Map<String, dynamic> json) => _$CheckoutRequestFromJson(json);
 
+  /// Esquema JSON gerado para o recebimento.
   static Map<String, Object> get schema => _$CheckoutRequestJsonSchema;
 
   /// Chave de idempotência do recebimento.
@@ -119,6 +125,7 @@ final class ConfirmInvoiceRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$ConfirmInvoiceRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get schema => _$ConfirmInvoiceRequestJsonSchema;
 
   /// Rascunho, quando a nota ainda não foi gravada.
@@ -143,6 +150,7 @@ final class ConfirmInvoiceResult {
   /// Lê a resposta.
   factory fromJson(Map<String, dynamic> json) => _$ConfirmInvoiceResultFromJson(json);
 
+  /// Esquema JSON gerado para a resposta.
   static Map<String, Object> get schema => _$ConfirmInvoiceResultJsonSchema;
 
   /// Nota confirmada.
@@ -190,6 +198,7 @@ final class Invoice {
   /// Lê a nota.
   factory fromJson(Map<String, dynamic> json) => _$InvoiceFromJson(json);
 
+  /// Esquema JSON gerado para a nota.
   static Map<String, Object> get schema => _$InvoiceJsonSchema;
 
   /// UUID.
@@ -279,6 +288,7 @@ final class InvoiceDraft {
   /// Lê o rascunho.
   factory fromJson(Map<String, dynamic> json) => _$InvoiceDraftFromJson(json);
 
+  /// Esquema JSON gerado para o rascunho.
   static Map<String, Object> get schema => _$InvoiceDraftJsonSchema;
 
   /// Entrada ou saída.
@@ -325,6 +335,7 @@ final class InvoiceItem {
   /// Lê o item.
   factory fromJson(Map<String, dynamic> json) => _$InvoiceItemFromJson(json);
 
+  /// Esquema JSON gerado para o item.
   static Map<String, Object> get schema => _$InvoiceItemJsonSchema;
 
   /// UUID do item.
@@ -375,6 +386,7 @@ final class InvoiceItemDraft {
   /// Lê o item.
   factory fromJson(Map<String, dynamic> json) => _$InvoiceItemDraftFromJson(json);
 
+  /// Esquema JSON gerado para o item.
   static Map<String, Object> get schema => _$InvoiceItemDraftJsonSchema;
 
   /// UUID do item.
@@ -426,6 +438,7 @@ final class InvoicePayment {
   /// Lê o pagamento.
   factory fromJson(Map<String, dynamic> json) => _$InvoicePaymentFromJson(json);
 
+  /// Esquema JSON gerado para o pagamento.
   static Map<String, Object> get schema => _$InvoicePaymentJsonSchema;
 
   /// UUID.
@@ -483,6 +496,7 @@ final class RefundMethodAmount {
   /// Lê o valor.
   factory fromJson(Map<String, dynamic> json) => _$RefundMethodAmountFromJson(json);
 
+  /// Esquema JSON gerado para o valor.
   static Map<String, Object> get schema => _$RefundMethodAmountJsonSchema;
 
   /// Forma.

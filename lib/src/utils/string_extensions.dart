@@ -77,10 +77,10 @@ extension FileNameStringExtensions on String {
     return true;
   }
 
-  /// Gera um nome de arquivo único adicionando timestamp.
+  /// Acrescenta o instante atual em milissegundos ao nome do arquivo.
   ///
-  /// Adiciona os milissegundos desde epoch antes da extensão
-  /// para garantir unicidade do nome.
+  /// O sufixo é inserido antes da extensão. Chamadas feitas no mesmo
+  /// milissegundo podem produzir o mesmo nome.
   ///
   /// Exemplo:
   /// ```dart
@@ -105,19 +105,15 @@ extension FileNameStringExtensions on String {
   /// ```
   String normalizeFileName() => toLowerCase();
 
-  /// Sanitiza a string removendo caracteres inválidos para nomes de arquivo.
+  /// Normaliza a string para uso como nome de arquivo.
   ///
-  /// Remove ou substitui:
-  /// - Caracteres proibidos: `< > : " / \ | ? *`
-  /// - Caracteres de controle (0x00-0x1F)
-  /// - Espaços em branco (substituídos por underscore)
-  /// - Underscores duplicados (consolidados em um único)
-  /// - Espaços no início e fim
+  /// Converte o texto para minúsculas, substitui caracteres proibidos e
+  /// espaços em branco por underscores e reduz underscores consecutivos a um.
   ///
   /// Exemplo:
   /// ```dart
-  /// 'Arquivo<teste>.txt'.sanitizeFileName(); // 'Arquivo_teste_.txt'
-  /// 'Nome  com   espaços'.sanitizeFileName(); // 'Nome_com_espaços'
+  /// 'Arquivo<teste>.txt'.sanitizeFileName(); // 'arquivo_teste_.txt'
+  /// 'Nome  com   espaços'.sanitizeFileName(); // 'nome_com_espaços'
   /// ```
   String sanitizeFileName() => toLowerCase()
       .replaceAll(AppRegularExp.invalidFileNameCharsRegExp, '_')
@@ -127,8 +123,7 @@ extension FileNameStringExtensions on String {
 
   /// Converte caracteres acentuados para ASCII.
   ///
-  /// Remove acentos e caracteres especiais comuns em português,
-  /// substituindo-os por suas versões ASCII equivalentes.
+  /// Converte as letras acentuadas comuns em português para equivalentes ASCII.
   ///
   /// Exemplo:
   /// ```dart
@@ -147,14 +142,15 @@ extension FileNameStringExtensions on String {
   /// Aplica todas as proteções recomendadas para nomes de arquivo.
   ///
   /// Este método combina:
-  /// 1. Sanitização de caracteres inválidos
-  /// 2. Conversão para ASCII
-  /// 3. Normalização para lowercase
-  /// 4. Truncamento para comprimento máximo
-  /// 5. Validação contra nomes reservados (adiciona sufixo se necessário)
+  /// 1. Substituição de caracteres inválidos.
+  /// 2. Conversão de alguns caracteres acentuados para ASCII.
+  /// 3. Conversão para minúsculas.
+  /// 4. Truncamento antes de tratar nomes reservados.
+  /// 5. Inclusão de sufixo para nomes reservados.
   ///
-  /// [maxLength] define o comprimento máximo do nome (padrão: 200).
-  /// [addTimestamp] adiciona timestamp se for nome reservado (padrão: false).
+  /// [maxLength] define o limite usado no truncamento (padrão: 200).
+  /// [addTimestamp] acrescenta o instante atual se o nome for reservado
+  /// (padrão: `false`).
   ///
   /// Exemplo:
   /// ```dart
@@ -186,12 +182,13 @@ extension FileNameStringExtensions on String {
   /// Preserva a extensão do arquivo ao truncar. Se o nome for maior que
   /// [maxLength], o nome base é encurtado mantendo a extensão intacta.
   ///
-  /// [maxLength] deve ser maior que o tamanho da extensão + 1.
+  /// Se a extensão tiver comprimento igual ou maior que [maxLength], o método
+  /// trunca o nome inteiro, inclusive a extensão.
   ///
   /// Exemplo:
   /// ```dart
-  /// 'nome_muito_longo_para_arquivo.json'.truncateFileName(20);
-  ///  'nome_muito_long.json'
+  /// 'nome_muito_longo_para_arquivo.json'.truncateFileName(maxLength: 20);
+  /// // 'nome_muito_long.json'
   /// ```
   String truncateFileName({int maxLength = 255}) {
     if (length <= maxLength) return this;
@@ -215,17 +212,19 @@ extension FileNameStringExtensions on String {
 ///
 /// {@category utilitarios}
 extension ValidateDataCustomer on String {
+  /// Comprimento mínimo da senha aceito por [validatePassword].
   static const int minPasswordLength = 8;
 
-  /// Valida se a string é um CPF válido.
+  /// Indica se a string contém um CPF válido.
   ///
-  /// Verifica o formato e os dígitos verificadores do CPF.
+  /// Verifica o formato e os dígitos verificadores do CPF e recusa sequências
+  /// com todos os dígitos iguais.
   ///
   /// Retorna `true` se o CPF for válido, `false` caso contrário.
   ///
   /// Exemplo:
   /// ```dart
-  /// '123.456.789-09'.isValidCPF(); // true ou false
+  /// '123.456.789-09'.isValidCpf(); // true ou false
   /// ```
   bool isValidCpf() {
     final cpf = replaceAll(AppRegularExp.nonNumericRegExp, '');
@@ -250,29 +249,35 @@ extension ValidateDataCustomer on String {
     return true;
   }
 
-  /// Valida se a string é um email válido.
-  /// Verifica o formato básico de um email.
-  /// Retorna `true` se o email for válido, `false` caso contrário.
+  /// Indica se a string corresponde ao formato básico de e-mail aceito.
+  ///
+  /// O formato é verificado por uma expressão regular simples, não por uma
+  /// validação de entrega ou existência da caixa postal. Não aceita letras
+  /// acentuadas.
+  ///
   /// Exemplo:
   /// ```dart
   /// 'example@example.com'.isValidEmail(); // true ou false
   /// ```
   bool isValidEmail() => AppRegularExp.emailRegExp.hasMatch(this);
 
-  /// Valida se a string é um número de telefone válido.
-  /// Verifica o formato básico de um número de telefone.
-  /// Retorna `true` se o telefone for válido, `false` caso contrário.
+  /// Indica se a string corresponde ao formato básico de telefone brasileiro.
+  ///
+  /// A verificação de formato não confirma se o número está ativo.
+  ///
+  /// O padrão aceita DDD com parênteses opcionais, espaços e hífens.
+  ///
   /// Exemplo:
   /// ```dart
   /// '(11) 91234-5678'.isValidPhone(); // true ou false
   /// ```
   bool isValidPhone() => AppRegularExp.phoneRegExp.hasMatch(this);
 
-  /// Valida a força da senha
+  /// Valida os requisitos básicos de uma senha.
   ///
-  /// Retorna uma mensagem de erro se a senha for inválida, ou null se for válida.
-  /// Regras: mínimo [minPasswordLength] caracteres, pelo menos uma letra maiúscula,
-  /// uma letra minúscula e um número.
+  /// Retorna uma mensagem em português quando a senha é inválida ou `null`
+  /// quando atende aos requisitos: no mínimo [minPasswordLength] caracteres,
+  /// uma letra maiúscula, uma letra minúscula e um dígito.
   String? validatePassword() {
     final password = this;
     if (password.isEmpty) {

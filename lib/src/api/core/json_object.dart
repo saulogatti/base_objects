@@ -1,4 +1,12 @@
-/// Lê um objeto JSON livre (`details`, `beforeData`, `afterData`).
+/// Lê um objeto JSON livre, como `details`, `beforeData` ou `afterData`.
+///
+/// [json] pode ser `null` ou um mapa cujos valores são escalares, listas ou
+/// outros mapas. Mapas e listas aninhados são convertidos recursivamente para
+/// valores JSON; os nomes das chaves são convertidos para strings. Retorna
+/// `null` quando [json] é `null`.
+///
+/// Lança [FormatException] se a raiz não for um mapa ou se um valor não for
+/// compatível com JSON.
 Map<String, Object?>? readJsonObject(Object? json) {
   if (json == null) {
     return null;
@@ -9,7 +17,9 @@ Map<String, Object?>? readJsonObject(Object? json) {
   return {for (final entry in json.entries) '${entry.key}': _readJsonValue(entry.value)};
 }
 
-/// Devolve o objeto já normalizado para o `toJson`.
+/// Retorna [value] sem transformação para a serialização JSON.
+///
+/// Retorna `null` quando [value] é `null`.
 Map<String, Object?>? writeJsonObject(Map<String, Object?>? value) => value;
 
 Object? _readJsonValue(Object? value) {

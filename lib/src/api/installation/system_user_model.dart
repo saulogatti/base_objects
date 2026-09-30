@@ -6,7 +6,7 @@ export 'package:base_objects/src/models/document/cpf.dart';
 
 part 'system_user_model.g.dart';
 
-/// Dados do usuário do sistema, incluindo chave e descrição.
+/// Dados cadastrais do usuário do sistema.
 ///
 /// {@category modelos}
 /// {@subCategory Sistema}
@@ -25,8 +25,11 @@ class SystemUserModel extends Person<Cpf> {
     this.lastLoginAt,
     this.password,
   });
+
+  /// Lê os dados do usuário.
   factory fromJson(Map<String, dynamic> json) => _$SystemUserModelFromJson(json);
 
+  /// Esquema JSON gerado para o usuário.
   static Map<String, Object> get schema => _$SystemUserModelJsonSchema;
 
   /// Descrição do usuário.
@@ -35,7 +38,11 @@ class SystemUserModel extends Person<Cpf> {
   /// Tipo de usuário.
   @JsonKey(unknownEnumValue: SystemUserType.user)
   final SystemUserType userType;
+
+  /// Último login, ou `null` se ainda não houve login.
   final DateTime? lastLoginAt;
+
+  /// Senha informada durante a instalação, ou `null`.
   final String? password;
 
   /// Cria uma cópia com os campos informados alterados.
@@ -60,8 +67,20 @@ class SystemUserModel extends Person<Cpf> {
     createdAt: createdAt,
     updatedAt: updatedAt ?? DateTime.now(),
   );
+
+  /// Serializa os dados do usuário.
   Map<String, dynamic> toJson() => _$SystemUserModelToJson(this);
 }
 
+/// Tipo de conta que pode ser criada durante a instalação.
 @JsonEnum()
-enum SystemUserType { superadmin, admin, user }
+enum SystemUserType {
+  /// Administrador principal da instalação.
+  superadmin,
+
+  /// Administrador.
+  admin,
+
+  /// Usuário padrão.
+  user,
+}

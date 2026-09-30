@@ -21,6 +21,8 @@ final class PaymentMethod {
 
   /// Lê a forma.
   factory fromJson(Map<String, dynamic> json) => _$PaymentMethodFromJson(json);
+
+  /// Esquema JSON gerado para a forma de pagamento.
   static Map<String, Object> get schema => _$PaymentMethodJsonSchema;
 
   /// UUID.

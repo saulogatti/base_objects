@@ -11,6 +11,8 @@ final class CreateCashRegisterRequest {
 
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$CreateCashRegisterRequestFromJson(json);
+
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get schema => _$CreateCashRegisterRequestJsonSchema;
 
   /// UUID. O servidor gera se vier `null`.

@@ -19,6 +19,7 @@ final class AuthSession {
   /// Lê a resposta.
   factory fromJson(Map<String, dynamic> json) => _$AuthSessionFromJson(json);
 
+  /// Esquema JSON gerado para a sessão de autenticação.
   static const schema = _$AuthSessionJsonSchema;
 
   /// JWT de acesso.
@@ -49,6 +50,7 @@ final class LoginRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$LoginRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo de login.
   static const schema = _$LoginRequestJsonSchema;
 
   /// E-mail do usuário.
@@ -105,6 +107,7 @@ final class RefreshTokenRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$RefreshTokenRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static const schema = _$RefreshTokenRequestJsonSchema;
 
   /// Refresh token opaco.
@@ -145,6 +148,7 @@ final class SessionResponse {
   /// Lê a resposta.
   factory fromJson(Map<String, dynamic> json) => _$SessionResponseFromJson(json);
 
+  /// Esquema JSON gerado para a resposta.
   static const schema = _$SessionResponseJsonSchema;
 
   /// Sessão corrente.
@@ -170,6 +174,7 @@ final class SessionRole {
   /// Lê o papel.
   factory fromJson(Map<String, dynamic> json) => _$SessionRoleFromJson(json);
 
+  /// Esquema JSON gerado para o papel de sessão.
   static const schema = _$SessionRoleJsonSchema;
 
   /// UUID.
@@ -208,6 +213,7 @@ final class StoreMembership {
   /// Lê o vínculo.
   factory fromJson(Map<String, dynamic> json) => _$StoreMembershipFromJson(json);
 
+  /// Esquema JSON gerado para o vínculo.
   static const schema = _$StoreMembershipJsonSchema;
 
   /// Usuário.
@@ -235,6 +241,7 @@ final class SwitchStoreRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$SwitchStoreRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static const schema = _$SwitchStoreRequestJsonSchema;
 
   /// Loja que passa a ser a ativa.

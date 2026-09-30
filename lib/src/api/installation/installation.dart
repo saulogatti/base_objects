@@ -12,6 +12,7 @@ final class InstallationRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$InstallationRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static const schema = _$InstallationRequestJsonSchema;
 
   /// Responsável que vira o superadmin.
@@ -33,6 +34,7 @@ final class InstallationStatus {
   /// Lê o status.
   factory fromJson(Map<String, dynamic> json) => _$InstallationStatusFromJson(json);
 
+  /// Esquema JSON gerado para o status.
   static const schema = _$InstallationStatusJsonSchema;
 
   /// Se já existe o único responsável da instalação.

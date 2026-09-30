@@ -30,6 +30,7 @@ final class CashSession {
   /// Lê o turno.
   factory fromJson(Map<String, dynamic> json) => _$CashSessionFromJson(json);
 
+  /// Esquema JSON gerado para o turno.
   static Map<String, Object> get schema => _$CashSessionJsonSchema;
 
   /// UUID.

@@ -35,7 +35,8 @@ completa.
 - `null` e os campos opcionais têm o significado definido por cada DTO e pelo
   contrato da API. Consulte [o contrato dos objetos da API](API.md).
 
-Não edite arquivos `*.g.dart`: altere os tipos de origem e regenere o código.
+Não edite arquivos `*.g.dart`: altere os tipos de origem e regenere o código
+com `build_runner`.
 Lógica que não altera o formato JSON pertence ao app ou ao backend; este pacote
 fica restrito a validações, formatações e extensões pequenas.
 

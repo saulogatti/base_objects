@@ -9,18 +9,17 @@ part 'cpf.g.dart';
 ///
 /// {@category modelos}
 /// {@subCategory Cadastros}
-///
 @JsonSerializable()
 class Cpf extends Document {
   /// Cria uma instância de [Cpf] com o valor informado.
   ///
   new(super.value);
-  factory fromJson(Map<String, dynamic> json) => _$CpfFromJson(json);
-  static Map<String, Object> get schema => _$CpfJsonSchema;
 
-  /// Expressões regulares para validar o formato do CPF
-  /// - _cpfRegExp: Valida o formato XXX.XXX.XXX-XX
-  /// - _cpfCleanRegExp: Valida apenas os 11 dígitos numéricos
+  /// Lê o CPF.
+  factory fromJson(Map<String, dynamic> json) => _$CpfFromJson(json);
+
+  /// Esquema JSON gerado para o CPF.
+  static Map<String, Object> get schema => _$CpfJsonSchema;
 
   @override
   String get formatted {
@@ -29,8 +28,10 @@ class Cpf extends Document {
     return '${d.substring(0, 3)}.${d.substring(3, 6)}.${d.substring(6, 9)}-${d.substring(9)}';
   }
 
+  /// Serializa o CPF.
   Map<String, dynamic> toJson() => _$CpfToJson(this);
 
+  /// Retorna uma mensagem quando o CPF está malformado ou inválido.
   @override
   String? validateDocument() {
     final valueCheck = value.trim();
@@ -50,5 +51,6 @@ class Cpf extends Document {
     return null;
   }
 
+  /// Cria um CPF de exemplo para objetos padrão ou testes.
   static Cpf defaultObject() => Cpf('123.456.789-09');
 }
