@@ -1,4 +1,4 @@
-import 'package:base_objects/src/constants/app_constants.dart';
+import 'package:base_objects/src/constants/app_regular_exp.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -10,6 +10,7 @@ part 'api_time.g.dart';
 final class ApiInstant {
   new({required this.value}) : assert(value.isUtc, 'datetime deve ser UTC.');
   factory fromJson(Map<String, dynamic> json) => _$ApiInstantFromJson(json);
+  static Map<String, Object> get schema => _$ApiInstantJsonSchema;
 
   /// Instante em UTC.
   final DateTime value;
@@ -37,7 +38,7 @@ final class CalendarDate {
 
   /// Interpreta [raw] e recusa hora, fuso e datas inexistentes.
   factory parse(String raw) {
-    final match = AppRegexConstants.calendarDateRegExp.firstMatch(raw);
+    final match = AppRegularExp.calendarDateRegExp.firstMatch(raw);
     if (match == null) {
       throw FormatException('date deve ser YYYY-MM-DD.', raw);
     }

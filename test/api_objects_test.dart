@@ -3,6 +3,8 @@ import 'package:base_objects/base_objects.dart';
 import 'package:base_objects/src/api/address_entry.dart';
 import 'package:test/test.dart';
 
+import '../lib/src/api/movement/record_cash_movement_request.dart';
+
 void main() {
   final instant = ApiInstant(value: DateTime.parse('2026-09-13T14:30:00-03:00').toUtc());
 

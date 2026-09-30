@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:base_objects/src/constants/app_constants.dart';
+import 'package:base_objects/src/constants/app_regular_exp.dart';
 import 'package:base_objects/src/models/document/document.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -31,10 +31,7 @@ class Cnpj extends Document {
   /// - _cnpjCleanRegExp: Valida base alfanumérica (12) + DV numérico (2)
   @override
   String get formatted {
-    final d = value.trim().toUpperCase().replaceAll(
-      AppRegexConstants.cnpjFormattingCharsRegExp,
-      '',
-    );
+    final d = value.trim().toUpperCase().replaceAll(AppRegularExp.cnpjFormattingCharsRegExp, '');
     if (d.length != 14) return value;
     return '${d.substring(0, 2)}.${d.substring(2, 5)}.${d.substring(5, 8)}/${d.substring(8, 12)}-${d.substring(12)}';
   }
@@ -50,13 +47,10 @@ class Cnpj extends Document {
   /// '00.000.000/0001-91'.isValidCnpj(); // true
   /// ```
   bool get _isValidCnpj {
-    final cnpj = value.trim().toUpperCase().replaceAll(
-      AppRegexConstants.cnpjFormattingCharsRegExp,
-      '',
-    );
+    final cnpj = value.trim().toUpperCase().replaceAll(AppRegularExp.cnpjFormattingCharsRegExp, '');
 
-    if (!AppRegexConstants.cnpjCleanRegExp.hasMatch(cnpj) ||
-        AppRegexConstants.cnpjAllZerosRegExp.hasMatch(cnpj)) {
+    if (!AppRegularExp.cnpjCleanRegExp.hasMatch(cnpj) ||
+        AppRegularExp.cnpjAllZerosRegExp.hasMatch(cnpj)) {
       return false;
     }
 
@@ -78,14 +72,14 @@ class Cnpj extends Document {
   @override
   String? validateDocument() {
     final valueCheck = value.trim().toUpperCase();
-    final compactValue = valueCheck.replaceAll(AppRegexConstants.cnpjFormattingCharsRegExp, '');
+    final compactValue = valueCheck.replaceAll(AppRegularExp.cnpjFormattingCharsRegExp, '');
 
-    if (!AppRegexConstants.cnpjRegExp.hasMatch(valueCheck) &&
-        !AppRegexConstants.cnpjCleanRegExp.hasMatch(valueCheck)) {
+    if (!AppRegularExp.cnpjRegExp.hasMatch(valueCheck) &&
+        !AppRegularExp.cnpjCleanRegExp.hasMatch(valueCheck)) {
       return 'CNPJ deve estar no formato XX.XXX.XXX/XXXX-XX com base alfanumérica ou conter 14 caracteres (12 alfanuméricos + 2 dígitos)';
     }
 
-    if (AppRegexConstants.cnpjAllZerosRegExp.hasMatch(compactValue)) {
+    if (AppRegularExp.cnpjAllZerosRegExp.hasMatch(compactValue)) {
       return 'CNPJ inválido - sequência zerada não é permitida';
     }
 

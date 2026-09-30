@@ -10,4 +10,5 @@ class AddressEntry extends Address {
   factory fromJson(Map<String, dynamic> json) => _$AddressEntryFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddressEntryToJson(this);
+  static Map<String, Object> get schema => _$AddressEntryJsonSchema;
 }
