@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the Invoice class from the base_objects library, for the Dart programming language.">
+  <title>Invoice class - base_objects library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">base_objects</a></li>
+    <li><a href="../base_objects/">base_objects.dart</a></li>
+    <li class="self-crumb">Invoice class</li>
+  </ol>
+  <div class="self-name">Invoice</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="base_objects&#47;base_objects-library-sidebar.html"
+    data-below-sidebar="base_objects&#47;Invoice-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">Invoice</span> class 
+    <a href="https://dart.dev/language/class-modifiers#final" class="feature feature-final" title="This class can neither be extended, implemented, nor mixed in.">final</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>Nota de venda ou compra (<code>API.md</code> §10).</p>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+
+        
+        
+
+
+        
+        
+  <dt>Annotations</dt>
+  <dd>
+    <ul class="annotation-list clazz-relationships">
+        <li>@<a href="https://pub.dev/documentation/json_annotation/4.12.0/json_annotation/JsonSerializable/JsonSerializable.html">JsonSerializable</a>()</li>
+    </ul>
+  </dd>
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="Invoice.new" class="callable">
+          <span class="name"><a href="../base_objects/Invoice/Invoice.html">Invoice</a></span><span class="signature">({<span class="parameter" id="param-id"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a></span> <span class="parameter-name">id</span>, </span><span class="parameter" id="param-storeId"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a></span> <span class="parameter-name">storeId</span>, </span><span class="parameter" id="param-number"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/int-class.html">int</a></span> <span class="parameter-name">number</span>, </span><span class="parameter" id="param-type"><span>required</span> <span class="type-annotation"><a href="../base_objects/InvoiceType.html">InvoiceType</a></span> <span class="parameter-name">type</span>, </span><span class="parameter" id="param-status"><span>required</span> <span class="type-annotation"><a href="../base_objects/InvoiceStatus.html">InvoiceStatus</a></span> <span class="parameter-name">status</span>, </span><span class="parameter" id="param-issueDate"><span>required</span> <span class="type-annotation"><a href="../base_objects/CalendarDate-class.html">CalendarDate</a></span> <span class="parameter-name">issueDate</span>, </span><span class="parameter" id="param-discount"><span>required</span> <span class="type-annotation"><a href="../base_objects/MoneyAmount-class.html">MoneyAmount</a></span> <span class="parameter-name">discount</span>, </span><span class="parameter" id="param-subtotal"><span>required</span> <span class="type-annotation"><a href="../base_objects/MoneyAmount-class.html">MoneyAmount</a></span> <span class="parameter-name">subtotal</span>, </span><span class="parameter" id="param-totalValue"><span>required</span> <span class="type-annotation"><a href="../base_objects/MoneyAmount-class.html">MoneyAmount</a></span> <span class="parameter-name">totalValue</span>, </span><span class="parameter" id="param-items"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../base_objects/InvoiceItem-class.html">InvoiceItem</a></span>&gt;</span></span> <span class="parameter-name">items</span>, </span><span class="parameter" id="param-payments"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../base_objects/InvoicePayment-class.html">InvoicePayment</a></span>&gt;</span></span> <span class="parameter-name">payments</span>, </span><span class="parameter" id="param-createdAt"><span>required</span> <span class="type-annotation"><a href="../base_objects/ApiInstant-class.html">ApiInstant</a></span> <span class="parameter-name">createdAt</span>, </span><span class="parameter" id="param-updatedAt"><span>required</span> <span class="type-annotation"><a href="../base_objects/ApiInstant-class.html">ApiInstant</a></span> <span class="parameter-name">updatedAt</span>, </span><span class="parameter" id="param-customerId"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">customerId</span>, </span><span class="parameter" id="param-supplierId"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">supplierId</span>, </span><span class="parameter" id="param-customerName"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">customerName</span>, </span><span class="parameter" id="param-supplierName"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">supplierName</span>, </span><span class="parameter" id="param-notes"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">notes</span>, </span><span class="parameter" id="param-createdBy"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">createdBy</span>, </span><span class="parameter" id="param-cancelledBy"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">cancelledBy</span>, </span><span class="parameter" id="param-cancelledAt"><span class="type-annotation"><a href="../base_objects/ApiInstant-class.html">ApiInstant</a>?</span> <span class="parameter-name">cancelledAt</span>, </span><span class="parameter" id="param-cancelReason"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">cancelReason</span></span>})</span>
+        </dt>
+        <dd>
+          Cria a nota.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="Invoice.fromJson" class="callable">
+          <span class="name"><a href="../base_objects/Invoice/Invoice.fromJson.html">Invoice.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-json"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">json</span></span>)</span>
+        </dt>
+        <dd>
+          Lê a nota.
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="cancelledAt" class="property">
+  <span class="name"><a href="../base_objects/Invoice/cancelledAt.html">cancelledAt</a></span>
+  <span class="signature">&#8594; <a href="../base_objects/ApiInstant-class.html">ApiInstant</a>?</span>
+  
+
+</dt>
+<dd>
+  Cancelamento, ou <code>null</code>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="cancelledBy" class="property">
+  <span class="name"><a href="../base_objects/Invoice/cancelledBy.html">cancelledBy</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Quem cancelou, ou <code>null</code>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="cancelReason" class="property">
+  <span class="name"><a href="../base_objects/Invoice/cancelReason.html">cancelReason</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Motivo do cancelamento, ou <code>null</code>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="createdAt" class="property">
+  <span class="name"><a href="../base_objects/Invoice/createdAt.html">createdAt</a></span>
+  <span class="signature">&#8594; <a href="../base_objects/ApiInstant-class.html">ApiInstant</a></span>
+  
+
+</dt>
+<dd>
+  Criação.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="createdBy" class="property">
+  <span class="name"><a href="../base_objects/Invoice/createdBy.html">createdBy</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Autor, ou <code>null</code>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="customerId" class="property">
+  <span class="name"><a href="../base_objects/Invoice/customerId.html">customerId</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Cliente, ou <code>null</code> na entrada.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="customerName" class="property">
+  <span class="name"><a href="../base_objects/Invoice/customerName.html">customerName</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Nome do cliente na listagem, ou <code>null</code>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="discount" class="property">
+  <span class="name"><a href="../base_objects/Invoice/discount.html">discount</a></span>
+  <span class="signature">&#8594; <a href="../base_objects/MoneyAmount-class.html">MoneyAmount</a></span>
+  
+
+</dt>
+<dd>
+  Desconto no total.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.13.4/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="id" class="property">
+  <span class="name"><a href="../base_objects/Invoice/id.html">id</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  UUID.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="issueDate" class="property">
+  <span class="name"><a href="../base_objects/Invoice/issueDate.html">issueDate</a></span>
+  <span class="signature">&#8594; <a href="../base_objects/CalendarDate-class.html">CalendarDate</a></span>
+  
+
+</dt>
+<dd>
+  Emissão.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="items" class="property">
+  <span class="name"><a href="../base_objects/Invoice/items.html">items</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../base_objects/InvoiceItem-class.html">InvoiceItem</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Itens.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="notes" class="property">
+  <span class="name"><a href="../base_objects/Invoice/notes.html">notes</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Observações, ou <code>null</code>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="number" class="property">
+  <span class="name"><a href="../base_objects/Invoice/number.html">number</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  Sequencial por loja.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="payments" class="property">
+  <span class="name"><a href="../base_objects/Invoice/payments.html">payments</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../base_objects/InvoicePayment-class.html">InvoicePayment</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Pagamentos. Vazio fora da saída confirmada.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.13.4/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="status" class="property">
+  <span class="name"><a href="../base_objects/Invoice/status.html">status</a></span>
+  <span class="signature">&#8594; <a href="../base_objects/InvoiceStatus.html">InvoiceStatus</a></span>
+  
+
+</dt>
+<dd>
+  Situação. Muda só por comando.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="storeId" class="property">
+  <span class="name"><a href="../base_objects/Invoice/storeId.html">storeId</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  Loja. Vem do caminho, não do corpo.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="subtotal" class="property">
+  <span class="name"><a href="../base_objects/Invoice/subtotal.html">subtotal</a></span>
+  <span class="signature">&#8594; <a href="../base_objects/MoneyAmount-class.html">MoneyAmount</a></span>
+  
+
+</dt>
+<dd>
+  Soma dos itens, calculada no servidor.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="supplierId" class="property">
+  <span class="name"><a href="../base_objects/Invoice/supplierId.html">supplierId</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Fornecedor, ou <code>null</code> na saída.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="supplierName" class="property">
+  <span class="name"><a href="../base_objects/Invoice/supplierName.html">supplierName</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Nome do fornecedor na listagem, ou <code>null</code>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="totalValue" class="property">
+  <span class="name"><a href="../base_objects/Invoice/totalValue.html">totalValue</a></span>
+  <span class="signature">&#8594; <a href="../base_objects/MoneyAmount-class.html">MoneyAmount</a></span>
+  
+
+</dt>
+<dd>
+  Total (<code>subtotal</code> menos <a href="../base_objects/Invoice/discount.html">discount</a>).
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="type" class="property">
+  <span class="name"><a href="../base_objects/Invoice/type.html">type</a></span>
+  <span class="signature">&#8594; <a href="../base_objects/InvoiceType.html">InvoiceType</a></span>
+  
+
+</dt>
+<dd>
+  Entrada ou saída.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="updatedAt" class="property">
+  <span class="name"><a href="../base_objects/Invoice/updatedAt.html">updatedAt</a></span>
+  <span class="signature">&#8594; <a href="../base_objects/ApiInstant-class.html">ApiInstant</a></span>
+  
+
+</dt>
+<dd>
+  Última alteração.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.13.4/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toJson" class="callable">
+  <span class="name"><a href="../base_objects/Invoice/toJson.html">toJson</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Serializa a nota.
+  
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.13.4/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.13.4/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.13.4/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section class="summary offset-anchor" id="static-properties">
+    <h2>Static Properties</h2>
+    <dl class="properties">
+        <dt id="schema" class="property">
+  <span class="name"><a href="../base_objects/Invoice/schema.html">schema</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.13.4/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.13.4/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.13.4/dart-core/Object-class.html">Object</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Esquema JSON gerado para a nota.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">base_objects</a></li>
+    <li><a href="../base_objects/">base_objects</a></li>
+    <li class="self-crumb">Invoice class</li>
+</ol>
+
+    <h5>base_objects library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    base_objects
+      2.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
