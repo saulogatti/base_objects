@@ -1,26 +1,43 @@
-# README
+# base_objects
 
-## Objetos compartilhados entre o app `admin_loja` e a API `backend_admin_loja`
+Pacote Dart puro de objetos compartilhados entre o app `admin_loja` e a API
+`backend_admin_loja`. Não é publicado (`publish_to: none`).
 
-O pacote é Dart puro: sem Flutter, Shelf nem Postgres. O que entra aqui é o
-que viaja no JSON — campos, `fromJson`/`toJson` (`json_serializable`) e o
-formato decimal do fio. Dinheiro, quantidade e percentual são string, nunca
-`double`. Lógica que não muda o JSON fica em `extension` no app ou no backend.
+O pacote define os objetos que atravessam a API em JSON e mantém alguns modelos
+de domínio legados. Não contém interface, acesso à rede nem persistência. Os
+modelos de domínio em `lib/src/models/` não representam o formato do fio.
 
-## API HTTP
+## Importação
 
-`package:base_objects/base_objects.dart` exporta os objetos de request e
-response descritos no contrato `/api/v1` (endereço, sessão, cadastros,
-catálogo, estoque, notas, ordens de serviço, caixa, parcelas, relatórios e
-auditoria).
+Importe a biblioteca pública `package:base_objects/base_objects.dart` para usar
+os DTOs da API, tipos de valor e modelos de domínio públicos:
 
 ```dart
+import 'package:base_objects/base_objects.dart';
+
 final session = AuthSession.fromJson(body);
 final total = MoneyAmount.parse('1299.90');
 ```
 
-Os modelos de domínio que já estavam em `lib/src/models/` continuam no pacote.
-Eles não são o formato do fio.
+`package:base_objects/base_apis.dart` oferece os modelos de instalação e alguns
+modelos legados. Prefira a biblioteca principal quando precisar da API pública
+completa.
+
+## Formato JSON
+
+- Campos, nomes e conversores `fromJson`/`toJson` são definidos pelos DTOs.
+- A serialização é gerada com validação de tipos e conversão de datas para UTC.
+- Valores monetários, quantidades, percentuais e horas trafegam como strings
+  decimais, nunca como `double`. Use `MoneyAmount`, `QuantityAmount`,
+  `PercentAmount` e `HoursAmount` para representar esses valores.
+- `ApiInstant` representa um instante com fuso e guarda o valor em UTC;
+  `CalendarDate` representa uma data sem horário no formato `YYYY-MM-DD`.
+- `null` e os campos opcionais têm o significado definido por cada DTO e pelo
+  contrato da API. Consulte [o contrato dos objetos da API](API.md).
+
+Não edite arquivos `*.g.dart`: altere os tipos de origem e regenere o código.
+Lógica que não altera o formato JSON pertence ao app ou ao backend; este pacote
+fica restrito a validações, formatações e extensões pequenas.
 
 ## Desenvolvimento
 
@@ -30,3 +47,5 @@ dart run build_runner build
 dart analyze
 dart test
 ```
+
+O pacote segue `analysis_options.yaml` e usa `package:test` para os testes.
