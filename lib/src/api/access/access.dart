@@ -12,6 +12,7 @@ final class ActiveFlagRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$ActiveFlagRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get jsonSchema => _$ActiveFlagRequestJsonSchema;
 
   /// Novo estado.
@@ -30,6 +31,7 @@ final class AssignRoleRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$AssignRoleRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get jsonSchema => _$AssignRoleRequestJsonSchema;
 
   /// Código do papel, por exemplo `technician`.
@@ -48,6 +50,7 @@ final class ChangePasswordRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$ChangePasswordRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get jsonSchema => _$ChangePasswordRequestJsonSchema;
 
   /// Senha atual. Obrigatória quando o próprio usuário troca.
@@ -74,6 +77,7 @@ final class Permission {
   /// Lê a permissão.
   factory fromJson(Map<String, dynamic> json) => _$PermissionFromJson(json);
 
+  /// Esquema JSON gerado para a permissão.
   static Map<String, Object> get jsonSchema => _$PermissionJsonSchema;
 
   /// Código `recurso:ação`.
@@ -101,6 +105,7 @@ final class PermissionOverrideRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$PermissionOverrideRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get jsonSchema => _$PermissionOverrideRequestJsonSchema;
 
   /// Se a exceção concede (`true`) ou revoga (`false`) a permissão.
@@ -127,6 +132,7 @@ final class Role {
   /// Lê o papel.
   factory fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
 
+  /// Esquema JSON gerado para o papel.
   static Map<String, Object> get jsonSchema => _$RoleJsonSchema;
 
   /// UUID.
@@ -163,6 +169,7 @@ final class UserUpsertRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$UserUpsertRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get jsonSchema => _$UserUpsertRequestJsonSchema;
 
   /// Nome.

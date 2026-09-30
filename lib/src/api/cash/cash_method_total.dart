@@ -12,6 +12,7 @@ final class CashMethodTotal {
   /// Lê o total.
   factory fromJson(Map<String, dynamic> json) => _$CashMethodTotalFromJson(json);
 
+  /// Esquema JSON gerado para o total.
   static Map<String, Object> get schema => _$CashMethodTotalJsonSchema;
 
   /// Forma.

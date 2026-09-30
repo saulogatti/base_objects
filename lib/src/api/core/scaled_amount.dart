@@ -3,7 +3,8 @@ import 'package:meta/meta.dart';
 /// Normaliza [raw] com no máximo [scale] casas e exatamente [scale] na saída.
 ///
 /// Rejeita notação científica, ponto solto e qualquer valor que não seja um
-/// literal decimal. Nunca passa por [double].
+/// literal decimal. Nunca passa por [double]. Lança [FormatException] quando
+/// a entrada não respeita a escala informada.
 String _canonicalizeScaled(String raw, {required int scale}) {
   final trimmed = raw.trim();
   if (!_isScaledLiteral(trimmed, scale)) {
@@ -56,9 +57,12 @@ bool _isScaledLiteral(String raw, int scale) {
 /// Dinheiro em string JSON com escala 2 (`API.md` §1.2).
 @immutable
 final class MoneyAmount {
+  /// Cria dinheiro a partir de um literal decimal canônico.
   const new _(this.value);
 
-  /// Interpreta [raw]. Aceita `"89.9"` e grava `"89.90"`.
+  /// Interpreta [raw] e o normaliza para duas casas decimais.
+  ///
+  /// Por exemplo, `'89.9'` é convertido para `'89.90'`.
   factory parse(String raw) => MoneyAmount._(_canonicalizeScaled(raw, scale: scale));
 
   /// Lê a string JSON. Número JSON é recusado.
@@ -91,6 +95,7 @@ final class MoneyAmount {
 /// Quantidade em string JSON com escala 3 (`API.md` §1.2).
 @immutable
 final class QuantityAmount {
+  /// Cria uma quantidade a partir de um literal decimal canônico.
   const new _(this.value);
 
   /// Interpreta [raw] e normaliza para três casas.
@@ -127,6 +132,7 @@ final class QuantityAmount {
 /// Percentual em string JSON com escala 3 (`feePercent`, `API.md` §1.2).
 @immutable
 final class PercentAmount {
+  /// Cria um percentual a partir de um literal decimal canônico.
   const new _(this.value);
 
   /// Interpreta [raw] e normaliza para três casas.
@@ -163,6 +169,7 @@ final class PercentAmount {
 /// Horas estimadas em string com escala 2 (`estimatedHours`, `API.md` §8.4).
 @immutable
 final class HoursAmount {
+  /// Cria horas a partir de um literal decimal canônico.
   const new _(this.value);
 
   /// Interpreta [raw] e normaliza para duas casas.

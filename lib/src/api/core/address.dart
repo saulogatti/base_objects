@@ -13,6 +13,7 @@ final class Address {
   /// Lê o endereço.
   factory fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
 
+  /// Esquema JSON gerado para o endereço.
   static Map<String, Object> get schema => _$AddressJsonSchema;
 
   /// Logradouro (nome da rua, avenida, etc.), ou `null`.

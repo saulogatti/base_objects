@@ -27,6 +27,8 @@ abstract final class AppRegularExp {
 
   /// Caracteres proibidos em nome de arquivo no Windows (`<>:"/\\|?*` e controles).
   static final RegExp invalidFileNameCharsRegExp = RegExp(r'[<>:"/\\|?*\x00-\x1F]');
+
+  /// Caracteres que não são dígitos, vírgula, ponto ou sinal de menos.
   static final RegExp nonDigitCommaDotRegExp = RegExp(r'[^0-9,\.\-]');
 
   /// Sequência de um ou mais espaços em branco.

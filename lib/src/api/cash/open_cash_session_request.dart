@@ -13,6 +13,7 @@ final class OpenCashSessionRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$OpenCashSessionRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get schema => _$OpenCashSessionRequestJsonSchema;
 
   /// UUID do turno. Também é a chave de idempotência.

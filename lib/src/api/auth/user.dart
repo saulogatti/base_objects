@@ -22,6 +22,7 @@ final class User {
   /// Lê o objeto `User`.
   factory fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
+  /// Esquema JSON gerado para o usuário.
   static const schema = _$UserJsonSchema;
 
   /// UUID.

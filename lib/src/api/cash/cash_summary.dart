@@ -24,6 +24,7 @@ final class CashSummary {
   /// Lê o resumo.
   factory fromJson(Map<String, dynamic> json) => _$CashSummaryFromJson(json);
 
+  /// Esquema JSON gerado para o resumo.
   static Map<String, Object> get schema => _$CashSummaryJsonSchema;
 
   /// Turno.

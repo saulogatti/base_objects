@@ -12,23 +12,25 @@ final firstWeights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
 final secondWeights = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
 
 /// CNPJ com validação de formato e dígitos verificadores.
-/// Modelo novo de CNPJ, apenas numeros e letras e numeros (ex: A34.345.345/3453-45).
+///
+/// Aceita a representação alfanumérica do CNPJ no formato definido pelas
+/// expressões regulares deste pacote.
 ///
 /// {@category modelos}
 /// {@subCategory Cadastros}
-///
 @JsonSerializable()
 class Cnpj extends Document {
-  /// Cria uma instância de [Cnpj] com o valor informado.
+  /// Cria um CNPJ com o valor informado.
   ///
-  /// Lança [ValidationException] se o formato ou os dígitos forem inválidos.
+  /// Use [validateDocument] para obter a mensagem de validação do valor.
   new(super.value);
+
+  /// Lê o CNPJ.
   factory fromJson(Map<String, dynamic> json) => _$CnpjFromJson(json);
+
+  /// Esquema JSON gerado para o CNPJ.
   static Map<String, Object> get schema => _$CnpjJsonSchema;
 
-  /// Expressões regulares para validar o formato do CNPJ
-  /// - _cnpjRegExp: Valida o formato XX.XXX.XXX/XXXX-XX com base alfanumérica
-  /// - _cnpjCleanRegExp: Valida base alfanumérica (12) + DV numérico (2)
   @override
   String get formatted {
     final d = value.trim().toUpperCase().replaceAll(AppRegularExp.cnpjFormattingCharsRegExp, '');
@@ -36,16 +38,7 @@ class Cnpj extends Document {
     return '${d.substring(0, 2)}.${d.substring(2, 5)}.${d.substring(5, 8)}/${d.substring(8, 12)}-${d.substring(12)}';
   }
 
-  /// Valida se a string é um CNPJ válido.
-  ///
-  /// Verifica o formato e os dígitos verificadores do CNPJ.
-  ///
-  /// Retorna `true` se o CNPJ for válido, `false` caso contrário.
-  ///
-  /// Exemplo:
-  /// ```dart
-  /// '00.000.000/0001-91'.isValidCnpj(); // true
-  /// ```
+  /// Indica se o valor representa um CNPJ válido.
   bool get _isValidCnpj {
     final cnpj = value.trim().toUpperCase().replaceAll(AppRegularExp.cnpjFormattingCharsRegExp, '');
 
@@ -65,10 +58,13 @@ class Cnpj extends Document {
     return calculatedDigit2 == informedDigit2;
   }
 
+  /// Indica se o valor armazenado representa um CNPJ válido.
   bool isValidCnpj() => _isValidCnpj;
 
+  /// Serializa o CNPJ.
   Map<String, dynamic> toJson() => _$CnpjToJson(this);
 
+  /// Retorna uma mensagem quando o CNPJ está malformado ou inválido.
   @override
   String? validateDocument() {
     final valueCheck = value.trim().toUpperCase();
@@ -102,9 +98,12 @@ class Cnpj extends Document {
     return remainder < 2 ? 0 : 11 - remainder;
   }
 
+  /// Cria um CNPJ de exemplo para objetos padrão ou testes.
   static Cnpj defaultObject() => Cnpj('00.000.000/0001-91');
 
-  /// Gera um CNPJ matematicamente válido.
+  /// Gera uma representação numérica de CNPJ com dígitos verificadores.
+  ///
+  /// Este valor é aleatório e não identifica uma empresa real.
   static String generateCnpj() {
     final random = Random();
     final digits = List.generate(12, (_) => random.nextInt(10));

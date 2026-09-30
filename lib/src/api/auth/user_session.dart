@@ -14,6 +14,7 @@ final class UserSession {
   /// Lê a sessão.
   factory fromJson(Map<String, dynamic> json) => _$UserSessionFromJson(json);
 
+  /// Esquema JSON gerado para a sessão.
   static const schema = _$UserSessionJsonSchema;
 
   /// Usuário autenticado.

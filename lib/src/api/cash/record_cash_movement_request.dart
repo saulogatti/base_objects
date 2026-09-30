@@ -19,6 +19,7 @@ final class RecordCashMovementRequest {
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$RecordCashMovementRequestFromJson(json);
 
+  /// Esquema JSON gerado para o corpo.
   static Map<String, Object> get schema => _$RecordCashMovementRequestJsonSchema;
 
   /// UUID do movimento. Também é a chave de idempotência.

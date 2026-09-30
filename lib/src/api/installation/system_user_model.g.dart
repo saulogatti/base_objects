@@ -93,18 +93,31 @@ const _$SystemUserModelJsonSchema = {
       'type': 'string',
       'description': 'Número de telefone (opcional).',
     },
-    'document': {r'$ref': r'#/$defs/Cpf'},
+    'document': {
+      r'$ref': r'#/$defs/Cpf',
+      'description': 'Documento de identificação da pessoa.',
+    },
     'description': {'type': 'string', 'description': 'Descrição do usuário.'},
     'userType': {'type': 'object', 'description': 'Tipo de usuário.'},
-    'lastLoginAt': {'type': 'string', 'format': 'date-time'},
-    'password': {'type': 'string'},
+    'lastLoginAt': {
+      'type': 'string',
+      'format': 'date-time',
+      'description': 'Último login, ou `null` se ainda não houve login.',
+    },
+    'password': {
+      'type': 'string',
+      'description': 'Senha informada durante a instalação, ou `null`.',
+    },
   },
   'required': ['email', 'name', 'document'],
   r'$defs': {
     'Cpf': {
       'type': 'object',
       'properties': {
-        'value': {'type': 'string'},
+        'value': {
+          'type': 'string',
+          'description': 'Valor original do documento.',
+        },
       },
       'required': ['value'],
     },

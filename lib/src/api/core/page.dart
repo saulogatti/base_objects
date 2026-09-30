@@ -13,7 +13,9 @@ final class ApiPage<T> {
     required this.offset,
   });
 
-  /// Lê o envelope. [fromJsonT] converte cada item.
+  /// Lê o envelope.
+  ///
+  /// [fromJsonT] converte cada item da lista `items` a partir do valor JSON.
   factory fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
       _$ApiPageFromJson(json, fromJsonT);
 
@@ -29,6 +31,8 @@ final class ApiPage<T> {
   /// `offset` efetivo.
   final int offset;
 
-  /// Serializa o envelope. [toJsonT] converte cada item.
+  /// Serializa o envelope.
+  ///
+  /// [toJsonT] converte cada item da lista `items` em valor JSON.
   Map<String, dynamic> toJson(Object? Function(T value) toJsonT) => _$ApiPageToJson(this, toJsonT);
 }

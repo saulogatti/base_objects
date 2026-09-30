@@ -13,6 +13,7 @@ class CategoryUsage {
   /// Lê o uso.
   factory fromJson(Map<String, dynamic> json) => _$CategoryUsageFromJson(json);
 
+  /// Esquema JSON gerado para o uso da categoria.
   static const schema = _$CategoryUsageJsonSchema;
 
   /// Se há pelo menos um produto.

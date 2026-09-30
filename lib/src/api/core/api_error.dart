@@ -32,6 +32,8 @@ final class ApiError {
 
   /// Serializa o objeto `error`.
   Map<String, dynamic> toJson() => _$ApiErrorToJson(this);
+
+  /// Esquema JSON gerado para o erro.
   static Map<String, Object> get schema => _$ApiErrorJsonSchema;
 }
 
@@ -49,5 +51,7 @@ final class ApiErrorResponse {
 
   /// Serializa o envelope.
   Map<String, dynamic> toJson() => _$ApiErrorResponseToJson(this);
+
+  /// Esquema JSON gerado para o envelope.
   static Map<String, Object> get schema => _$ApiErrorResponseJsonSchema;
 }
