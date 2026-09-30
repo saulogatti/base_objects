@@ -6,6 +6,7 @@
 library;
 
 export 'access.dart';
+export 'address_entry.dart';
 export 'api_error.dart';
 export 'api_time.dart';
 export 'audit_log.dart';

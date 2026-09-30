@@ -78,4 +78,5 @@ final class AuditEntry {
 
   /// Serializa a entrada.
   Map<String, dynamic> toJson() => _$AuditEntryToJson(this);
+  static const schema = _$AuditEntryJsonSchema;
 }

@@ -1,8 +1,44 @@
 import 'package:base_objects/src/api/api_time.dart';
-import 'package:base_objects/src/api/store.dart';
+import 'package:base_objects/src/api/login/user_session.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'auth.g.dart';
+
+/// Resposta de login e de refresh (`API.md` §2.1 e §2.2).
+@JsonSerializable()
+final class AuthSession {
+  /// Cria a resposta.
+  const new({
+    required this.accessToken,
+    required this.accessTokenExpiresAt,
+    required this.refreshToken,
+    required this.refreshTokenExpiresAt,
+    required this.session,
+  });
+
+  /// Lê a resposta.
+  factory fromJson(Map<String, dynamic> json) => _$AuthSessionFromJson(json);
+
+  static const schema = _$AuthSessionJsonSchema;
+
+  /// JWT de acesso.
+  final String accessToken;
+
+  /// Expiração do access token.
+  final ApiInstant accessTokenExpiresAt;
+
+  /// Refresh token opaco.
+  final String refreshToken;
+
+  /// Expiração do refresh token.
+  final ApiInstant refreshTokenExpiresAt;
+
+  /// Sessão recarregada.
+  final UserSession session;
+
+  /// Serializa a resposta.
+  Map<String, dynamic> toJson() => _$AuthSessionToJson(this);
+}
 
 /// Corpo de `POST /auth/login` (`API.md` §2.1).
 @JsonSerializable()
@@ -12,6 +48,8 @@ final class LoginRequest {
 
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$LoginRequestFromJson(json);
+
+  static const schema = _$LoginRequestJsonSchema;
 
   /// E-mail do usuário.
   final String email;
@@ -26,6 +64,38 @@ final class LoginRequest {
   Map<String, dynamic> toJson() => _$LoginRequestToJson(this);
 }
 
+/// Resposta genérica do pedido de código. O código não volta no corpo.
+@JsonSerializable()
+final class PasswordRecoveryAccepted {
+  /// Cria a resposta.
+  const new({required this.message});
+
+  /// Lê a resposta.
+  factory fromJson(Map<String, dynamic> json) => _$PasswordRecoveryAcceptedFromJson(json);
+
+  /// Texto genérico, exista ou não o e-mail.
+  final String message;
+
+  /// Serializa a resposta.
+  Map<String, dynamic> toJson() => _$PasswordRecoveryAcceptedToJson(this);
+}
+
+/// Corpo de `POST /auth/password-recovery/request`.
+@JsonSerializable()
+final class PasswordRecoveryRequest {
+  /// Cria o pedido.
+  const new({required this.email});
+
+  /// Lê o corpo.
+  factory fromJson(Map<String, dynamic> json) => _$PasswordRecoveryRequestFromJson(json);
+
+  /// E-mail informado.
+  final String email;
+
+  /// Serializa o corpo.
+  Map<String, dynamic> toJson() => _$PasswordRecoveryRequestToJson(this);
+}
+
 /// Corpo com `refreshToken` (`POST /auth/refresh` e `POST /auth/logout`).
 @JsonSerializable()
 final class RefreshTokenRequest {
@@ -33,8 +103,9 @@ final class RefreshTokenRequest {
   const new({required this.refreshToken});
 
   /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$RefreshTokenRequestFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$RefreshTokenRequestFromJson(json);
+
+  static const schema = _$RefreshTokenRequestJsonSchema;
 
   /// Refresh token opaco.
   final String refreshToken;
@@ -43,71 +114,44 @@ final class RefreshTokenRequest {
   Map<String, dynamic> toJson() => _$RefreshTokenRequestToJson(this);
 }
 
-/// Corpo de `POST /auth/switch-store`.
+/// Corpo de `POST /auth/password-recovery/reset`.
 @JsonSerializable()
-final class SwitchStoreRequest {
-  /// Cria o corpo.
-  const new({required this.storeId});
+final class ResetPasswordRequest {
+  /// Cria a troca.
+  const new({required this.email, required this.code, required this.newPassword});
 
   /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$SwitchStoreRequestFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ResetPasswordRequestFromJson(json);
 
-  /// Loja que passa a ser a ativa.
-  final String storeId;
-
-  /// Serializa o corpo.
-  Map<String, dynamic> toJson() => _$SwitchStoreRequestToJson(this);
-}
-
-/// Usuário público. Sem `passwordHash` (`API.md` §2.1 e §6).
-@JsonSerializable()
-final class User {
-  /// Cria o usuário.
-  const new({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.isActive,
-    required this.isSuperadmin,
-    required this.createdAt,
-    required this.updatedAt,
-    this.phone,
-    this.lastLoginAt,
-  });
-
-  /// Lê o objeto `User`.
-  factory fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-
-  /// UUID.
-  final String id;
-
-  /// Nome de exibição.
-  final String name;
-
-  /// E-mail único.
+  /// E-mail do pedido.
   final String email;
 
-  /// Telefone, ou `null`.
-  final String? phone;
+  /// Código de 6 dígitos.
+  final String code;
 
-  /// Se a conta pode entrar.
-  final bool isActive;
+  /// Senha nova em texto.
+  final String newPassword;
 
-  /// Se a conta é a de manutenção.
-  final bool isSuperadmin;
+  /// Serializa o corpo.
+  Map<String, dynamic> toJson() => _$ResetPasswordRequestToJson(this);
+}
 
-  /// Último login, ou `null`.
-  final ApiInstant? lastLoginAt;
+/// Resposta `{ session }` de `GET /auth/session` e `POST /auth/switch-store`.
+@JsonSerializable()
+final class SessionResponse {
+  /// Cria a resposta.
+  const new({required this.session});
 
-  /// Criação.
-  final ApiInstant createdAt;
+  /// Lê a resposta.
+  factory fromJson(Map<String, dynamic> json) => _$SessionResponseFromJson(json);
 
-  /// Última alteração.
-  final ApiInstant updatedAt;
+  static const schema = _$SessionResponseJsonSchema;
 
-  /// Serializa o usuário.
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  /// Sessão corrente.
+  final UserSession session;
+
+  /// Serializa a resposta.
+  Map<String, dynamic> toJson() => _$SessionResponseToJson(this);
 }
 
 /// Papel dentro de `membership` (`API.md` §2.1). Sem `createdAt`.
@@ -125,6 +169,8 @@ final class SessionRole {
 
   /// Lê o papel.
   factory fromJson(Map<String, dynamic> json) => _$SessionRoleFromJson(json);
+
+  static const schema = _$SessionRoleJsonSchema;
 
   /// UUID.
   final String id;
@@ -162,6 +208,8 @@ final class StoreMembership {
   /// Lê o vínculo.
   factory fromJson(Map<String, dynamic> json) => _$StoreMembershipFromJson(json);
 
+  static const schema = _$StoreMembershipJsonSchema;
+
   /// Usuário.
   final String userId;
 
@@ -178,159 +226,20 @@ final class StoreMembership {
   Map<String, dynamic> toJson() => _$StoreMembershipToJson(this);
 }
 
-/// Objeto `session` (`API.md` §2.1).
+/// Corpo de `POST /auth/switch-store`.
 @JsonSerializable()
-final class UserSession {
-  /// Cria a sessão.
-  const new({
-    required this.user,
-    required this.availableStores,
-    this.activeStore,
-    this.membership,
-  });
-
-  /// Lê a sessão.
-  factory fromJson(Map<String, dynamic> json) => _$UserSessionFromJson(json);
-
-  /// Usuário autenticado.
-  final User user;
-
-  /// Loja ativa. `null` quando o superadmin ainda não cadastrou loja.
-  final Store? activeStore;
-
-  /// Lojas com vínculo.
-  final List<Store> availableStores;
-
-  /// Vínculo na loja ativa. `null` junto com [activeStore].
-  final StoreMembership? membership;
-
-  /// Serializa a sessão.
-  Map<String, dynamic> toJson() => _$UserSessionToJson(this);
-}
-
-/// Resposta de login e de refresh (`API.md` §2.1 e §2.2).
-@JsonSerializable()
-final class AuthSession {
-  /// Cria a resposta.
-  const new({
-    required this.accessToken,
-    required this.accessTokenExpiresAt,
-    required this.refreshToken,
-    required this.refreshTokenExpiresAt,
-    required this.session,
-  });
-
-  /// Lê a resposta.
-  factory fromJson(Map<String, dynamic> json) => _$AuthSessionFromJson(json);
-
-  /// JWT de acesso.
-  final String accessToken;
-
-  /// Expiração do access token.
-  final ApiInstant accessTokenExpiresAt;
-
-  /// Refresh token opaco.
-  final String refreshToken;
-
-  /// Expiração do refresh token.
-  final ApiInstant refreshTokenExpiresAt;
-
-  /// Sessão recarregada.
-  final UserSession session;
-
-  /// Serializa a resposta.
-  Map<String, dynamic> toJson() => _$AuthSessionToJson(this);
-}
-
-/// Resposta `{ session }` de `GET /auth/session` e `POST /auth/switch-store`.
-@JsonSerializable()
-final class SessionResponse {
-  /// Cria a resposta.
-  const new({required this.session});
-
-  /// Lê a resposta.
-  factory fromJson(Map<String, dynamic> json) => _$SessionResponseFromJson(json);
-
-  /// Sessão corrente.
-  final UserSession session;
-
-  /// Serializa a resposta.
-  Map<String, dynamic> toJson() => _$SessionResponseToJson(this);
-}
-
-/// Corpo de `POST /auth/password-recovery/request`.
-@JsonSerializable()
-final class PasswordRecoveryRequest {
-  /// Cria o pedido.
-  const new({required this.email});
+final class SwitchStoreRequest {
+  /// Cria o corpo.
+  const new({required this.storeId});
 
   /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$PasswordRecoveryRequestFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$SwitchStoreRequestFromJson(json);
 
-  /// E-mail informado.
-  final String email;
+  static const schema = _$SwitchStoreRequestJsonSchema;
 
-  /// Serializa o corpo.
-  Map<String, dynamic> toJson() => _$PasswordRecoveryRequestToJson(this);
-}
-
-/// Resposta genérica do pedido de código. O código não volta no corpo.
-@JsonSerializable()
-final class PasswordRecoveryAccepted {
-  /// Cria a resposta.
-  const new({required this.message});
-
-  /// Lê a resposta.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$PasswordRecoveryAcceptedFromJson(json);
-
-  /// Texto genérico, exista ou não o e-mail.
-  final String message;
-
-  /// Serializa a resposta.
-  Map<String, dynamic> toJson() => _$PasswordRecoveryAcceptedToJson(this);
-}
-
-/// Corpo de `POST /auth/password-recovery/validate`.
-@JsonSerializable()
-final class ValidateRecoveryCodeRequest {
-  /// Cria a validação.
-  const new({required this.email, required this.code});
-
-  /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$ValidateRecoveryCodeRequestFromJson(json);
-
-  /// E-mail do pedido.
-  final String email;
-
-  /// Código de 6 dígitos.
-  final String code;
+  /// Loja que passa a ser a ativa.
+  final String storeId;
 
   /// Serializa o corpo.
-  Map<String, dynamic> toJson() => _$ValidateRecoveryCodeRequestToJson(this);
-}
-
-/// Corpo de `POST /auth/password-recovery/reset`.
-@JsonSerializable()
-final class ResetPasswordRequest {
-  /// Cria a troca.
-  const new({required this.email, required this.code, required this.newPassword});
-
-  /// Lê o corpo.
-  factory fromJson(Map<String, dynamic> json) =>
-      _$ResetPasswordRequestFromJson(json);
-
-  /// E-mail do pedido.
-  final String email;
-
-  /// Código de 6 dígitos.
-  final String code;
-
-  /// Senha nova em texto.
-  final String newPassword;
-
-  /// Serializa o corpo.
-  Map<String, dynamic> toJson() => _$ResetPasswordRequestToJson(this);
+  Map<String, dynamic> toJson() => _$SwitchStoreRequestToJson(this);
 }
