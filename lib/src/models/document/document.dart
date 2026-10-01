@@ -1,3 +1,5 @@
+import 'package:base_objects/src/api/errors/error_exception.dart';
+
 /// Valor de um documento de identificação, com formatação e validação.
 ///
 /// {@category modelos}
@@ -5,12 +7,12 @@
 abstract class Document {
   /// Armazena [value] e chama a validação definida pela subclasse.
   ///
-  /// O resultado da validação é retornado por [validateDocument]; este
-  /// construtor não lança uma exceção quando o valor é inválido.
+  /// O resultado da validação é retornado por [validateDocument];
+  /// lança uma exceção quando o valor é inválido.
   new(this.value) {
     final validationError = validateDocument();
     if (validationError != null) {
-      // throw ValidationException(validationError);
+      throw ErrorException.validation(message: validationError, fields: {'value': value});
     }
   }
 
