@@ -10,6 +10,7 @@ library;
 
 export 'access/access.dart';
 export 'access/audit_log.dart';
+export 'access/user_upsert_request.dart';
 export 'auth/auth.dart';
 export 'auth/user.dart';
 export 'auth/user_session.dart';
@@ -31,6 +32,9 @@ export 'core/api_time.dart';
 export 'core/page.dart';
 export 'core/scaled_amount.dart';
 export 'core/wire_enums.dart';
+export 'errors/api_error_code.dart';
+export 'errors/api_error_json_keys.dart';
+export 'errors/error_exception.dart';
 export 'installation/installation.dart';
 export 'installation/installation_api.dart';
 export 'invoice/invoice.dart';
