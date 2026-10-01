@@ -1,4 +1,4 @@
-import 'package:base_objects/src/api/core/scaled_amount.dart';
+import 'package:base_objects/src/api/core/money_amount.dart';
 import 'package:base_objects/src/api/core/wire_enums.dart';
 import 'package:json_annotation/json_annotation.dart';
 

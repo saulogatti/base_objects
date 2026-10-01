@@ -1,6 +1,7 @@
 
-import 'package:base_objects/src/api/core/scaled_amount.dart';
+import 'package:base_objects/src/api/core/money_amount.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'open_cash_session_request.g.dart';
 
 

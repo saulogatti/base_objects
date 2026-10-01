@@ -1,6 +1,6 @@
 import 'package:base_objects/src/api/cash/cash_method_total.dart';
 import 'package:base_objects/src/api/cash/cash_session.dart';
-import 'package:base_objects/src/api/core/scaled_amount.dart';
+import 'package:base_objects/src/api/core/money_amount.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cash_summary.g.dart';

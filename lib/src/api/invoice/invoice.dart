@@ -1,6 +1,8 @@
 import 'package:base_objects/src/api/cash/cash_summary.dart';
 import 'package:base_objects/src/api/core/api_time.dart';
-import 'package:base_objects/src/api/core/scaled_amount.dart';
+import 'package:base_objects/src/api/core/money_amount.dart';
+import 'package:base_objects/src/api/core/percent_amount.dart';
+import 'package:base_objects/src/api/core/quantity_amount.dart';
 import 'package:base_objects/src/api/core/wire_enums.dart';
 import 'package:base_objects/src/api/receivable/receivable.dart';
 import 'package:json_annotation/json_annotation.dart';
