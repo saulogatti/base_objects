@@ -1,5 +1,12 @@
 # base_objects
 
+## 2.1.1
+
+- Adiciona `ApiTime` para tratamento de horários da API.
+- Corrige obejtos de `Page` e `MoneyAmount`.
+- Adiciona `WireEnums` para tratamento de enums da API.
+- Correção no erro de tipo de `ErrorException`.
+
 ## 2.1.0
 
 - Adiciona `ErrorException` para tratamento de erros da API.

@@ -1,4 +1,4 @@
-import 'package:base_objects/src/api/errors/error_exception.dart';
+import 'package:base_objects/src/api/errors/api_exception.dart';
 
 /// Valor de um documento de identificação, com formatação e validação.
 ///
@@ -12,7 +12,7 @@ abstract class Document {
   new(this.value) {
     final validationError = validateDocument();
     if (validationError != null) {
-      throw ErrorException.validation(message: validationError, fields: {'value': value});
+      throw ApiException.validation(message: validationError, fields: {'value': value});
     }
   }
 

@@ -2,27 +2,27 @@ import 'package:base_objects/src/api/errors/api_error_code.dart';
 import 'package:base_objects/src/api/errors/api_error_json_keys.dart';
 
 /// Erro de domínio da API: vira resposta JSON da §1.8 no middleware.
-final class ErrorException implements Exception {
+class ApiException implements Exception {
   const new({required this.code, required this.message, this.details});
 
   /// Já existe um `SystemUserData` (`POST /installation`).
   factory alreadyInstalled([String message = ApiErrorMessages.alreadyInstalled]) =>
-      ErrorException(code: ApiErrorCode.alreadyInstalled, message: message);
+      ApiException(code: ApiErrorCode.alreadyInstalled, message: message);
 
   /// Regra de negócio genérica (`422 BUSINESS_RULE`).
   factory businessRule(String message, {Map<String, Object?>? details}) =>
-      ErrorException(code: ApiErrorCode.businessRule, message: message, details: details);
+      ApiException(code: ApiErrorCode.businessRule, message: message, details: details);
 
   /// Terminal já possui turno aberto.
   factory cashSessionAlreadyOpen([String message = ApiErrorMessages.cashSessionAlreadyOpen]) =>
-      ErrorException(code: ApiErrorCode.cashSessionAlreadyOpen, message: message);
+      ApiException(code: ApiErrorCode.cashSessionAlreadyOpen, message: message);
 
   /// Operação exige turno de caixa aberto do operador.
   factory cashSessionRequired([String message = ApiErrorMessages.cashSessionRequired]) =>
-      ErrorException(code: ApiErrorCode.cashSessionRequired, message: message);
+      ApiException(code: ApiErrorCode.cashSessionRequired, message: message);
 
   /// Unicidade violada. [field] é a chave JSON em `details.field`.
-  factory conflict({String message = ApiErrorMessages.conflict, String? field}) => ErrorException(
+  factory conflict({String message = ApiErrorMessages.conflict, String? field}) => ApiException(
     code: ApiErrorCode.conflict,
     message: message,
     details: field == null ? null : {ApiErrorJsonKeys.field: field},
@@ -30,30 +30,30 @@ final class ErrorException implements Exception {
 
   /// Sem permissão.
   factory forbidden([String message = ApiErrorMessages.forbidden]) =>
-      ErrorException(code: ApiErrorCode.forbidden, message: message);
+      ApiException(code: ApiErrorCode.forbidden, message: message);
 
   /// Mesmo id de operação com payload diferente.
   factory idempotencyConflict([String message = ApiErrorMessages.idempotencyConflict]) =>
-      ErrorException(code: ApiErrorCode.idempotencyConflict, message: message);
+      ApiException(code: ApiErrorCode.idempotencyConflict, message: message);
 
   /// Exclusão bloqueada por referência.
   factory inUse([String message = ApiErrorMessages.inUse]) =>
-      ErrorException(code: ApiErrorCode.inUse, message: message);
+      ApiException(code: ApiErrorCode.inUse, message: message);
 
   /// E-mail ou senha inválidos.
-  factory invalidCredentials() => const ErrorException(
+  factory invalidCredentials() => const ApiException(
     code: ApiErrorCode.invalidCredentials,
     message: ApiErrorMessages.invalidCredentials,
   );
 
   /// Código de recuperação inválido, expirado ou já usado.
-  factory invalidRecoveryCode() => const ErrorException(
+  factory invalidRecoveryCode() => const ApiException(
     code: ApiErrorCode.invalidRecoveryCode,
     message: ApiErrorMessages.invalidRecoveryCode,
   );
 
   /// Bloqueio por tentativas de login.
-  factory loginLocked({required int retryAfterSeconds}) => ErrorException(
+  factory loginLocked({required int retryAfterSeconds}) => ApiException(
     code: ApiErrorCode.loginLocked,
     message: ApiErrorMessages.loginLocked,
     details: {ApiErrorJsonKeys.retryAfterSeconds: retryAfterSeconds},
@@ -61,14 +61,14 @@ final class ErrorException implements Exception {
 
   /// Sem vínculo com a loja.
   factory noStoreAccess([String message = ApiErrorMessages.noStoreAccess]) =>
-      ErrorException(code: ApiErrorCode.noStoreAccess, message: message);
+      ApiException(code: ApiErrorCode.noStoreAccess, message: message);
 
   /// Recurso inexistente.
   factory notFound([String message = ApiErrorMessages.notFound]) =>
-      ErrorException(code: ApiErrorCode.notFound, message: message);
+      ApiException(code: ApiErrorCode.notFound, message: message);
 
   /// Limite de pedidos (recuperação de senha, etc.).
-  factory rateLimited({int? retryAfterSeconds}) => ErrorException(
+  factory rateLimited({int? retryAfterSeconds}) => ApiException(
     code: ApiErrorCode.rateLimited,
     message: ApiErrorMessages.rateLimited,
     details: retryAfterSeconds == null
@@ -78,18 +78,18 @@ final class ErrorException implements Exception {
 
   /// Access token expirado.
   factory tokenExpired([String message = ApiErrorMessages.tokenExpired]) =>
-      ErrorException(code: ApiErrorCode.tokenExpired, message: message);
+      ApiException(code: ApiErrorCode.tokenExpired, message: message);
 
   /// Sem token ou token inválido.
   factory unauthenticated(String message) =>
-      ErrorException(code: ApiErrorCode.unauthenticated, message: message);
+      ApiException(code: ApiErrorCode.unauthenticated, message: message);
 
   /// Usuário desativado.
   factory userInactive() =>
-      const ErrorException(code: ApiErrorCode.userInactive, message: ApiErrorMessages.userInactive);
+      const ApiException(code: ApiErrorCode.userInactive, message: ApiErrorMessages.userInactive);
 
   /// Corpo ou query inválidos.
-  factory validation({required String message, Map<String, Object?>? fields}) => ErrorException(
+  factory validation({required String message, Map<String, Object?>? fields}) => ApiException(
     code: ApiErrorCode.validationError,
     message: message,
     details: fields == null ? null : {ApiErrorJsonKeys.fields: fields},
