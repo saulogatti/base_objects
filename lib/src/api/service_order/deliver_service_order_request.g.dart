@@ -9,27 +9,29 @@ part of 'deliver_service_order_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DeliverServiceOrderRequest _$DeliverServiceOrderRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('DeliverServiceOrderRequest', json, ($checkedConvert) {
-      final val = DeliverServiceOrderRequest(
-        deliveredToName: $checkedConvert('deliveredToName', (v) => v as String),
-        invoiceId: $checkedConvert('invoiceId', (v) => v as String),
-        checkout: $checkedConvert(
-          'checkout',
-          (v) => CheckoutRequest.fromJson(v as Map<String, dynamic>),
-        ),
-        notes: $checkedConvert('notes', (v) => v as String?),
-      );
-      return val;
-    });
+DeliverServiceOrderRequest _$DeliverServiceOrderRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('DeliverServiceOrderRequest', json, ($checkedConvert) {
+  final val = DeliverServiceOrderRequest(
+    deliveredToName: $checkedConvert('deliveredToName', (v) => v as String),
+    invoiceId: $checkedConvert('invoiceId', (v) => v as String),
+    checkout: $checkedConvert(
+      'checkout',
+      (v) => CheckoutRequest.fromJson(v as Map<String, dynamic>),
+    ),
+    notes: $checkedConvert('notes', (v) => v as String?),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$DeliverServiceOrderRequestToJson(DeliverServiceOrderRequest instance) =>
-    <String, dynamic>{
-      'deliveredToName': instance.deliveredToName,
-      'notes': instance.notes,
-      'invoiceId': instance.invoiceId,
-      'checkout': instance.checkout.toJson(),
-    };
+Map<String, dynamic> _$DeliverServiceOrderRequestToJson(
+  DeliverServiceOrderRequest instance,
+) => <String, dynamic>{
+  'deliveredToName': instance.deliveredToName,
+  'notes': instance.notes,
+  'invoiceId': instance.invoiceId,
+  'checkout': instance.checkout.toJson(),
+};
 
 const _$DeliverServiceOrderRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -55,14 +57,20 @@ const _$DeliverServiceOrderRequestJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID. Vira `receivables.id`.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
-        'dueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Vencimento.'},
+        'dueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Vencimento.',
+        },
       },
       'required': ['id', 'amount', 'dueDate'],
     },
     'CheckoutPaymentRequest': {
       'type': 'object',
       'properties': {
-        'id': {'type': 'string', 'description': 'UUID. Vira `invoice_payments.id`.'},
+        'id': {
+          'type': 'string',
+          'description': 'UUID. Vira `invoice_payments.id`.',
+        },
         'paymentMethodId': {'type': 'string', 'description': 'Forma ativa.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
         'installments': {
@@ -75,13 +83,25 @@ const _$DeliverServiceOrderRequestJsonSchema = {
           'description': 'Cronograma. Só no crediário.',
         },
       },
-      'required': ['id', 'paymentMethodId', 'amount', 'installments', 'schedule'],
+      'required': [
+        'id',
+        'paymentMethodId',
+        'amount',
+        'installments',
+        'schedule',
+      ],
     },
     'CheckoutRequest': {
       'type': 'object',
       'properties': {
-        'id': {'type': 'string', 'description': 'Chave de idempotência do recebimento.'},
-        'sessionId': {'type': 'string', 'description': 'Turno aberto do operador do token.'},
+        'id': {
+          'type': 'string',
+          'description': 'Chave de idempotência do recebimento.',
+        },
+        'sessionId': {
+          'type': 'string',
+          'description': 'Turno aberto do operador do token.',
+        },
         'payments': {
           'type': 'array',
           'items': {r'$ref': r'#/$defs/CheckoutPaymentRequest'},

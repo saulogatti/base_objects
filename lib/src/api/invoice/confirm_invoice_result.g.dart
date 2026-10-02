@@ -9,30 +9,35 @@ part of 'confirm_invoice_result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmInvoiceResult _$ConfirmInvoiceResultFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ConfirmInvoiceResult', json, ($checkedConvert) {
-      final val = ConfirmInvoiceResult(
-        invoice: $checkedConvert('invoice', (v) => Invoice.fromJson(v as Map<String, dynamic>)),
-        receivables: $checkedConvert(
-          'receivables',
-          (v) => (v as List<dynamic>)
-              .map((e) => Receivable.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        cashSummary: $checkedConvert(
-          'cashSummary',
-          (v) => v == null ? null : CashSummary.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+ConfirmInvoiceResult _$ConfirmInvoiceResultFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ConfirmInvoiceResult', json, ($checkedConvert) {
+  final val = ConfirmInvoiceResult(
+    invoice: $checkedConvert(
+      'invoice',
+      (v) => Invoice.fromJson(v as Map<String, dynamic>),
+    ),
+    receivables: $checkedConvert(
+      'receivables',
+      (v) => (v as List<dynamic>)
+          .map((e) => Receivable.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    cashSummary: $checkedConvert(
+      'cashSummary',
+      (v) => v == null ? null : CashSummary.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$ConfirmInvoiceResultToJson(ConfirmInvoiceResult instance) =>
-    <String, dynamic>{
-      'invoice': instance.invoice.toJson(),
-      'receivables': instance.receivables.map((e) => e.toJson()).toList(),
-      'cashSummary': instance.cashSummary?.toJson(),
-    };
+Map<String, dynamic> _$ConfirmInvoiceResultToJson(
+  ConfirmInvoiceResult instance,
+) => <String, dynamic>{
+  'invoice': instance.invoice.toJson(),
+  'receivables': instance.receivables.map((e) => e.toJson()).toList(),
+  'cashSummary': instance.cashSummary?.toJson(),
+};
 
 const _$ConfirmInvoiceResultJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -59,27 +64,50 @@ const _$ConfirmInvoiceResultJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID do item.'},
         'productId': {'type': 'string', 'description': 'Peça, ou `null`.'},
-        'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null`.'},
+        'serviceId': {
+          'type': 'string',
+          'description': 'Mão de obra, ou `null`.',
+        },
         'description': {'type': 'string', 'description': 'Nome congelado.'},
-        'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-        'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
+        'quantity': {
+          r'$ref': r'#/$defs/QuantityAmount',
+          'description': 'Quantidade, escala 3.',
+        },
+        'unitPrice': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Preço unitário.',
+        },
         'unitCost': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Custo unitário. `null` sem `product:view_cost`.',
         },
-        'discount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Desconto do item.'},
+        'discount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Desconto do item.',
+        },
         'totalValue': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Total calculado no servidor.',
         },
       },
-      'required': ['id', 'description', 'quantity', 'unitPrice', 'discount', 'totalValue'],
+      'required': [
+        'id',
+        'description',
+        'quantity',
+        'unitPrice',
+        'discount',
+        'totalValue',
+      ],
     },
     'PercentAmount': {'type': 'object', 'properties': {}},
     'ApiInstant': {
       'type': 'object',
       'properties': {
-        'value': {'type': 'string', 'format': 'date-time', 'description': 'Instante em UTC.'},
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
       },
       'required': ['value'],
     },
@@ -90,21 +118,36 @@ const _$ConfirmInvoiceResultJsonSchema = {
         'invoiceId': {'type': 'string', 'description': 'Nota.'},
         'paymentMethodId': {'type': 'string', 'description': 'Forma.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
-        'installments': {'type': 'integer', 'description': 'Número de parcelas.'},
+        'installments': {
+          'type': 'integer',
+          'description': 'Número de parcelas.',
+        },
         'cashSessionId': {'type': 'string', 'description': 'Turno, ou `null`.'},
         'checkoutId': {'type': 'string', 'description': 'Recebimento.'},
         'cashMovementId': {
           'type': 'string',
           'description': 'Movimento de caixa, ou `null` no crediário.',
         },
-        'methodName': {'type': 'string', 'description': 'Nome da forma no momento do recebimento.'},
-        'affectsCashDrawer': {'type': 'boolean', 'description': 'Se afetou a gaveta.'},
+        'methodName': {
+          'type': 'string',
+          'description': 'Nome da forma no momento do recebimento.',
+        },
+        'affectsCashDrawer': {
+          'type': 'boolean',
+          'description': 'Se afetou a gaveta.',
+        },
         'feePercent': {
           r'$ref': r'#/$defs/PercentAmount',
           'description': 'Taxa percentual, escala 3.',
         },
-        'feeAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor da taxa.'},
-        'netAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Líquido.'},
+        'feeAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Valor da taxa.',
+        },
+        'netAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Líquido.',
+        },
         'expectedSettlementAt': {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Previsão de liquidação, ou `null`.',
@@ -128,12 +171,24 @@ const _$ConfirmInvoiceResultJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID.'},
-        'storeId': {'type': 'string', 'description': 'Loja. Vem do caminho, não do corpo.'},
+        'storeId': {
+          'type': 'string',
+          'description': 'Loja. Vem do caminho, não do corpo.',
+        },
         'number': {'type': 'integer', 'description': 'Sequencial por loja.'},
         'type': {'type': 'object', 'description': 'Entrada ou saída.'},
-        'status': {'type': 'object', 'description': 'Situação. Muda só por comando.'},
-        'customerId': {'type': 'string', 'description': 'Cliente, ou `null` na entrada.'},
-        'supplierId': {'type': 'string', 'description': 'Fornecedor, ou `null` na saída.'},
+        'status': {
+          'type': 'object',
+          'description': 'Situação. Muda só por comando.',
+        },
+        'customerId': {
+          'type': 'string',
+          'description': 'Cliente, ou `null` na entrada.',
+        },
+        'supplierId': {
+          'type': 'string',
+          'description': 'Fornecedor, ou `null` na saída.',
+        },
         'customerName': {
           'type': 'string',
           'description': 'Nome do cliente na listagem, ou `null`.',
@@ -142,8 +197,14 @@ const _$ConfirmInvoiceResultJsonSchema = {
           'type': 'string',
           'description': 'Nome do fornecedor na listagem, ou `null`.',
         },
-        'issueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Emissão.'},
-        'discount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Desconto no total.'},
+        'issueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Emissão.',
+        },
+        'discount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Desconto no total.',
+        },
         'subtotal': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Soma dos itens, calculada no servidor.',
@@ -164,11 +225,26 @@ const _$ConfirmInvoiceResultJsonSchema = {
           'description': 'Pagamentos. Vazio fora da saída confirmada.',
         },
         'createdBy': {'type': 'string', 'description': 'Autor, ou `null`.'},
-        'cancelledBy': {'type': 'string', 'description': 'Quem cancelou, ou `null`.'},
-        'cancelledAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Cancelamento, ou `null`.'},
-        'cancelReason': {'type': 'string', 'description': 'Motivo do cancelamento, ou `null`.'},
-        'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Criação.'},
-        'updatedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Última alteração.'},
+        'cancelledBy': {
+          'type': 'string',
+          'description': 'Quem cancelou, ou `null`.',
+        },
+        'cancelledAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Cancelamento, ou `null`.',
+        },
+        'cancelReason': {
+          'type': 'string',
+          'description': 'Motivo do cancelamento, ou `null`.',
+        },
+        'createdAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Criação.',
+        },
+        'updatedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Última alteração.',
+        },
       },
       'required': [
         'id',
@@ -200,24 +276,42 @@ const _$ConfirmInvoiceResultJsonSchema = {
           'type': 'string',
           'description': 'Nota de origem, ou `null` quando o SQL permite.',
         },
-        'invoiceNumber': {'type': 'integer', 'description': 'Número da nota, ou `null`.'},
+        'invoiceNumber': {
+          'type': 'integer',
+          'description': 'Número da nota, ou `null`.',
+        },
         'installmentNumber': {
           'type': 'integer',
           'description': 'Número da parcela, a partir de 1.',
         },
-        'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor da parcela.'},
-        'dueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Vencimento.'},
+        'amount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Valor da parcela.',
+        },
+        'dueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Vencimento.',
+        },
         'paidAmount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Valor já pago. Na v1, zero ou o total.',
         },
-        'paidAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Quitação, ou `null`.'},
+        'paidAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Quitação, ou `null`.',
+        },
         'cashMovementId': {
           'type': 'string',
           'description': 'Movimento de caixa da baixa, ou `null`.',
         },
-        'cancelledAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Cancelamento, ou `null`.'},
-        'cancelReason': {'type': 'string', 'description': 'Motivo do cancelamento, ou `null`.'},
+        'cancelledAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Cancelamento, ou `null`.',
+        },
+        'cancelReason': {
+          'type': 'string',
+          'description': 'Motivo do cancelamento, ou `null`.',
+        },
         'isOverdue': {
           'type': 'boolean',
           'description': 'Se está vencida e em aberto. Calculado no servidor.',
@@ -241,9 +335,18 @@ const _$ConfirmInvoiceResultJsonSchema = {
         'id': {'type': 'string', 'description': 'UUID.'},
         'sessionId': {'type': 'string', 'description': 'Turno.'},
         'type': {'type': 'object', 'description': 'Natureza.'},
-        'paymentMethodId': {'type': 'string', 'description': 'Forma, ou `null`.'},
-        'methodName': {'type': 'string', 'description': 'Nome da forma no momento do lançamento.'},
-        'affectsCashDrawer': {'type': 'boolean', 'description': 'Se afetou a gaveta.'},
+        'paymentMethodId': {
+          'type': 'string',
+          'description': 'Forma, ou `null`.',
+        },
+        'methodName': {
+          'type': 'string',
+          'description': 'Nome da forma no momento do lançamento.',
+        },
+        'affectsCashDrawer': {
+          'type': 'boolean',
+          'description': 'Se afetou a gaveta.',
+        },
         'amount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Valor. Positivo entra, negativo sai.',
@@ -252,7 +355,10 @@ const _$ConfirmInvoiceResultJsonSchema = {
           r'$ref': r'#/$defs/PercentAmount',
           'description': 'Taxa percentual, escala 3.',
         },
-        'feeAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor da taxa.'},
+        'feeAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Valor da taxa.',
+        },
         'netAmount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Líquido (`amount` menos a taxa).',
@@ -261,12 +367,27 @@ const _$ConfirmInvoiceResultJsonSchema = {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Previsão de liquidação, ou `null`.',
         },
-        'description': {'type': 'string', 'description': 'Descrição, ou `null`.'},
-        'referenceType': {'type': 'string', 'description': 'Tipo da referência, ou `null`.'},
-        'referenceId': {'type': 'string', 'description': 'Id da referência, ou `null`.'},
-        'refundedMovementId': {'type': 'string', 'description': 'Movimento estornado, ou `null`.'},
+        'description': {
+          'type': 'string',
+          'description': 'Descrição, ou `null`.',
+        },
+        'referenceType': {
+          'type': 'string',
+          'description': 'Tipo da referência, ou `null`.',
+        },
+        'referenceId': {
+          'type': 'string',
+          'description': 'Id da referência, ou `null`.',
+        },
+        'refundedMovementId': {
+          'type': 'string',
+          'description': 'Movimento estornado, ou `null`.',
+        },
         'createdBy': {'type': 'string', 'description': 'Autor, ou `null`.'},
-        'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Inclusão.'},
+        'createdAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Inclusão.',
+        },
       },
       'required': [
         'id',
@@ -289,10 +410,22 @@ const _$ConfirmInvoiceResultJsonSchema = {
         'registerId': {'type': 'string', 'description': 'Terminal.'},
         'status': {'type': 'object', 'description': 'Situação.'},
         'openedBy': {'type': 'string', 'description': 'Quem abriu.'},
-        'openedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Abertura.'},
-        'openingAmount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Fundo de troco.'},
-        'closedBy': {'type': 'string', 'description': 'Quem fechou, ou `null`.'},
-        'closedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Fechamento, ou `null`.'},
+        'openedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Abertura.',
+        },
+        'openingAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Fundo de troco.',
+        },
+        'closedBy': {
+          'type': 'string',
+          'description': 'Quem fechou, ou `null`.',
+        },
+        'closedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Fechamento, ou `null`.',
+        },
         'countedAmount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Valor contado, ou `null` enquanto aberto.',
@@ -305,7 +438,10 @@ const _$ConfirmInvoiceResultJsonSchema = {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Diferença, ou `null` enquanto aberto.',
         },
-        'closingNotes': {'type': 'string', 'description': 'Observação do fechamento, ou `null`.'},
+        'closingNotes': {
+          'type': 'string',
+          'description': 'Observação do fechamento, ou `null`.',
+        },
         'movements': {
           'type': 'array',
           'items': {r'$ref': r'#/$defs/CashMovement'},
@@ -338,7 +474,10 @@ const _$ConfirmInvoiceResultJsonSchema = {
         'session': {r'$ref': r'#/$defs/CashSession', 'description': 'Turno.'},
         'registerName': {'type': 'string', 'description': 'Nome do terminal.'},
         'operatorName': {'type': 'string', 'description': 'Nome do operador.'},
-        'expectedCash': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Gaveta esperada.'},
+        'expectedCash': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Gaveta esperada.',
+        },
         'income': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Entradas.'},
         'outgoing': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Saídas.'},
         'totalsByMethod': {

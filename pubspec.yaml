@@ -1,6 +1,6 @@
 name: base_objects
 description: Base de objetos e utilidades para outros projeto.
-version: 2.1.2
+version: 2.1.3
 publish_to: none
 
 environment:

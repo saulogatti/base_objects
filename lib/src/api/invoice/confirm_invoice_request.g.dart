@@ -9,28 +9,33 @@ part of 'confirm_invoice_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmInvoiceRequest _$ConfirmInvoiceRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ConfirmInvoiceRequest', json, ($checkedConvert) {
-      final val = ConfirmInvoiceRequest(
-        allowNegativeStock: $checkedConvert('allowNegativeStock', (v) => v as bool),
-        invoice: $checkedConvert(
-          'invoice',
-          (v) => v == null ? null : InvoiceDraft.fromJson(v as Map<String, dynamic>),
-        ),
-        checkout: $checkedConvert(
-          'checkout',
-          (v) => v == null ? null : CheckoutRequest.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+ConfirmInvoiceRequest _$ConfirmInvoiceRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ConfirmInvoiceRequest', json, ($checkedConvert) {
+  final val = ConfirmInvoiceRequest(
+    allowNegativeStock: $checkedConvert('allowNegativeStock', (v) => v as bool),
+    invoice: $checkedConvert(
+      'invoice',
+      (v) =>
+          v == null ? null : InvoiceDraft.fromJson(v as Map<String, dynamic>),
+    ),
+    checkout: $checkedConvert(
+      'checkout',
+      (v) => v == null
+          ? null
+          : CheckoutRequest.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$ConfirmInvoiceRequestToJson(ConfirmInvoiceRequest instance) =>
-    <String, dynamic>{
-      'invoice': instance.invoice?.toJson(),
-      'allowNegativeStock': instance.allowNegativeStock,
-      'checkout': instance.checkout?.toJson(),
-    };
+Map<String, dynamic> _$ConfirmInvoiceRequestToJson(
+  ConfirmInvoiceRequest instance,
+) => <String, dynamic>{
+  'invoice': instance.invoice?.toJson(),
+  'allowNegativeStock': instance.allowNegativeStock,
+  'checkout': instance.checkout?.toJson(),
+};
 
 const _$ConfirmInvoiceRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -58,11 +63,23 @@ const _$ConfirmInvoiceRequestJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID do item.'},
-        'productId': {'type': 'string', 'description': 'Peça, ou `null` se for serviço.'},
-        'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null` se for peça.'},
+        'productId': {
+          'type': 'string',
+          'description': 'Peça, ou `null` se for serviço.',
+        },
+        'serviceId': {
+          'type': 'string',
+          'description': 'Mão de obra, ou `null` se for peça.',
+        },
         'description': {'type': 'string', 'description': 'Nome congelado.'},
-        'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-        'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
+        'quantity': {
+          r'$ref': r'#/$defs/QuantityAmount',
+          'description': 'Quantidade, escala 3.',
+        },
+        'unitPrice': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Preço unitário.',
+        },
         'discount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Desconto do item, ou `null`.',
@@ -78,7 +95,10 @@ const _$ConfirmInvoiceRequestJsonSchema = {
       'type': 'object',
       'properties': {
         'type': {'type': 'object', 'description': 'Entrada ou saída.'},
-        'customerId': {'type': 'string', 'description': 'Cliente, obrigatório em saída.'},
+        'customerId': {
+          'type': 'string',
+          'description': 'Cliente, obrigatório em saída.',
+        },
         'supplierId': {
           'type': 'string',
           'description': 'Fornecedor, obrigatório em entrada. No app o campo se chama `companyId`.',
@@ -89,7 +109,8 @@ const _$ConfirmInvoiceRequestJsonSchema = {
         },
         'discount': {
           r'$ref': r'#/$defs/MoneyAmount',
-          'description': 'Desconto no total, ou `null` (o servidor grava zero).',
+          'description':
+              'Desconto no total, ou `null` (o servidor grava zero).',
         },
         'notes': {'type': 'string', 'description': 'Observações, ou `null`.'},
         'items': {
@@ -105,14 +126,20 @@ const _$ConfirmInvoiceRequestJsonSchema = {
       'properties': {
         'id': {'type': 'string', 'description': 'UUID. Vira `receivables.id`.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
-        'dueDate': {r'$ref': r'#/$defs/CalendarDate', 'description': 'Vencimento.'},
+        'dueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Vencimento.',
+        },
       },
       'required': ['id', 'amount', 'dueDate'],
     },
     'CheckoutPaymentRequest': {
       'type': 'object',
       'properties': {
-        'id': {'type': 'string', 'description': 'UUID. Vira `invoice_payments.id`.'},
+        'id': {
+          'type': 'string',
+          'description': 'UUID. Vira `invoice_payments.id`.',
+        },
         'paymentMethodId': {'type': 'string', 'description': 'Forma ativa.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
         'installments': {
@@ -125,13 +152,25 @@ const _$ConfirmInvoiceRequestJsonSchema = {
           'description': 'Cronograma. Só no crediário.',
         },
       },
-      'required': ['id', 'paymentMethodId', 'amount', 'installments', 'schedule'],
+      'required': [
+        'id',
+        'paymentMethodId',
+        'amount',
+        'installments',
+        'schedule',
+      ],
     },
     'CheckoutRequest': {
       'type': 'object',
       'properties': {
-        'id': {'type': 'string', 'description': 'Chave de idempotência do recebimento.'},
-        'sessionId': {'type': 'string', 'description': 'Turno aberto do operador do token.'},
+        'id': {
+          'type': 'string',
+          'description': 'Chave de idempotência do recebimento.',
+        },
+        'sessionId': {
+          'type': 'string',
+          'description': 'Turno aberto do operador do token.',
+        },
         'payments': {
           'type': 'array',
           'items': {r'$ref': r'#/$defs/CheckoutPaymentRequest'},

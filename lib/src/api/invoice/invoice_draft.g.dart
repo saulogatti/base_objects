@@ -14,38 +14,63 @@ InvoiceItemDraft _$InvoiceItemDraftFromJson(Map<String, dynamic> json) =>
       final val = InvoiceItemDraft(
         id: $checkedConvert('id', (v) => v as String),
         description: $checkedConvert('description', (v) => v as String),
-        quantity: $checkedConvert('quantity', (v) => QuantityAmount.fromJson(v)),
+        quantity: $checkedConvert(
+          'quantity',
+          (v) => QuantityAmount.fromJson(v),
+        ),
         unitPrice: $checkedConvert('unitPrice', (v) => MoneyAmount.fromJson(v)),
         productId: $checkedConvert('productId', (v) => v as String?),
         serviceId: $checkedConvert('serviceId', (v) => v as String?),
-        discount: $checkedConvert('discount', (v) => v == null ? null : MoneyAmount.fromJson(v)),
-        unitCost: $checkedConvert('unitCost', (v) => v == null ? null : MoneyAmount.fromJson(v)),
+        discount: $checkedConvert(
+          'discount',
+          (v) => v == null ? null : MoneyAmount.fromJson(v),
+        ),
+        unitCost: $checkedConvert(
+          'unitCost',
+          (v) => v == null ? null : MoneyAmount.fromJson(v),
+        ),
       );
       return val;
     });
 
-Map<String, dynamic> _$InvoiceItemDraftToJson(InvoiceItemDraft instance) => <String, dynamic>{
-  'id': instance.id,
-  'productId': instance.productId,
-  'serviceId': instance.serviceId,
-  'description': instance.description,
-  'quantity': instance.quantity.toJson(),
-  'unitPrice': instance.unitPrice.toJson(),
-  'discount': instance.discount?.toJson(),
-  'unitCost': instance.unitCost?.toJson(),
-};
+Map<String, dynamic> _$InvoiceItemDraftToJson(InvoiceItemDraft instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'productId': instance.productId,
+      'serviceId': instance.serviceId,
+      'description': instance.description,
+      'quantity': instance.quantity.toJson(),
+      'unitPrice': instance.unitPrice.toJson(),
+      'discount': instance.discount?.toJson(),
+      'unitCost': instance.unitCost?.toJson(),
+    };
 
 const _$InvoiceItemDraftJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
     'id': {'type': 'string', 'description': 'UUID do item.'},
-    'productId': {'type': 'string', 'description': 'Peça, ou `null` se for serviço.'},
-    'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null` se for peça.'},
+    'productId': {
+      'type': 'string',
+      'description': 'Peça, ou `null` se for serviço.',
+    },
+    'serviceId': {
+      'type': 'string',
+      'description': 'Mão de obra, ou `null` se for peça.',
+    },
     'description': {'type': 'string', 'description': 'Nome congelado.'},
-    'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-    'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
-    'discount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Desconto do item, ou `null`.'},
+    'quantity': {
+      r'$ref': r'#/$defs/QuantityAmount',
+      'description': 'Quantidade, escala 3.',
+    },
+    'unitPrice': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Preço unitário.',
+    },
+    'discount': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Desconto do item, ou `null`.',
+    },
     'unitCost': {
       r'$ref': r'#/$defs/MoneyAmount',
       'description': 'Custo unitário informado pelo cliente, ou `null`.',
@@ -61,7 +86,10 @@ const _$InvoiceItemDraftJsonSchema = {
 InvoiceDraft _$InvoiceDraftFromJson(Map<String, dynamic> json) =>
     $checkedCreate('InvoiceDraft', json, ($checkedConvert) {
       final val = InvoiceDraft(
-        type: $checkedConvert('type', (v) => $enumDecode(_$InvoiceTypeEnumMap, v)),
+        type: $checkedConvert(
+          'type',
+          (v) => $enumDecode(_$InvoiceTypeEnumMap, v),
+        ),
         items: $checkedConvert(
           'items',
           (v) => (v as List<dynamic>)
@@ -70,29 +98,39 @@ InvoiceDraft _$InvoiceDraftFromJson(Map<String, dynamic> json) =>
         ),
         customerId: $checkedConvert('customerId', (v) => v as String?),
         supplierId: $checkedConvert('supplierId', (v) => v as String?),
-        issueDate: $checkedConvert('issueDate', (v) => v == null ? null : CalendarDate.fromJson(v)),
-        discount: $checkedConvert('discount', (v) => v == null ? null : MoneyAmount.fromJson(v)),
+        issueDate: $checkedConvert(
+          'issueDate',
+          (v) => v == null ? null : CalendarDate.fromJson(v),
+        ),
+        discount: $checkedConvert(
+          'discount',
+          (v) => v == null ? null : MoneyAmount.fromJson(v),
+        ),
         notes: $checkedConvert('notes', (v) => v as String?),
       );
       return val;
     });
 
-Map<String, dynamic> _$InvoiceDraftToJson(InvoiceDraft instance) => <String, dynamic>{
-  'type': _$InvoiceTypeEnumMap[instance.type]!,
-  'customerId': instance.customerId,
-  'supplierId': instance.supplierId,
-  'issueDate': instance.issueDate?.toJson(),
-  'discount': instance.discount?.toJson(),
-  'notes': instance.notes,
-  'items': instance.items.map((e) => e.toJson()).toList(),
-};
+Map<String, dynamic> _$InvoiceDraftToJson(InvoiceDraft instance) =>
+    <String, dynamic>{
+      'type': _$InvoiceTypeEnumMap[instance.type]!,
+      'customerId': instance.customerId,
+      'supplierId': instance.supplierId,
+      'issueDate': instance.issueDate?.toJson(),
+      'discount': instance.discount?.toJson(),
+      'notes': instance.notes,
+      'items': instance.items.map((e) => e.toJson()).toList(),
+    };
 
 const _$InvoiceDraftJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
     'type': {'type': 'object', 'description': 'Entrada ou saída.'},
-    'customerId': {'type': 'string', 'description': 'Cliente, obrigatório em saída.'},
+    'customerId': {
+      'type': 'string',
+      'description': 'Cliente, obrigatório em saída.',
+    },
     'supplierId': {
       'type': 'string',
       'description': 'Fornecedor, obrigatório em entrada. No app o campo se chama `companyId`.',
@@ -121,11 +159,23 @@ const _$InvoiceDraftJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID do item.'},
-        'productId': {'type': 'string', 'description': 'Peça, ou `null` se for serviço.'},
-        'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null` se for peça.'},
+        'productId': {
+          'type': 'string',
+          'description': 'Peça, ou `null` se for serviço.',
+        },
+        'serviceId': {
+          'type': 'string',
+          'description': 'Mão de obra, ou `null` se for peça.',
+        },
         'description': {'type': 'string', 'description': 'Nome congelado.'},
-        'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-        'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
+        'quantity': {
+          r'$ref': r'#/$defs/QuantityAmount',
+          'description': 'Quantidade, escala 3.',
+        },
+        'unitPrice': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Preço unitário.',
+        },
         'discount': {
           r'$ref': r'#/$defs/MoneyAmount',
           'description': 'Desconto do item, ou `null`.',
@@ -140,4 +190,7 @@ const _$InvoiceDraftJsonSchema = {
   },
 };
 
-const _$InvoiceTypeEnumMap = {InvoiceType.entry: 'entry', InvoiceType.exit: 'exit'};
+const _$InvoiceTypeEnumMap = {
+  InvoiceType.entry: 'entry',
+  InvoiceType.exit: 'exit',
+};

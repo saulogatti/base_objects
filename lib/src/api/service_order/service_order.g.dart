@@ -18,7 +18,10 @@ ServiceOrder _$ServiceOrderFromJson(
     number: $checkedConvert('number', (v) => (v as num).toInt()),
     customerId: $checkedConvert('customerId', (v) => v as String),
     deviceId: $checkedConvert('deviceId', (v) => v as String),
-    status: $checkedConvert('status', (v) => $enumDecode(_$ServiceOrderStatusEnumMap, v)),
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecode(_$ServiceOrderStatusEnumMap, v),
+    ),
     reportedIssue: $checkedConvert('reportedIssue', (v) => v as String),
     hasBackup: $checkedConvert('hasBackup', (v) => v as bool),
     totalValue: $checkedConvert('totalValue', (v) => MoneyAmount.fromJson(v)),
@@ -33,17 +36,28 @@ ServiceOrder _$ServiceOrderFromJson(
           .map((e) => ServiceOrderItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
-    createdAt: $checkedConvert('createdAt', (v) => ApiInstant.fromJson(v as Map<String, dynamic>)),
-    updatedAt: $checkedConvert('updatedAt', (v) => ApiInstant.fromJson(v as Map<String, dynamic>)),
+    createdAt: $checkedConvert(
+      'createdAt',
+      (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+    ),
+    updatedAt: $checkedConvert(
+      'updatedAt',
+      (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+    ),
     technicianId: $checkedConvert('technicianId', (v) => v as String?),
     accessories: $checkedConvert('accessories', (v) => v as String?),
     deviceCondition: $checkedConvert(
       'deviceCondition',
-      (v) => v == null ? null : DeviceEntryCondition.fromJson(v as Map<String, dynamic>),
+      (v) => v == null
+          ? null
+          : DeviceEntryCondition.fromJson(v as Map<String, dynamic>),
     ),
     unlockCode: $checkedConvert('unlockCode', (v) => v as String?),
     diagnosis: $checkedConvert('diagnosis', (v) => v as String?),
-    quoteValue: $checkedConvert('quoteValue', (v) => v == null ? null : MoneyAmount.fromJson(v)),
+    quoteValue: $checkedConvert(
+      'quoteValue',
+      (v) => v == null ? null : MoneyAmount.fromJson(v),
+    ),
     quoteSentAt: $checkedConvert(
       'quoteSentAt',
       (v) => v == null ? null : ApiInstant.fromJson(v as Map<String, dynamic>),
@@ -74,42 +88,43 @@ ServiceOrder _$ServiceOrderFromJson(
   return val;
 });
 
-Map<String, dynamic> _$ServiceOrderToJson(ServiceOrder instance) => <String, dynamic>{
-  'id': instance.id,
-  'storeId': instance.storeId,
-  'number': instance.number,
-  'customerId': instance.customerId,
-  'deviceId': instance.deviceId,
-  'status': _$ServiceOrderStatusEnumMap[instance.status]!,
-  'technicianId': instance.technicianId,
-  'reportedIssue': instance.reportedIssue,
-  'accessories': instance.accessories,
-  'deviceCondition': instance.deviceCondition?.toJson(),
-  'unlockCode': instance.unlockCode,
-  'hasBackup': instance.hasBackup,
-  'diagnosis': instance.diagnosis,
-  'quoteValue': instance.quoteValue?.toJson(),
-  'quoteSentAt': instance.quoteSentAt?.toJson(),
-  'approvedAt': instance.approvedAt?.toJson(),
-  'approvedByName': instance.approvedByName,
-  'rejectionReason': instance.rejectionReason,
-  'promisedDate': instance.promisedDate?.toJson(),
-  'repairNotes': instance.repairNotes,
-  'totalValue': instance.totalValue.toJson(),
-  'partsTotal': instance.partsTotal.toJson(),
-  'laborTotal': instance.laborTotal.toJson(),
-  'warrantyDays': instance.warrantyDays,
-  'deliveredAt': instance.deliveredAt?.toJson(),
-  'deliveredToName': instance.deliveredToName,
-  'warrantyExpiresAt': instance.warrantyExpiresAt?.toJson(),
-  'invoiceId': instance.invoiceId,
-  'isOverdue': instance.isOverdue,
-  'isUnderWarranty': instance.isUnderWarranty,
-  'items': instance.items.map((e) => e.toJson()).toList(),
-  'createdBy': instance.createdBy,
-  'createdAt': instance.createdAt.toJson(),
-  'updatedAt': instance.updatedAt.toJson(),
-};
+Map<String, dynamic> _$ServiceOrderToJson(ServiceOrder instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'storeId': instance.storeId,
+      'number': instance.number,
+      'customerId': instance.customerId,
+      'deviceId': instance.deviceId,
+      'status': _$ServiceOrderStatusEnumMap[instance.status]!,
+      'technicianId': instance.technicianId,
+      'reportedIssue': instance.reportedIssue,
+      'accessories': instance.accessories,
+      'deviceCondition': instance.deviceCondition?.toJson(),
+      'unlockCode': instance.unlockCode,
+      'hasBackup': instance.hasBackup,
+      'diagnosis': instance.diagnosis,
+      'quoteValue': instance.quoteValue?.toJson(),
+      'quoteSentAt': instance.quoteSentAt?.toJson(),
+      'approvedAt': instance.approvedAt?.toJson(),
+      'approvedByName': instance.approvedByName,
+      'rejectionReason': instance.rejectionReason,
+      'promisedDate': instance.promisedDate?.toJson(),
+      'repairNotes': instance.repairNotes,
+      'totalValue': instance.totalValue.toJson(),
+      'partsTotal': instance.partsTotal.toJson(),
+      'laborTotal': instance.laborTotal.toJson(),
+      'warrantyDays': instance.warrantyDays,
+      'deliveredAt': instance.deliveredAt?.toJson(),
+      'deliveredToName': instance.deliveredToName,
+      'warrantyExpiresAt': instance.warrantyExpiresAt?.toJson(),
+      'invoiceId': instance.invoiceId,
+      'isOverdue': instance.isOverdue,
+      'isUnderWarranty': instance.isUnderWarranty,
+      'items': instance.items.map((e) => e.toJson()).toList(),
+      'createdBy': instance.createdBy,
+      'createdAt': instance.createdAt.toJson(),
+      'updatedAt': instance.updatedAt.toJson(),
+    };
 
 const _$ServiceOrderJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
@@ -134,40 +149,85 @@ const _$ServiceOrderJsonSchema = {
     },
     'hasBackup': {'type': 'boolean', 'description': 'Se foi feito backup.'},
     'diagnosis': {'type': 'string', 'description': 'Diagnóstico, ou `null`.'},
-    'quoteValue': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor orçado, ou `null`.'},
+    'quoteValue': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Valor orçado, ou `null`.',
+    },
     'quoteSentAt': {
       r'$ref': r'#/$defs/ApiInstant',
       'description': 'Envio do orçamento, ou `null`.',
     },
-    'approvedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Aprovação, ou `null`.'},
-    'approvedByName': {'type': 'string', 'description': 'Quem autorizou pelo cliente, ou `null`.'},
-    'rejectionReason': {'type': 'string', 'description': 'Motivo da recusa, ou `null`.'},
+    'approvedAt': {
+      r'$ref': r'#/$defs/ApiInstant',
+      'description': 'Aprovação, ou `null`.',
+    },
+    'approvedByName': {
+      'type': 'string',
+      'description': 'Quem autorizou pelo cliente, ou `null`.',
+    },
+    'rejectionReason': {
+      'type': 'string',
+      'description': 'Motivo da recusa, ou `null`.',
+    },
     'promisedDate': {
       r'$ref': r'#/$defs/CalendarDate',
       'description': 'Prazo prometido, ou `null`.',
     },
-    'repairNotes': {'type': 'string', 'description': 'Notas de execução, ou `null`.'},
-    'totalValue': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Soma dos itens.'},
-    'partsTotal': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Soma das peças.'},
-    'laborTotal': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Soma da mão de obra.'},
+    'repairNotes': {
+      'type': 'string',
+      'description': 'Notas de execução, ou `null`.',
+    },
+    'totalValue': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Soma dos itens.',
+    },
+    'partsTotal': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Soma das peças.',
+    },
+    'laborTotal': {
+      r'$ref': r'#/$defs/MoneyAmount',
+      'description': 'Soma da mão de obra.',
+    },
     'warrantyDays': {'type': 'integer', 'description': 'Garantia em dias.'},
-    'deliveredAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Entrega, ou `null`.'},
-    'deliveredToName': {'type': 'string', 'description': 'Quem retirou, ou `null`.'},
+    'deliveredAt': {
+      r'$ref': r'#/$defs/ApiInstant',
+      'description': 'Entrega, ou `null`.',
+    },
+    'deliveredToName': {
+      'type': 'string',
+      'description': 'Quem retirou, ou `null`.',
+    },
     'warrantyExpiresAt': {
       r'$ref': r'#/$defs/CalendarDate',
       'description': 'Fim da garantia, ou `null`.',
     },
-    'invoiceId': {'type': 'string', 'description': 'Nota gerada na entrega, ou `null`.'},
-    'isOverdue': {'type': 'boolean', 'description': 'Se o prazo estourou e a ordem segue aberta.'},
-    'isUnderWarranty': {'type': 'boolean', 'description': 'Se a garantia ainda vale.'},
+    'invoiceId': {
+      'type': 'string',
+      'description': 'Nota gerada na entrega, ou `null`.',
+    },
+    'isOverdue': {
+      'type': 'boolean',
+      'description': 'Se o prazo estourou e a ordem segue aberta.',
+    },
+    'isUnderWarranty': {
+      'type': 'boolean',
+      'description': 'Se a garantia ainda vale.',
+    },
     'items': {
       'type': 'array',
       'items': {r'$ref': r'#/$defs/ServiceOrderItem'},
       'description': 'Itens. Lista vazia na fila.',
     },
-    'createdBy': {'type': 'string', 'description': 'Autor da abertura, ou `null`.'},
+    'createdBy': {
+      'type': 'string',
+      'description': 'Autor da abertura, ou `null`.',
+    },
     'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Criação.'},
-    'updatedAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Última alteração.'},
+    'updatedAt': {
+      r'$ref': r'#/$defs/ApiInstant',
+      'description': 'Última alteração.',
+    },
   },
   'required': [
     'id',
@@ -192,14 +252,38 @@ const _$ServiceOrderJsonSchema = {
     'DeviceEntryCondition': {
       'type': 'object',
       'properties': {
-        'screenCracked': {'type': 'boolean', 'description': 'Se a tela está trincada.'},
-        'touchWorking': {'type': 'boolean', 'description': 'Se o toque funciona.'},
-        'housingDamaged': {'type': 'boolean', 'description': 'Se a carcaça está danificada.'},
-        'waterDamage': {'type': 'boolean', 'description': 'Se há dano por líquido.'},
-        'batterySwollen': {'type': 'boolean', 'description': 'Se a bateria está inchada.'},
-        'buttonsWorking': {'type': 'boolean', 'description': 'Se os botões funcionam.'},
-        'cameraWorking': {'type': 'boolean', 'description': 'Se a câmera funciona.'},
-        'chargingWorking': {'type': 'boolean', 'description': 'Se a carga funciona.'},
+        'screenCracked': {
+          'type': 'boolean',
+          'description': 'Se a tela está trincada.',
+        },
+        'touchWorking': {
+          'type': 'boolean',
+          'description': 'Se o toque funciona.',
+        },
+        'housingDamaged': {
+          'type': 'boolean',
+          'description': 'Se a carcaça está danificada.',
+        },
+        'waterDamage': {
+          'type': 'boolean',
+          'description': 'Se há dano por líquido.',
+        },
+        'batterySwollen': {
+          'type': 'boolean',
+          'description': 'Se a bateria está inchada.',
+        },
+        'buttonsWorking': {
+          'type': 'boolean',
+          'description': 'Se os botões funcionam.',
+        },
+        'cameraWorking': {
+          'type': 'boolean',
+          'description': 'Se a câmera funciona.',
+        },
+        'chargingWorking': {
+          'type': 'boolean',
+          'description': 'Se a carga funciona.',
+        },
         'notes': {'type': 'string', 'description': 'Observação, ou `null`.'},
       },
       'required': [
@@ -217,7 +301,11 @@ const _$ServiceOrderJsonSchema = {
     'ApiInstant': {
       'type': 'object',
       'properties': {
-        'value': {'type': 'string', 'format': 'date-time', 'description': 'Instante em UTC.'},
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
       },
       'required': ['value'],
     },
@@ -227,15 +315,36 @@ const _$ServiceOrderJsonSchema = {
       'type': 'object',
       'properties': {
         'id': {'type': 'string', 'description': 'UUID.'},
-        'serviceOrderId': {'type': 'string', 'description': 'Ordem dona do item.'},
+        'serviceOrderId': {
+          'type': 'string',
+          'description': 'Ordem dona do item.',
+        },
         'productId': {'type': 'string', 'description': 'Peça, ou `null`.'},
-        'serviceId': {'type': 'string', 'description': 'Mão de obra, ou `null`.'},
+        'serviceId': {
+          'type': 'string',
+          'description': 'Mão de obra, ou `null`.',
+        },
         'description': {'type': 'string', 'description': 'Descrição.'},
-        'quantity': {r'$ref': r'#/$defs/QuantityAmount', 'description': 'Quantidade, escala 3.'},
-        'unitPrice': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Preço unitário.'},
-        'unitCost': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Custo unitário, ou `null`.'},
-        'totalValue': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Total calculado.'},
-        'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Inclusão.'},
+        'quantity': {
+          r'$ref': r'#/$defs/QuantityAmount',
+          'description': 'Quantidade, escala 3.',
+        },
+        'unitPrice': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Preço unitário.',
+        },
+        'unitCost': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Custo unitário, ou `null`.',
+        },
+        'totalValue': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Total calculado.',
+        },
+        'createdAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Inclusão.',
+        },
       },
       'required': [
         'id',
