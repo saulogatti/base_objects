@@ -147,7 +147,7 @@ final class ConfirmInvoiceRequest {
 @JsonSerializable()
 final class ConfirmInvoiceResult {
   /// Cria a resposta.
-  const new({required this.invoice, required this.receivables, required this.cashSummary});
+  const new({required this.invoice, required this.receivables, this.cashSummary});
 
   /// Lê a resposta.
   factory fromJson(Map<String, dynamic> json) => _$ConfirmInvoiceResultFromJson(json);
@@ -161,8 +161,8 @@ final class ConfirmInvoiceResult {
   /// Parcelas geradas.
   final List<Receivable> receivables;
 
-  /// Turno atualizado.
-  final CashSummary cashSummary;
+  /// Turno atualizado, ou `null` quando a confirmação não movimenta caixa.
+  final CashSummary? cashSummary;
 
   /// Serializa a resposta.
   Map<String, dynamic> toJson() => _$ConfirmInvoiceResultToJson(this);
@@ -383,6 +383,7 @@ final class InvoiceItemDraft {
     this.productId,
     this.serviceId,
     this.discount,
+    this.unitCost,
   });
 
   /// Lê o item.
@@ -411,6 +412,9 @@ final class InvoiceItemDraft {
 
   /// Desconto do item, ou `null`.
   final MoneyAmount? discount;
+
+  /// Custo unitário informado pelo cliente, ou `null`.
+  final MoneyAmount? unitCost;
 
   /// Serializa o item.
   Map<String, dynamic> toJson() => _$InvoiceItemDraftToJson(this);
