@@ -37,8 +37,8 @@ User _$UserFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
   'id': instance.id,
-  'createdAt': instance.createdAt.toUtc().toIso8601String(),
-  'updatedAt': instance.updatedAt.toUtc().toIso8601String(),
+  'createdAt': instance.createdAt.toJson(),
+  'updatedAt': instance.updatedAt.toJson(),
   'name': instance.name,
   'email': instance.email,
   'phone': instance.phone,
@@ -56,13 +56,11 @@ const _$UserJsonSchema = {
       'description': 'Identificador único da entidade (UUID v7).',
     },
     'createdAt': {
-      'type': 'string',
-      'format': 'date-time',
+      r'$ref': r'#/$defs/ApiInstant',
       'description': 'Momento em que o registro foi criado.',
     },
     'updatedAt': {
-      'type': 'string',
-      'format': 'date-time',
+      r'$ref': r'#/$defs/ApiInstant',
       'description': 'Momento da última atualização do registro.',
     },
     'name': {'type': 'string', 'description': 'Nome de exibição.'},

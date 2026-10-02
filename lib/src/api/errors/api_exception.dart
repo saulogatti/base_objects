@@ -103,4 +103,8 @@ class ApiException implements Exception {
 
   /// Detalhes opcionais (`fields`, ids, etc.). Ausente vira `null` no JSON.
   final Map<String, Object?>? details;
+  @override
+  String toString() {
+    return 'ApiException(code: $code, message: $message, details: $details)';
+  }
 }

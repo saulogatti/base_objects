@@ -46,6 +46,17 @@ const _$InstallationRequestJsonSchema = {
   },
   'required': ['systemModel', 'administratorPassword'],
   r'$defs': {
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
     'Cpf': {
       'type': 'object',
       'properties': {
@@ -64,13 +75,11 @@ const _$InstallationRequestJsonSchema = {
           'description': 'Identificador único da entidade (UUID v7).',
         },
         'createdAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento em que o registro foi criado.',
         },
         'updatedAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento da última atualização do registro.',
         },
         'email': {
@@ -114,13 +123,11 @@ const _$InstallationRequestJsonSchema = {
           'description': 'Identificador único da entidade (UUID v7).',
         },
         'createdAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento em que o registro foi criado.',
         },
         'updatedAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento da última atualização do registro.',
         },
         'activationKey': {
@@ -138,13 +145,11 @@ const _$InstallationRequestJsonSchema = {
           'description': 'Identificador único da entidade (UUID v7).',
         },
         'createdAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento em que o registro foi criado.',
         },
         'updatedAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento da última atualização do registro.',
         },
         'systemUser': {
@@ -161,7 +166,7 @@ const _$InstallationRequestJsonSchema = {
           'description': 'URL base do servidor da API que esta instalação usa (ex.:\n`https://api.minhaloja.com.br`).',
         },
       },
-      'required': ['systemUser', 'activationKey', 'serverUrl'],
+      'required': ['systemUser', 'serverUrl'],
     },
   },
 };

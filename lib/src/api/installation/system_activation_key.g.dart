@@ -31,8 +31,8 @@ Map<String, dynamic> _$SystemActivationKeyModelToJson(
   SystemActivationKeyModel instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'createdAt': instance.createdAt.toUtc().toIso8601String(),
-  'updatedAt': instance.updatedAt.toUtc().toIso8601String(),
+  'createdAt': instance.createdAt.toJson(),
+  'updatedAt': instance.updatedAt.toJson(),
   'activationKey': instance.activationKey,
 };
 
@@ -45,16 +45,27 @@ const _$SystemActivationKeyModelJsonSchema = {
       'description': 'Identificador único da entidade (UUID v7).',
     },
     'createdAt': {
-      'type': 'string',
-      'format': 'date-time',
+      r'$ref': r'#/$defs/ApiInstant',
       'description': 'Momento em que o registro foi criado.',
     },
     'updatedAt': {
-      'type': 'string',
-      'format': 'date-time',
+      r'$ref': r'#/$defs/ApiInstant',
       'description': 'Momento da última atualização do registro.',
     },
     'activationKey': {'type': 'string', 'description': 'Chave de ativação.'},
   },
   'required': ['activationKey'],
+  r'$defs': {
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
+  },
 };

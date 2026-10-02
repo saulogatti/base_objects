@@ -51,8 +51,6 @@ final class User extends DefaultObject {
     bool? isActive,
     bool? isSuperadmin,
     ApiInstant? lastLoginAt,
-    DateTime? createdAt,
-    DateTime? updatedAt,
   }) {
     return User(
       id: id ?? this.id,
@@ -62,8 +60,8 @@ final class User extends DefaultObject {
       isActive: isActive ?? this.isActive,
       isSuperadmin: isSuperadmin ?? this.isSuperadmin,
       lastLoginAt: lastLoginAt ?? this.lastLoginAt,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
+      createdAt: createdAt.value,
+      updatedAt: updatedAt.value,
     );
   }
 

@@ -51,8 +51,8 @@ SystemUserModel _$SystemUserModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SystemUserModelToJson(SystemUserModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt.toUtc().toIso8601String(),
-      'updatedAt': instance.updatedAt.toUtc().toIso8601String(),
+      'createdAt': instance.createdAt.toJson(),
+      'updatedAt': instance.updatedAt.toJson(),
       'email': instance.email,
       'name': instance.name,
       'phone': instance.phone,
@@ -72,13 +72,11 @@ const _$SystemUserModelJsonSchema = {
       'description': 'Identificador único da entidade (UUID v7).',
     },
     'createdAt': {
-      'type': 'string',
-      'format': 'date-time',
+      r'$ref': r'#/$defs/ApiInstant',
       'description': 'Momento em que o registro foi criado.',
     },
     'updatedAt': {
-      'type': 'string',
-      'format': 'date-time',
+      r'$ref': r'#/$defs/ApiInstant',
       'description': 'Momento da última atualização do registro.',
     },
     'email': {
@@ -111,6 +109,17 @@ const _$SystemUserModelJsonSchema = {
   },
   'required': ['email', 'name', 'document'],
   r'$defs': {
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
     'Cpf': {
       'type': 'object',
       'properties': {

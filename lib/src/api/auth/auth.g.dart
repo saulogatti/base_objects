@@ -85,13 +85,11 @@ const _$AuthSessionJsonSchema = {
           'description': 'Identificador único da entidade (UUID v7).',
         },
         'createdAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento em que o registro foi criado.',
         },
         'updatedAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento da última atualização do registro.',
         },
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
@@ -410,13 +408,11 @@ const _$SessionResponseJsonSchema = {
           'description': 'Identificador único da entidade (UUID v7).',
         },
         'createdAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento em que o registro foi criado.',
         },
         'updatedAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento da última atualização do registro.',
         },
         'name': {'type': 'string', 'description': 'Nome de exibição.'},

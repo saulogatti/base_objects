@@ -26,8 +26,8 @@ class SystemModel extends DefaultObject {
   /// Cria os dados da instalação.
   new({
     required this.systemUser,
-    required this.activationKey,
     required this.serverUrl,
+    this.activationKey,
     super.id,
     super.createdAt,
     super.updatedAt,
@@ -43,7 +43,7 @@ class SystemModel extends DefaultObject {
   final SystemUserModel systemUser;
 
   /// Chave de ativação da instalação.
-  final SystemActivationKeyModel activationKey;
+  final SystemActivationKeyModel? activationKey;
 
   /// URL base do servidor da API que esta instalação usa (ex.:
   /// `https://api.minhaloja.com.br`).
@@ -56,8 +56,8 @@ class SystemModel extends DefaultObject {
     String? serverUrl,
   }) => SystemModel(
     id: id,
-    createdAt: createdAt,
-    updatedAt: updatedAt,
+    createdAt: createdAt.value,
+    updatedAt: updatedAt.value,
     systemUser: systemUser ?? this.systemUser,
     activationKey: activationKey ?? this.activationKey,
     serverUrl: serverUrl ?? this.serverUrl,

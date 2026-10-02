@@ -64,7 +64,7 @@ class SystemUserModel extends Person<Cpf> {
     userType: userType ?? this.userType,
     phone: phone ?? this.phone,
     lastLoginAt: lastLoginAt ?? this.lastLoginAt,
-    createdAt: createdAt,
+    createdAt: createdAt.value,
     updatedAt: updatedAt ?? DateTime.now(),
   );
 

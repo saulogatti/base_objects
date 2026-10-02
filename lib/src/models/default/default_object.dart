@@ -1,3 +1,4 @@
+import 'package:base_objects/src/api/core/api_time.dart';
 import 'package:base_objects/src/utils/entity_id.dart';
 
 /// Objeto base para entidades de domínio com identificador e datas de controle.
@@ -11,15 +12,19 @@ abstract class DefaultObject {
   /// Cria a entidade, gerando o [id] quando não informado.
   new({String? id, DateTime? createdAt, DateTime? updatedAt})
     : id = id ?? EntityId.generate(),
-      createdAt = createdAt ?? DateTime.now(),
-      updatedAt = updatedAt ?? DateTime.now();
+      createdAt = createdAt == null
+          ? ApiInstant(value: DateTime.now().toUtc())
+          : ApiInstant(value: createdAt),
+      updatedAt = updatedAt == null
+          ? ApiInstant(value: DateTime.now().toUtc())
+          : ApiInstant(value: updatedAt);
 
   /// Identificador único da entidade (UUID v7).
   final String id;
 
   /// Momento em que o registro foi criado.
-  final DateTime createdAt;
+  final ApiInstant createdAt;
 
   /// Momento da última atualização do registro.
-  final DateTime updatedAt;
+  final ApiInstant updatedAt;
 }

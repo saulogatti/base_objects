@@ -16,11 +16,13 @@ SystemModel _$SystemModelFromJson(Map<String, dynamic> json) =>
           'systemUser',
           (v) => SystemUserModel.fromJson(v as Map<String, dynamic>),
         ),
+        serverUrl: $checkedConvert('serverUrl', (v) => v as String),
         activationKey: $checkedConvert(
           'activationKey',
-          (v) => SystemActivationKeyModel.fromJson(v as Map<String, dynamic>),
+          (v) => v == null
+              ? null
+              : SystemActivationKeyModel.fromJson(v as Map<String, dynamic>),
         ),
-        serverUrl: $checkedConvert('serverUrl', (v) => v as String),
         id: $checkedConvert('id', (v) => v as String?),
         createdAt: $checkedConvert(
           'createdAt',
@@ -37,10 +39,10 @@ SystemModel _$SystemModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SystemModelToJson(SystemModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt.toUtc().toIso8601String(),
-      'updatedAt': instance.updatedAt.toUtc().toIso8601String(),
+      'createdAt': instance.createdAt.toJson(),
+      'updatedAt': instance.updatedAt.toJson(),
       'systemUser': instance.systemUser.toJson(),
-      'activationKey': instance.activationKey.toJson(),
+      'activationKey': instance.activationKey?.toJson(),
       'serverUrl': instance.serverUrl,
     };
 
@@ -53,13 +55,11 @@ const _$SystemModelJsonSchema = {
       'description': 'Identificador único da entidade (UUID v7).',
     },
     'createdAt': {
-      'type': 'string',
-      'format': 'date-time',
+      r'$ref': r'#/$defs/ApiInstant',
       'description': 'Momento em que o registro foi criado.',
     },
     'updatedAt': {
-      'type': 'string',
-      'format': 'date-time',
+      r'$ref': r'#/$defs/ApiInstant',
       'description': 'Momento da última atualização do registro.',
     },
     'systemUser': {
@@ -76,8 +76,19 @@ const _$SystemModelJsonSchema = {
       'description': 'URL base do servidor da API que esta instalação usa (ex.:\n`https://api.minhaloja.com.br`).',
     },
   },
-  'required': ['systemUser', 'activationKey', 'serverUrl'],
+  'required': ['systemUser', 'serverUrl'],
   r'$defs': {
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
     'Cpf': {
       'type': 'object',
       'properties': {
@@ -96,13 +107,11 @@ const _$SystemModelJsonSchema = {
           'description': 'Identificador único da entidade (UUID v7).',
         },
         'createdAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento em que o registro foi criado.',
         },
         'updatedAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento da última atualização do registro.',
         },
         'email': {
@@ -146,13 +155,11 @@ const _$SystemModelJsonSchema = {
           'description': 'Identificador único da entidade (UUID v7).',
         },
         'createdAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento em que o registro foi criado.',
         },
         'updatedAt': {
-          'type': 'string',
-          'format': 'date-time',
+          r'$ref': r'#/$defs/ApiInstant',
           'description': 'Momento da última atualização do registro.',
         },
         'activationKey': {
