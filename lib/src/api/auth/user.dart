@@ -20,7 +20,10 @@ final class User extends DefaultObject {
   });
 
   /// Lê o objeto `User`.
-  factory fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  ///
+  /// `createdAt` e `updatedAt` saem como [ApiInstant]. A leitura aceita esse
+  /// mapa e também o ISO solto que o construtor de [DefaultObject] grava.
+  factory fromJson(Map<String, dynamic> json) => _$UserFromJson(_flattenInstants(json));
 
   /// Esquema JSON gerado para o usuário.
   static const schema = _$UserJsonSchema;
@@ -67,4 +70,18 @@ final class User extends DefaultObject {
 
   /// Serializa o usuário.
   Map<String, dynamic> toJson() => _$UserToJson(this);
+}
+
+Map<String, dynamic> _flattenInstants(Map<String, dynamic> json) {
+  final copy = Map<String, dynamic>.from(json);
+  for (final key in const ['createdAt', 'updatedAt']) {
+    final value = copy[key];
+    if (value is Map<Object?, Object?>) {
+      final raw = value['value'];
+      if (raw is String) {
+        copy[key] = raw;
+      }
+    }
+  }
+  return copy;
 }
