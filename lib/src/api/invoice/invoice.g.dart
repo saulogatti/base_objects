@@ -507,5 +507,59 @@ const _$ConfirmInvoiceResultJsonSchema = {
       },
       'required': ['value'],
     },
-  },
-};
+    'InvoicePayment': {
+      'type': 'object',
+      'properties': {
+        'id': {'type': 'string', 'description': 'UUID.'},
+        'invoiceId': {'type': 'string', 'description': 'Nota.'},
+        'paymentMethodId': {'type': 'string', 'description': 'Forma.'},
+        'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
+        'installments': {
+          'type': 'integer',
+          'description': 'Número de parcelas.',
+        },
+        'cashSessionId': {'type': 'string', 'description': 'Turno, ou `null`.'},
+        'checkoutId': {'type': 'string', 'description': 'Recebimento.'},
+        'cashMovementId': {
+          'type': 'string',
+          'description': 'Movimento de caixa, ou `null` no crediário.',
+        },
+        'methodName': {
+          'type': 'string',
+          'description': 'Nome da forma no momento do recebimento.',
+        },
+        'affectsCashDrawer': {
+          'type': 'boolean',
+          'description': 'Se afetou a gaveta.',
+        },
+        'feePercent': {
+          r'$ref': r'#/$defs/PercentAmount',
+          'description': 'Taxa percentual, escala 3.',
+        },
+        'feeAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Valor da taxa.',
+        },
+        'netAmount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Líquido.',
+        },
+        'expectedSettlementAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Previsão de liquidação, ou `null`.',
+        },
+      },
+      'required': [
+        'id',
+        'invoiceId',
+        'paymentMethodId',
+        'amount',
+        'installments',
+        'checkoutId',
+        'methodName',
+        'affectsCashDrawer',
+        'feePercent',
+        'feeAmount',
+        'netAmount',
+      ],
+    },
