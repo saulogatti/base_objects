@@ -207,7 +207,7 @@ const _$CheckoutRequestJsonSchema = {
       'properties': {
         'id': {
           'type': 'string',
-          'description': 'UUID. Vira `invoice_payments.id'.',
+          'description': 'UUID. Vira `invoice_payments.id`.',
         },
         'paymentMethodId': {'type': 'string', 'description': 'Forma ativa.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
@@ -361,7 +361,7 @@ const _$ConfirmInvoiceRequestJsonSchema = {
       'properties': {
         'id': {
           'type': 'string',
-          'description': 'UUID. Vira `invoice_payments.id'.',
+          'description': 'UUID. Vira `invoice_payments.id`.',
         },
         'paymentMethodId': {'type': 'string', 'description': 'Forma ativa.'},
         'amount': {r'$ref': r'#/$defs/MoneyAmount', 'description': 'Valor.'},
