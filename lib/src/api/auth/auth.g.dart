@@ -80,7 +80,20 @@ const _$AuthSessionJsonSchema = {
     'User': {
       'type': 'object',
       'properties': {
-        'id': {'type': 'string', 'description': 'UUID.'},
+        'id': {
+          'type': 'string',
+          'description': 'Identificador único da entidade (UUID v7).',
+        },
+        'createdAt': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Momento em que o registro foi criado.',
+        },
+        'updatedAt': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Momento da última atualização do registro.',
+        },
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
         'email': {'type': 'string', 'description': 'E-mail único.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
@@ -96,24 +109,8 @@ const _$AuthSessionJsonSchema = {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Último login, ou `null`.',
         },
-        'createdAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Criação.',
-        },
-        'updatedAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Última alteração.',
-        },
       },
-      'required': [
-        'id',
-        'name',
-        'email',
-        'isActive',
-        'isSuperadmin',
-        'createdAt',
-        'updatedAt',
-      ],
+      'required': ['name', 'email', 'isActive', 'isSuperadmin'],
     },
     'Address': {
       'type': 'object',
@@ -408,7 +405,20 @@ const _$SessionResponseJsonSchema = {
     'User': {
       'type': 'object',
       'properties': {
-        'id': {'type': 'string', 'description': 'UUID.'},
+        'id': {
+          'type': 'string',
+          'description': 'Identificador único da entidade (UUID v7).',
+        },
+        'createdAt': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Momento em que o registro foi criado.',
+        },
+        'updatedAt': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Momento da última atualização do registro.',
+        },
         'name': {'type': 'string', 'description': 'Nome de exibição.'},
         'email': {'type': 'string', 'description': 'E-mail único.'},
         'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
@@ -424,24 +434,8 @@ const _$SessionResponseJsonSchema = {
           r'$ref': r'#/$defs/ApiInstant',
           'description': 'Último login, ou `null`.',
         },
-        'createdAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Criação.',
-        },
-        'updatedAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Última alteração.',
-        },
       },
-      'required': [
-        'id',
-        'name',
-        'email',
-        'isActive',
-        'isSuperadmin',
-        'createdAt',
-        'updatedAt',
-      ],
+      'required': ['name', 'email', 'isActive', 'isSuperadmin'],
     },
     'Address': {
       'type': 'object',

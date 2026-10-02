@@ -22,12 +22,6 @@ final class ApiInstant {
   /// Instante em UTC.
   final DateTime value;
 
-  @override
-  int get hashCode => value.hashCode;
-
-  @override
-  bool operator ==(Object other) => other is ApiInstant && value == other.value;
-
   /// Serializa em ISO 8601 UTC.
   Map<String, dynamic> toJson() => _$ApiInstantToJson(this);
 }

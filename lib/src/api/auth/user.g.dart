@@ -12,18 +12,18 @@ part of 'user.dart';
 User _$UserFromJson(Map<String, dynamic> json) =>
     $checkedCreate('User', json, ($checkedConvert) {
       final val = User(
-        id: $checkedConvert('id', (v) => v as String),
         name: $checkedConvert('name', (v) => v as String),
         email: $checkedConvert('email', (v) => v as String),
         isActive: $checkedConvert('isActive', (v) => v as bool),
         isSuperadmin: $checkedConvert('isSuperadmin', (v) => v as bool),
+        id: $checkedConvert('id', (v) => v as String?),
         createdAt: $checkedConvert(
           'createdAt',
-          (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+          (v) => v == null ? null : DateTime.parse(v as String),
         ),
         updatedAt: $checkedConvert(
           'updatedAt',
-          (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
+          (v) => v == null ? null : DateTime.parse(v as String),
         ),
         phone: $checkedConvert('phone', (v) => v as String?),
         lastLoginAt: $checkedConvert(
@@ -37,21 +37,34 @@ User _$UserFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
   'id': instance.id,
+  'createdAt': instance.createdAt.toUtc().toIso8601String(),
+  'updatedAt': instance.updatedAt.toUtc().toIso8601String(),
   'name': instance.name,
   'email': instance.email,
   'phone': instance.phone,
   'isActive': instance.isActive,
   'isSuperadmin': instance.isSuperadmin,
   'lastLoginAt': instance.lastLoginAt?.toJson(),
-  'createdAt': instance.createdAt.toJson(),
-  'updatedAt': instance.updatedAt.toJson(),
 };
 
 const _$UserJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'id': {'type': 'string', 'description': 'UUID.'},
+    'id': {
+      'type': 'string',
+      'description': 'Identificador único da entidade (UUID v7).',
+    },
+    'createdAt': {
+      'type': 'string',
+      'format': 'date-time',
+      'description': 'Momento em que o registro foi criado.',
+    },
+    'updatedAt': {
+      'type': 'string',
+      'format': 'date-time',
+      'description': 'Momento da última atualização do registro.',
+    },
     'name': {'type': 'string', 'description': 'Nome de exibição.'},
     'email': {'type': 'string', 'description': 'E-mail único.'},
     'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
@@ -64,21 +77,8 @@ const _$UserJsonSchema = {
       r'$ref': r'#/$defs/ApiInstant',
       'description': 'Último login, ou `null`.',
     },
-    'createdAt': {r'$ref': r'#/$defs/ApiInstant', 'description': 'Criação.'},
-    'updatedAt': {
-      r'$ref': r'#/$defs/ApiInstant',
-      'description': 'Última alteração.',
-    },
   },
-  'required': [
-    'id',
-    'name',
-    'email',
-    'isActive',
-    'isSuperadmin',
-    'createdAt',
-    'updatedAt',
-  ],
+  'required': ['name', 'email', 'isActive', 'isSuperadmin'],
   r'$defs': {
     'ApiInstant': {
       'type': 'object',

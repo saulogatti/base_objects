@@ -1,20 +1,20 @@
-import 'package:base_objects/src/api/core/api_time.dart';
+import 'package:base_objects/base_objects.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
 
 /// Usuário público. Sem `passwordHash` (`API.md` §2.1 e §6).
 @JsonSerializable()
-final class User {
+final class User extends DefaultObject {
   /// Cria o usuário.
-  const new({
-    required this.id,
+  new({
     required this.name,
     required this.email,
     required this.isActive,
     required this.isSuperadmin,
-    required this.createdAt,
-    required this.updatedAt,
+    super.id,
+    super.createdAt,
+    super.updatedAt,
     this.phone,
     this.lastLoginAt,
   });
@@ -24,9 +24,6 @@ final class User {
 
   /// Esquema JSON gerado para o usuário.
   static const schema = _$UserJsonSchema;
-
-  /// UUID.
-  final String id;
 
   /// Nome de exibição.
   final String name;
@@ -46,11 +43,29 @@ final class User {
   /// Último login, ou `null`.
   final ApiInstant? lastLoginAt;
 
-  /// Criação.
-  final ApiInstant createdAt;
-
-  /// Última alteração.
-  final ApiInstant updatedAt;
+  User copyWith({
+    String? id,
+    String? name,
+    String? email,
+    String? phone,
+    bool? isActive,
+    bool? isSuperadmin,
+    ApiInstant? lastLoginAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    return User(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      phone: phone ?? this.phone,
+      isActive: isActive ?? this.isActive,
+      isSuperadmin: isSuperadmin ?? this.isSuperadmin,
+      lastLoginAt: lastLoginAt ?? this.lastLoginAt,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 
   /// Serializa o usuário.
   Map<String, dynamic> toJson() => _$UserToJson(this);
