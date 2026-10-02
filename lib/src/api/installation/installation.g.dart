@@ -12,14 +12,16 @@ part of 'installation.dart';
 InstallationRequest _$InstallationRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('InstallationRequest', json, ($checkedConvert) {
       final val = InstallationRequest(
-        systemModel: $checkedConvert(
-          'systemModel',
-          (v) => SystemModel.fromJson(v as Map<String, dynamic>),
+        systemUser: $checkedConvert(
+          'systemUser',
+          (v) => SystemUserModel.fromJson(v as Map<String, dynamic>),
         ),
+        activationKey: $checkedConvert('activationKey', (v) => v as String),
         administratorPassword: $checkedConvert(
           'administratorPassword',
           (v) => v as String,
         ),
+        serverUrl: $checkedConvert('serverUrl', (v) => v as String),
       );
       return val;
     });
@@ -27,24 +29,40 @@ InstallationRequest _$InstallationRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$InstallationRequestToJson(
   InstallationRequest instance,
 ) => <String, dynamic>{
-  'systemModel': instance.systemModel.toJson(),
+  'systemUser': instance.systemUser.toJson(),
+  'activationKey': instance.activationKey,
   'administratorPassword': instance.administratorPassword,
+  'serverUrl': instance.serverUrl,
 };
 
 const _$InstallationRequestJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'systemModel': {
-      r'$ref': r'#/$defs/SystemModel',
-      'description': 'Responsável que vira o superadmin.',
+    'systemUser': {
+      r'$ref': r'#/$defs/SystemUserModel',
+      'description': 'Responsável que vira o superadmin. Sem senha.',
+    },
+    'activationKey': {
+      'type': 'string',
+      'description':
+          'Chave comparada com `INSTALLATION_KEY`. Não volta na resposta.',
     },
     'administratorPassword': {
       'type': 'string',
-      'description': 'Senha inicial em texto. Não é persistida neste objeto.',
+      'description': 'Senha inicial em texto. Não volta na resposta.',
+    },
+    'serverUrl': {
+      'type': 'string',
+      'description': 'URL base da API que esta instalação usa.',
     },
   },
-  'required': ['systemModel', 'administratorPassword'],
+  'required': [
+    'systemUser',
+    'activationKey',
+    'administratorPassword',
+    'serverUrl',
+  ],
   r'$defs': {
     'ApiInstant': {
       'type': 'object',
@@ -57,116 +75,28 @@ const _$InstallationRequestJsonSchema = {
       },
       'required': ['value'],
     },
-    'Cpf': {
-      'type': 'object',
-      'properties': {
-        'value': {
-          'type': 'string',
-          'description': 'Valor original do documento.',
-        },
-      },
-      'required': ['value'],
-    },
     'SystemUserModel': {
       'type': 'object',
       'properties': {
-        'id': {
-          'type': 'string',
-          'description': 'Identificador único da entidade (UUID v7).',
-        },
-        'createdAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento em que o registro foi criado.',
-        },
-        'updatedAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento da última atualização do registro.',
-        },
-        'email': {
-          'type': 'string',
-          'description': 'Endereço de e-mail (opcional).',
-        },
-        'name': {
-          'type': 'string',
-          'description': 'Nome completo da pessoa ou razão social da empresa.',
-        },
-        'phone': {
-          'type': 'string',
-          'description': 'Número de telefone (opcional).',
-        },
-        'document': {
-          r'$ref': r'#/$defs/Cpf',
-          'description': 'Documento de identificação da pessoa.',
-        },
+        'id': {'type': 'string', 'description': 'UUID, ou `null` no pedido.'},
+        'name': {'type': 'string', 'description': 'Nome.'},
+        'email': {'type': 'string', 'description': 'E-mail.'},
+        'document': {'type': 'string', 'description': 'CPF só com dígitos.'},
+        'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
         'description': {
           'type': 'string',
-          'description': 'Descrição do usuário.',
-        },
-        'userType': {'type': 'object', 'description': 'Tipo de usuário.'},
-        'lastLoginAt': {
-          'type': 'string',
-          'format': 'date-time',
-          'description': 'Último login, ou `null` se ainda não houve login.',
-        },
-        'password': {
-          'type': 'string',
-          'description': 'Senha informada durante a instalação, ou `null`.',
-        },
-      },
-      'required': ['email', 'name', 'document'],
-    },
-    'SystemActivationKeyModel': {
-      'type': 'object',
-      'properties': {
-        'id': {
-          'type': 'string',
-          'description': 'Identificador único da entidade (UUID v7).',
+          'description': 'Descrição da rede, ou `null`.',
         },
         'createdAt': {
           r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento em que o registro foi criado.',
+          'description': 'Criação, ou `null` no pedido.',
         },
         'updatedAt': {
           r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento da última atualização do registro.',
-        },
-        'activationKey': {
-          'type': 'string',
-          'description': 'Chave de ativação.',
+          'description': 'Última alteração, ou `null` no pedido.',
         },
       },
-      'required': ['activationKey'],
-    },
-    'SystemModel': {
-      'type': 'object',
-      'properties': {
-        'id': {
-          'type': 'string',
-          'description': 'Identificador único da entidade (UUID v7).',
-        },
-        'createdAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento em que o registro foi criado.',
-        },
-        'updatedAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento da última atualização do registro.',
-        },
-        'systemUser': {
-          r'$ref': r'#/$defs/SystemUserModel',
-          'description':
-              'Responsável pela instalação, que vira o usuário proprietário.',
-        },
-        'activationKey': {
-          r'$ref': r'#/$defs/SystemActivationKeyModel',
-          'description': 'Chave de ativação da instalação.',
-        },
-        'serverUrl': {
-          'type': 'string',
-          'description': 'URL base do servidor da API que esta instalação usa (ex.:\n`https://api.minhaloja.com.br`).',
-        },
-      },
-      'required': ['systemUser', 'serverUrl'],
+      'required': ['name', 'email', 'document'],
     },
   },
 };

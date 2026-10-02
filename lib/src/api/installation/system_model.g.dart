@@ -12,25 +12,19 @@ part of 'system_model.dart';
 SystemModel _$SystemModelFromJson(Map<String, dynamic> json) =>
     $checkedCreate('SystemModel', json, ($checkedConvert) {
       final val = SystemModel(
+        id: $checkedConvert('id', (v) => v as String),
         systemUser: $checkedConvert(
           'systemUser',
           (v) => SystemUserModel.fromJson(v as Map<String, dynamic>),
         ),
         serverUrl: $checkedConvert('serverUrl', (v) => v as String),
-        activationKey: $checkedConvert(
-          'activationKey',
-          (v) => v == null
-              ? null
-              : SystemActivationKeyModel.fromJson(v as Map<String, dynamic>),
-        ),
-        id: $checkedConvert('id', (v) => v as String?),
         createdAt: $checkedConvert(
           'createdAt',
-          (v) => v == null ? null : DateTime.parse(v as String),
+          (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
         ),
         updatedAt: $checkedConvert(
           'updatedAt',
-          (v) => v == null ? null : DateTime.parse(v as String),
+          (v) => ApiInstant.fromJson(v as Map<String, dynamic>),
         ),
       );
       return val;
@@ -39,44 +33,35 @@ SystemModel _$SystemModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SystemModelToJson(SystemModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'systemUser': instance.systemUser.toJson(),
+      'serverUrl': instance.serverUrl,
       'createdAt': instance.createdAt.toJson(),
       'updatedAt': instance.updatedAt.toJson(),
-      'systemUser': instance.systemUser.toJson(),
-      'activationKey': instance.activationKey?.toJson(),
-      'serverUrl': instance.serverUrl,
     };
 
 const _$SystemModelJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'id': {
-      'type': 'string',
-      'description': 'Identificador único da entidade (UUID v7).',
-    },
-    'createdAt': {
-      r'$ref': r'#/$defs/ApiInstant',
-      'description': 'Momento em que o registro foi criado.',
-    },
-    'updatedAt': {
-      r'$ref': r'#/$defs/ApiInstant',
-      'description': 'Momento da última atualização do registro.',
-    },
+    'id': {'type': 'string', 'description': 'UUID do registro de instalação.'},
     'systemUser': {
       r'$ref': r'#/$defs/SystemUserModel',
-      'description':
-          'Responsável pela instalação, que vira o usuário proprietário.',
-    },
-    'activationKey': {
-      r'$ref': r'#/$defs/SystemActivationKeyModel',
-      'description': 'Chave de ativação da instalação.',
+      'description': 'Responsável, sem senha.',
     },
     'serverUrl': {
       'type': 'string',
-      'description': 'URL base do servidor da API que esta instalação usa (ex.:\n`https://api.minhaloja.com.br`).',
+      'description': 'URL base da API que o cliente usa.',
+    },
+    'createdAt': {
+      r'$ref': r'#/$defs/ApiInstant',
+      'description': 'Criação do registro.',
+    },
+    'updatedAt': {
+      r'$ref': r'#/$defs/ApiInstant',
+      'description': 'Última alteração do registro.',
     },
   },
-  'required': ['systemUser', 'serverUrl'],
+  'required': ['id', 'systemUser', 'serverUrl', 'createdAt', 'updatedAt'],
   r'$defs': {
     'ApiInstant': {
       'type': 'object',
@@ -89,85 +74,28 @@ const _$SystemModelJsonSchema = {
       },
       'required': ['value'],
     },
-    'Cpf': {
-      'type': 'object',
-      'properties': {
-        'value': {
-          'type': 'string',
-          'description': 'Valor original do documento.',
-        },
-      },
-      'required': ['value'],
-    },
     'SystemUserModel': {
       'type': 'object',
       'properties': {
-        'id': {
-          'type': 'string',
-          'description': 'Identificador único da entidade (UUID v7).',
-        },
-        'createdAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento em que o registro foi criado.',
-        },
-        'updatedAt': {
-          r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento da última atualização do registro.',
-        },
-        'email': {
-          'type': 'string',
-          'description': 'Endereço de e-mail (opcional).',
-        },
-        'name': {
-          'type': 'string',
-          'description': 'Nome completo da pessoa ou razão social da empresa.',
-        },
-        'phone': {
-          'type': 'string',
-          'description': 'Número de telefone (opcional).',
-        },
-        'document': {
-          r'$ref': r'#/$defs/Cpf',
-          'description': 'Documento de identificação da pessoa.',
-        },
+        'id': {'type': 'string', 'description': 'UUID, ou `null` no pedido.'},
+        'name': {'type': 'string', 'description': 'Nome.'},
+        'email': {'type': 'string', 'description': 'E-mail.'},
+        'document': {'type': 'string', 'description': 'CPF só com dígitos.'},
+        'phone': {'type': 'string', 'description': 'Telefone, ou `null`.'},
         'description': {
           'type': 'string',
-          'description': 'Descrição do usuário.',
-        },
-        'userType': {'type': 'object', 'description': 'Tipo de usuário.'},
-        'lastLoginAt': {
-          'type': 'string',
-          'format': 'date-time',
-          'description': 'Último login, ou `null` se ainda não houve login.',
-        },
-        'password': {
-          'type': 'string',
-          'description': 'Senha informada durante a instalação, ou `null`.',
-        },
-      },
-      'required': ['email', 'name', 'document'],
-    },
-    'SystemActivationKeyModel': {
-      'type': 'object',
-      'properties': {
-        'id': {
-          'type': 'string',
-          'description': 'Identificador único da entidade (UUID v7).',
+          'description': 'Descrição da rede, ou `null`.',
         },
         'createdAt': {
           r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento em que o registro foi criado.',
+          'description': 'Criação, ou `null` no pedido.',
         },
         'updatedAt': {
           r'$ref': r'#/$defs/ApiInstant',
-          'description': 'Momento da última atualização do registro.',
-        },
-        'activationKey': {
-          'type': 'string',
-          'description': 'Chave de ativação.',
+          'description': 'Última alteração, ou `null` no pedido.',
         },
       },
-      'required': ['activationKey'],
+      'required': ['name', 'email', 'document'],
     },
   },
 };

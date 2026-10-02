@@ -3,32 +3,24 @@ import 'package:test/test.dart';
 
 void main() {
   group('A group of tests', () {
-    final system = SystemModel(
+    final accepted = SystemModel(
       id: '1',
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-      systemUser: SystemUserModel(
+      systemUser: const SystemUserModel(
         name: 'John Doe',
-        document: Cpf('123.456.789-09'),
+        document: '12345678909',
         email: 'john.doe@example.com',
         id: '1',
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      ),
-      activationKey: SystemActivationKeyModel(
-        activationKey: '1234567890',
-        id: '1',
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
       ),
       serverUrl: 'https://example.com',
+      createdAt: ApiInstant(value: DateTime.utc(2026, 10, 2)),
+      updatedAt: ApiInstant(value: DateTime.utc(2026, 10, 2)),
     );
 
     test('First Test', () {
-      expect(system.toJson(), isNotEmpty);
+      expect(accepted.toJson(), isNotEmpty);
       expect(SystemModel.schema, isNotEmpty);
       expect(SystemUserModel.schema, isNotEmpty);
-      expect(SystemActivationKeyModel.schema, isNotEmpty);
+      expect(accepted.toJson().containsKey('activationKey'), isFalse);
     });
   });
 }

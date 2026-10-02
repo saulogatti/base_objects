@@ -3,28 +3,25 @@
 import 'package:base_objects/base_objects.dart';
 
 void main() {
-  final SystemModel system = SystemModel(
-    id: '1',
-    createdAt: DateTime.now(),
-    updatedAt: DateTime.now(),
+  const request = InstallationRequest(
     systemUser: SystemUserModel(
       name: 'John Doe',
-      document: Cpf('123.456.789-09'),
       email: 'john.doe@example.com',
-      id: '1',
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
+      document: '12345678909',
     ),
-    activationKey: SystemActivationKeyModel(
-      activationKey: '1234567890',
-      id: '1',
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-    ),
+    activationKey: '1234567890',
+    administratorPassword: 'secret',
     serverUrl: 'https://example.com',
   );
-  print(system.toJson());
+  final accepted = SystemModel(
+    id: '1',
+    systemUser: request.systemUser,
+    serverUrl: request.serverUrl,
+    createdAt: ApiInstant(value: DateTime.utc(2026, 10, 2)),
+    updatedAt: ApiInstant(value: DateTime.utc(2026, 10, 2)),
+  );
+  print(request.toJson());
+  print(accepted.toJson());
+  print(InstallationRequest.schema);
   print(SystemModel.schema);
-  print(SystemUserModel.schema);
-  print(SystemActivationKeyModel.schema);
 }
