@@ -1,68 +1,45 @@
-import 'package:base_objects/src/api/installation/system_activation_key.dart';
+import 'package:base_objects/src/api/core/api_time.dart';
 import 'package:base_objects/src/api/installation/system_user_model.dart';
-import 'package:base_objects/src/models/default/default_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'system_model.g.dart';
 
-/// Dados da instalação do sistema (domínio).
+/// Instalação já aceita (`POST /installation` 201).
 ///
-/// {@category modelos}
-/// {@subCategory Sistema}
-///
-/// Reúne o que a tela de instalação coleta: o responsável pela instalação
-/// ([systemUser]), a chave de ativação ([activationKey]) e o endereço do
-/// servidor da API ([serverUrl]).
-///
-/// O responsável **é** o primeiro usuário: nome, e-mail e telefone de
-/// [systemUser] é o usuário proprietário.
-///
-/// Veja também:
-/// - [SystemUserModel] — dados do responsável
-/// - [SystemActivationKeyModel] — chave de ativação
-///
+/// Não carrega [InstallationRequest.activationKey] nem
+/// [InstallationRequest.administratorPassword]: segredo não volta para o cliente.
 @JsonSerializable()
-class SystemModel extends DefaultObject {
-  /// Cria os dados da instalação.
-  new({
+class SystemModel {
+  /// Cria a instalação aceita.
+  const new({
+    required this.id,
     required this.systemUser,
     required this.serverUrl,
-    this.activationKey,
-    super.id,
-    super.createdAt,
-    super.updatedAt,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
-  /// Lê os dados da instalação.
+  /// Lê a instalação aceita.
   factory fromJson(Map<String, dynamic> json) => _$SystemModelFromJson(json);
 
-  /// Esquema JSON gerado para os dados da instalação.
-  static Map<String, Object> get schema => _$SystemModelJsonSchema;
+  /// Esquema JSON gerado para a instalação aceita.
+  static const schema = _$SystemModelJsonSchema;
 
-  /// Responsável pela instalação, que vira o usuário proprietário.
+  /// UUID do registro de instalação.
+  final String id;
+
+  /// Responsável, sem senha.
   final SystemUserModel systemUser;
 
-  /// Chave de ativação da instalação.
-  final SystemActivationKeyModel? activationKey;
-
-  /// URL base do servidor da API que esta instalação usa (ex.:
-  /// `https://api.minhaloja.com.br`).
+  /// URL base da API que o cliente usa.
   final String serverUrl;
 
-  /// Cria uma cópia com os campos informados alterados.
-  SystemModel copyWith({
-    SystemUserModel? systemUser,
-    SystemActivationKeyModel? activationKey,
-    String? serverUrl,
-  }) => SystemModel(
-    id: id,
-    createdAt: createdAt.value,
-    updatedAt: updatedAt.value,
-    systemUser: systemUser ?? this.systemUser,
-    activationKey: activationKey ?? this.activationKey,
-    serverUrl: serverUrl ?? this.serverUrl,
-  );
+  /// Criação do registro.
+  final ApiInstant createdAt;
 
-  /// Serializa os dados da instalação.
+  /// Última alteração do registro.
+  final ApiInstant updatedAt;
+
+  /// Serializa a instalação aceita.
   Map<String, dynamic> toJson() => _$SystemModelToJson(this);
 }

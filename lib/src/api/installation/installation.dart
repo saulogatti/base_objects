@@ -1,13 +1,20 @@
-import 'package:base_objects/src/api/installation/system_model.dart';
+import 'package:base_objects/src/api/installation/system_user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'installation.g.dart';
 
-/// Corpo de `POST /installation`. Sem `stores` e sem `cashRegisterName`.
+/// Corpo de `POST /installation`.
+///
+/// A resposta é [SystemModel]: o mesmo responsável, sem senha e sem a chave.
 @JsonSerializable()
 final class InstallationRequest {
   /// Cria o corpo.
-  const new({required this.systemModel, required this.administratorPassword});
+  const new({
+    required this.systemUser,
+    required this.activationKey,
+    required this.administratorPassword,
+    required this.serverUrl,
+  });
 
   /// Lê o corpo.
   factory fromJson(Map<String, dynamic> json) => _$InstallationRequestFromJson(json);
@@ -15,11 +22,17 @@ final class InstallationRequest {
   /// Esquema JSON gerado para o corpo.
   static const schema = _$InstallationRequestJsonSchema;
 
-  /// Responsável que vira o superadmin.
-  final SystemModel systemModel;
+  /// Responsável que vira o superadmin. Sem senha.
+  final SystemUserModel systemUser;
 
-  /// Senha inicial em texto. Não é persistida neste objeto.
+  /// Chave comparada com `INSTALLATION_KEY`. Não volta na resposta.
+  final String activationKey;
+
+  /// Senha inicial em texto. Não volta na resposta.
   final String administratorPassword;
+
+  /// URL base da API que esta instalação usa.
+  final String serverUrl;
 
   /// Serializa o corpo.
   Map<String, dynamic> toJson() => _$InstallationRequestToJson(this);

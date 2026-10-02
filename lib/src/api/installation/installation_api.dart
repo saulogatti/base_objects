@@ -1,3 +1,4 @@
+import 'package:base_objects/src/api/installation/installation.dart';
 import 'package:base_objects/src/api/installation/system_model.dart';
 import 'package:base_objects/src/api/installation/system_user_model.dart';
 
@@ -7,7 +8,7 @@ abstract interface class InstallationApi {
   Future<SystemUserModel> getSystemUser();
 
   /// `POST /installation`. Já instalado → 409. Chave errada → 401.
-  Future<SystemModel> install({required SystemModel system});
+  Future<SystemModel> install({required InstallationRequest request});
 
   /// `GET /installation/status`.
   Future<bool> isInstalled();
