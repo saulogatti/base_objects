@@ -87,31 +87,41 @@ void main() {
       expect(AuthSession.fromJson(json).session.user.email, 'gerente@loja.com');
     });
 
-    test('installation body has no stores and no password on the user', () {
-      final request = InstallationRequest(
-        systemModel: SystemModel(
-          systemUser: SystemUserModel(
-            name: 'João Proprietário',
-            email: 'joao@loja.com',
-            phone: '11988887777',
-            description: 'Rede Celular Center',
-            document: Cpf('12345678900'),
-          ),
-          activationKey: SystemActivationKeyModel(activationKey: 'CHAVE-DO-CLIENTE'),
-          serverUrl: 'https://api.loja.com.br',
-        ),
+    test('installation request keeps the secret and the response drops it', () {
+      const user = SystemUserModel(
+        name: 'João Proprietário',
+        email: 'joao@loja.com',
+        phone: '11988887777',
+        description: 'Rede Celular Center',
+        document: '12345678900',
+      );
+      const request = InstallationRequest(
+        systemUser: user,
+        activationKey: 'CHAVE-DO-CLIENTE',
         administratorPassword: 'secret',
+        serverUrl: 'https://api.loja.com.br',
       );
       final json = request.toJson();
       expect(json.containsKey('stores'), isFalse);
+      expect(json.containsKey('systemModel'), isFalse);
+      expect(json['activationKey'], 'CHAVE-DO-CLIENTE');
       expect(json['administratorPassword'], 'secret');
-      final systemUser = json['systemModel']! as Map<String, dynamic>;
-      final data = SystemUserModel.fromJson(systemUser['systemUser']! as Map<String, dynamic>);
+      final data = SystemUserModel.fromJson(json['systemUser']! as Map<String, dynamic>);
       expect(data.name, 'João Proprietário');
-      expect(data.email, 'joao@loja.com');
-      expect(data.phone, '11988887777');
-      expect(data.description, 'Rede Celular Center');
-      expect(data.document.value, Cpf('12345678900').value);
+      expect(data.document, '12345678900');
+      expect((json['systemUser']! as Map<String, dynamic>).containsKey('password'), isFalse);
+
+      final accepted = SystemModel(
+        id: 'inst-1',
+        systemUser: user,
+        serverUrl: request.serverUrl,
+        createdAt: instant,
+        updatedAt: instant,
+      );
+      final response = accepted.toJson();
+      expect(response.containsKey('activationKey'), isFalse);
+      expect(response.containsKey('administratorPassword'), isFalse);
+      expect(SystemModel.fromJson(response).systemUser.email, 'joao@loja.com');
     });
   });
 
@@ -135,6 +145,7 @@ void main() {
             quantity: QuantityAmount.parse('2'),
             unitPrice: MoneyAmount.parse('39.9'),
             discount: MoneyAmount.parse('0'),
+            unitCost: MoneyAmount.parse('10'),
           ),
         ],
       );
@@ -144,7 +155,43 @@ void main() {
       final item = (json['items']! as List<dynamic>).single as Map<String, dynamic>;
       expect(item['quantity'], '2.000');
       expect(item['unitPrice'], '39.90');
+      expect(item['unitCost'], '10.00');
       expect(InvoiceDraft.fromJson(json).type, InvoiceType.exit);
+      final withoutCost = Map<String, dynamic>.from(item)..remove('unitCost');
+      expect(InvoiceItemDraft.fromJson(withoutCost).unitCost, isNull);
+
+      final diagnosis = DiagnosisItemRequest(
+        id: 'd1',
+        description: 'Troca de tela',
+        quantity: QuantityAmount.parse('1'),
+        unitPrice: MoneyAmount.parse('80'),
+        unitCost: MoneyAmount.parse('30'),
+      );
+      expect(diagnosis.toJson()['unitCost'], '30.00');
+      final diagnosisJson = diagnosis.toJson()..remove('unitCost');
+      expect(DiagnosisItemRequest.fromJson(diagnosisJson).unitCost, isNull);
+    });
+
+    test('confirm result accepts a null cash summary', () {
+      final invoice = Invoice(
+        id: 'inv',
+        storeId: 's1',
+        number: 1,
+        type: InvoiceType.exit,
+        status: InvoiceStatus.confirmed,
+        issueDate: CalendarDate.parse('2026-10-02'),
+        discount: MoneyAmount.parse('0'),
+        subtotal: MoneyAmount.parse('10'),
+        totalValue: MoneyAmount.parse('10'),
+        items: const [],
+        payments: const [],
+        createdAt: instant,
+        updatedAt: instant,
+      );
+      final result = ConfirmInvoiceResult(invoice: invoice, receivables: const []);
+      final json = result.toJson();
+      expect(json['cashSummary'], isNull);
+      expect(ConfirmInvoiceResult.fromJson(json).cashSummary, isNull);
     });
 
     test('analytics money is a string and audit id is an int', () {
