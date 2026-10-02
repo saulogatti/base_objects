@@ -434,3 +434,78 @@ Map<String, dynamic> _$ConfirmInvoiceResultToJson(
   'receivables': instance.receivables.map((e) => e.toJson()).toList(),
   'cashSummary': instance.cashSummary?.toJson(),
 };
+
+const _$ConfirmInvoiceResultJsonSchema = {
+  r'$schema': 'https://json-schema.org/draft/2020-12/schema',
+  'type': 'object',
+  'properties': {
+    'invoice': {r'$ref': r'#/$defs/Invoice', 'description': 'Nota confirmada.'},
+    'receivables': {
+      'type': 'array',
+      'items': {r'$ref': r'#/$defs/Receivable'},
+      'description': 'Parcelas geradas.',
+    },
+    'cashSummary': {
+      r'$ref': r'#/$defs/CashSummary',
+      'description': 'Turno atualizado, ou `null` quando a confirmação não movimenta caixa.',
+    },
+  },
+  'required': ['invoice', 'receivables'],
+  r'$defs': {
+    'CalendarDate': {'type': 'object', 'properties': {}},
+    'MoneyAmount': {'type': 'object', 'properties': {}},
+    'QuantityAmount': {'type': 'object', 'properties': {}},
+    'InvoiceItem': {
+      'type': 'object',
+      'properties': {
+        'id': {'type': 'string', 'description': 'UUID do item.'},
+        'productId': {'type': 'string', 'description': 'Peça, ou `null`.'},
+        'serviceId': {
+          'type': 'string',
+          'description': 'Mão de obra, ou `null`.',
+        },
+        'description': {'type': 'string', 'description': 'Nome congelado.'},
+        'quantity': {
+          r'$ref': r'#/$defs/QuantityAmount',
+          'description': 'Quantidade, escala 3.',
+        },
+        'unitPrice': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Preço unitário.',
+        },
+        'unitCost': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Custo unitário. `null` sem `product:view_cost`.',
+        },
+        'discount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Desconto do item.',
+        },
+        'totalValue': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Total calculado no servidor.',
+        },
+      },
+      'required': [
+        'id',
+        'description',
+        'quantity',
+        'unitPrice',
+        'discount',
+        'totalValue',
+      ],
+    },
+    'PercentAmount': {'type': 'object', 'properties': {}},
+    'ApiInstant': {
+      'type': 'object',
+      'properties': {
+        'value': {
+          'type': 'string',
+          'format': 'date-time',
+          'description': 'Instante em UTC.',
+        },
+      },
+      'required': ['value'],
+    },
+  },
+};
