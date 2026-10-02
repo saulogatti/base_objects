@@ -404,3 +404,33 @@ const _$ConfirmInvoiceRequestJsonSchema = {
     },
   },
 };
+
+ConfirmInvoiceResult _$ConfirmInvoiceResultFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ConfirmInvoiceResult', json, ($checkedConvert) {
+  final val = ConfirmInvoiceResult(
+    invoice: $checkedConvert(
+      'invoice',
+      (v) => Invoice.fromJson(v as Map<String, dynamic>),
+    ),
+    receivables: $checkedConvert(
+      'receivables',
+      (v) => (v as List<dynamic>)
+          .map((e) => Receivable.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    cashSummary: $checkedConvert(
+      'cashSummary',
+      (v) => v == null ? null : CashSummary.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ConfirmInvoiceResultToJson(
+  ConfirmInvoiceResult instance,
+) => <String, dynamic>{
+  'invoice': instance.invoice.toJson(),
+  'receivables': instance.receivables.map((e) => e.toJson()).toList(),
+  'cashSummary': instance.cashSummary?.toJson(),
+};
