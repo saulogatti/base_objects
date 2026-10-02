@@ -563,3 +563,98 @@ const _$ConfirmInvoiceResultJsonSchema = {
         'netAmount',
       ],
     },
+    'Invoice': {
+      'type': 'object',
+      'properties': {
+        'id': {'type': 'string', 'description': 'UUID.'},
+        'storeId': {
+          'type': 'string',
+          'description': 'Loja. Vem do caminho, não do corpo.',
+        },
+        'number': {'type': 'integer', 'description': 'Sequencial por loja.'},
+        'type': {'type': 'object', 'description': 'Entrada ou saída.'},
+        'status': {
+          'type': 'object',
+          'description': 'Situação. Muda só por comando.',
+        },
+        'customerId': {
+          'type': 'string',
+          'description': 'Cliente, ou `null` na entrada.',
+        },
+        'supplierId': {
+          'type': 'string',
+          'description': 'Fornecedor, ou `null` na saída.',
+        },
+        'customerName': {
+          'type': 'string',
+          'description': 'Nome do cliente na listagem, ou `null`.',
+        },
+        'supplierName': {
+          'type': 'string',
+          'description': 'Nome do fornecedor na listagem, ou `null`.',
+        },
+        'issueDate': {
+          r'$ref': r'#/$defs/CalendarDate',
+          'description': 'Emissão.',
+        },
+        'discount': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Desconto no total.',
+        },
+        'subtotal': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Soma dos itens, calculada no servidor.',
+        },
+        'totalValue': {
+          r'$ref': r'#/$defs/MoneyAmount',
+          'description': 'Total (`subtotal` menos [discount]).',
+        },
+        'notes': {'type': 'string', 'description': 'Observações, ou `null`.'},
+        'items': {
+          'type': 'array',
+          'items': {r'$ref': r'#/$defs/InvoiceItem'},
+          'description': 'Itens.',
+        },
+        'payments': {
+          'type': 'array',
+          'items': {r'$ref': r'#/$defs/InvoicePayment'},
+          'description': 'Pagamentos. Vazio fora da saída confirmada.',
+        },
+        'createdBy': {'type': 'string', 'description': 'Autor, ou `null`.'},
+        'cancelledBy': {
+          'type': 'string',
+          'description': 'Quem cancelou, ou `null`.',
+        },
+        'cancelledAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Cancelamento, ou `null`.',
+        },
+        'cancelReason': {
+          'type': 'string',
+          'description': 'Motivo do cancelamento, ou `null`.',
+        },
+        'createdAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Criação.',
+        },
+        'updatedAt': {
+          r'$ref': r'#/$defs/ApiInstant',
+          'description': 'Última alteração.',
+        },
+      },
+      'required': [
+        'id',
+        'storeId',
+        'number',
+        'type',
+        'status',
+        'issueDate',
+        'discount',
+        'subtotal',
+        'totalValue',
+        'items',
+        'payments',
+        'createdAt',
+        'updatedAt',
+      ],
+    },
