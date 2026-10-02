@@ -426,7 +426,7 @@ final class OpenServiceOrderRequest {
   Map<String, dynamic> toJson() => _$OpenServiceOrderRequestToJson(this);
 }
 
-/// Item enviado no diagnóstico. Sem custo nem total.
+/// Item enviado no diagnóstico. Sem total calculado.
 @JsonSerializable()
 final class DiagnosisItemRequest {
   /// Cria o item.
@@ -437,6 +437,7 @@ final class DiagnosisItemRequest {
     required this.unitPrice,
     this.productId,
     this.serviceId,
+    this.unitCost,
   });
 
   /// Lê o item.
@@ -460,6 +461,9 @@ final class DiagnosisItemRequest {
 
   /// Preço unitário.
   final MoneyAmount unitPrice;
+
+  /// Custo unitário informado pelo cliente, ou `null`.
+  final MoneyAmount? unitCost;
 
   /// Serializa o item.
   Map<String, dynamic> toJson() => _$DiagnosisItemRequestToJson(this);
